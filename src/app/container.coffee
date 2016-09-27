@@ -2,27 +2,37 @@
 React = require 'react'
 recorder = require 'actions-in-recorder'
 
+ui = require '../style/ui'
+theme = require '../style/theme'
 routes = require '../routes'
 
 Addressbar = React.createFactory require('router-as-view')
+Navbar = React.createFactory require('./navbar')
+Facade = React.createFactory require('./facade')
 
 {div} = React.DOM
 
 module.exports = React.createClass
   displayName: 'app-container'
 
-  onClick: ->
-    recorder.dispatch 'inc', null
-
   onPopstate: (info, event) ->
     recorder.dispatch 'router/go', info
 
   render: ->
-    div className: 'app-container', onClick: @onClick,
-      'store'
+    router = @props.store.get('router')
+
+    div className: 'app-container', style: (ui.merge ui.global),
+      Navbar()
+      @renderBody router
       Addressbar
-        route: @props.store.get('router')
+        route: router
         rules: routes
         inHash: true
         onPopstate: @onPopstate
         skipRendering: false
+
+  renderBody: (router) ->
+    switch router.get('name')
+      when 'home' then Facade()
+      when 'docs' then 'docs'
+      else '404'

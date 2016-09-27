@@ -20,7 +20,7 @@ module.exports = (info) ->
   resolve:
     extensions: ['.js', '.coffee', '']
   module: loaders: [
-    {test: /\.coffee$/, loader: 'coffee!coffeelint', ignore: /node_modules/}
+    {test: /\.coffee$/, loader: 'coffee', ignore: /node_modules/}
     {test: /.(png|jpg|gif)$/, loader: 'url-loader', query: limit: 100}
     {test: /\.css$/, loader: 'style!css!autoprefixer'}
     {test: /\.json$/, loader: 'json'}
