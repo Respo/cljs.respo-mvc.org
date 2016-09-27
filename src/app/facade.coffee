@@ -7,6 +7,7 @@ theme = require '../style/theme'
 
 logo = require '../images/respo.png'
 
+Footer = React.createFactory require('./footer')
 Features = React.createFactory require('./features')
 
 {div} = React.DOM
@@ -27,10 +28,18 @@ styleLogo =
 styleSpace =
   width: 16
 
+styleVerticalSpace =
+  height: 160
+
 styleText =
   fontSize: 32
   color: theme.dark
   fontWeight: 'lighter'
+
+styleDescription =
+  fontSize: 16
+  textAlign: 'center'
+  color: theme.blue
 
 module.exports = React.createClass
   displayName: 'facade'
@@ -41,4 +50,9 @@ module.exports = React.createClass
         div style: styleLogo
         div style: styleSpace
         div style: styleText, 'Respo'
+      div style: {height: 16}
+      div style: styleDescription,
+        'Respo is an MVC library in ClojureScript'
       Features()
+      div style: styleVerticalSpace
+      Footer()
