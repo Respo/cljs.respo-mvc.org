@@ -24,6 +24,7 @@ module.exports = (info) ->
     {test: /.(png|jpg|gif)$/, loader: 'url-loader', query: limit: 100}
     {test: /\.css$/, loader: 'style!css!autoprefixer'}
     {test: /\.json$/, loader: 'json'}
+    {test: /\.(md|cljs)$/, loader: 'raw'}
   ]
   plugins: [
     new (webpack.optimize.CommonsChunkPlugin)('vendor', 'vendor.js')

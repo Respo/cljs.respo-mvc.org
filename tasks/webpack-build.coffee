@@ -19,6 +19,8 @@ module.exports = (info) ->
       {test: /\.coffee$/, loader: 'coffee', ignore: /node_modules/}
       {test: /.(png|jpg)$/, loader: 'url-loader', query: limit: 100}
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')}
+      {test: /\.json$/, loader: 'json'}
+      {test: /\.(md|cljs)$/, loader: 'raw'}
     ]
   plugins: [
     new (webpack.optimize.CommonsChunkPlugin)('vendor', 'vendor.[chunkhash:8].js')

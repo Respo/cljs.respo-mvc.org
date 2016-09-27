@@ -26,6 +26,7 @@
     "gulp-util": "^3.0.7",
     "hsl": "^0.1.1",
     "json-loader": "^0.5.3",
+    "raw-loader": "^0.5.1",
     "rsyncwrapper": "^0.4.3",
     "run-sequence": "^1.1.2",
     "stir-template": "^0.1.6",
@@ -37,9 +38,11 @@
   },
   "dependencies": {
     "actions-in-recorder": "^1.7.1",
+    "highlight.js": "^9.7.0",
     "hsl": "^0.1.1",
     "immutable": "^3.8.1",
     "immutable-devtools": "0.0.7",
+    "ionicons": "^3.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "router-as-view": "^2.0.0"

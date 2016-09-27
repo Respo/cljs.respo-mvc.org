@@ -14,8 +14,9 @@ module.exports = (env) ->
   stir.render stir.doctype(),
     html {},
       head {},
-        title {}, 'Workflow'
+        title {}, 'Respo: an MVC library in ClojureScript'
         meta charset: 'utf-8'
+        meta name: 'description', content: 'an MVC library learning from React.js'
         link rel: 'icon', href: logoUrl
         if assets.style?
           link rel: 'stylesheet', href: assets.style

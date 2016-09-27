@@ -7,6 +7,8 @@ theme = require '../style/theme'
 
 logo = require '../images/respo.png'
 
+Features = React.createFactory require('./features')
+
 {div} = React.DOM
 
 styleContainer =
@@ -39,3 +41,4 @@ module.exports = React.createClass
         div style: styleLogo
         div style: styleSpace
         div style: styleText, 'Respo'
+      Features()
