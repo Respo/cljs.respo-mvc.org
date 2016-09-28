@@ -18,7 +18,7 @@ module.exports = React.createClass
   renderGuide: ->
     content = switch @props.router.getIn(['data', 'entry'])
       when 'tutorial' then guide.tutorial
-      when 'dom-components' then guide.domComponents
+      when 'dom-elements' then guide.domElements
       when 'dom-events' then guide.domEvents
       when 'dom-properties' then guide.domProperties
       when 'environment' then guide.environment
