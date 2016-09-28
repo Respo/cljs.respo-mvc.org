@@ -3,8 +3,9 @@ React = require 'react'
 
 ui = require '../style/ui'
 theme = require '../style/theme'
+widget = require '../style/widget'
 
-{div} = React.DOM
+{div, a} = React.DOM
 
 styleContainer =
   backgroundColor: theme.dark
@@ -16,4 +17,5 @@ module.exports = React.createClass
 
   render: ->
     div style: styleContainer,
-      div {}, 'container'
+      a style: widget.brightLink, target: '_blanck', href: 'http://github.com/Respo',
+        'GitHub'

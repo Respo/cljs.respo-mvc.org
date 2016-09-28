@@ -6,7 +6,7 @@ resource = require('./resource')
 
 {html, head, title, meta, link, script, body, div, style} = stir
 
-logoUrl = 'http://logo.cirru.org/cirru-32x32.png'
+logoUrl = 'https://avatars3.githubusercontent.com/u/20469468?v=3&s=200'
 
 module.exports = (env) ->
   config = settings.get(env)

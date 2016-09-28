@@ -12,8 +12,7 @@ Features = React.createFactory require('./features')
 
 {div} = React.DOM
 
-styleContainer =
-  paddingTop: 80
+styleContainer = {}
 
 styleBanner =
   alignItems: 'center'

@@ -9,6 +9,8 @@ routes = require '../routes'
 Addressbar = React.createFactory require('router-as-view')
 Navbar = React.createFactory require('./navbar')
 Facade = React.createFactory require('./facade')
+Guide = React.createFactory require('./guide')
+Docs = React.createFactory require('./docs')
 
 {div} = React.DOM
 
@@ -23,6 +25,7 @@ module.exports = React.createClass
 
     div className: 'app-container', style: (ui.merge ui.global),
       Navbar()
+      div style: {height: 64}
       @renderBody router
       Addressbar
         route: router
@@ -34,5 +37,6 @@ module.exports = React.createClass
   renderBody: (router) ->
     switch router.get('name')
       when 'home' then Facade()
-      when 'docs' then 'docs'
+      when 'docs' then Docs router.get('router')
+      when 'guide' then Guide router.get('router')
       else '404'

@@ -1,0 +1,3 @@
+
+exports.brightLink =
+  color: 'white'
