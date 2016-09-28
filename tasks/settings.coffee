@@ -5,7 +5,9 @@ exports.get = (env) ->
       env: 'dev'
       host: 'http://localhost'
       port: 8080
+      useGa: false
     when 'build'
       env: 'build'
       host: 'http://localhost'
       port: 8080
+      useGa: true
