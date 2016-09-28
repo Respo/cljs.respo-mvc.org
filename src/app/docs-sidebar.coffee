@@ -53,10 +53,6 @@ module.exports = React.createClass
         renderEntry 'create-comp'
         renderEntry 'create-element'
       div style: styleGroup,
-        div style: styleName, 'respo.core'
-        renderEntry 'falsify-stage!'
-        renderEntry 'clear-cache!'
-      div style: styleGroup,
         div style: styleName, 'respo.comp.text'
         renderEntry 'comp-text'
       div style: styleGroup,
@@ -66,13 +62,26 @@ module.exports = React.createClass
         div style: styleName, 'respo.comp.debug'
         renderEntry 'comp-debug'
       div style: styleGroup,
-        div style: styleName, 'respo.util.format'
-        renderEntry 'purify-element'
-        renderEntry 'mute-element'
+        div style: styleName, 'respo.core'
+        renderEntry 'clear-cache!'
+        renderEntry 'falsify-stage!'
       div style: styleGroup,
         div style: styleName, 'respo.render.static-html'
         renderEntry 'make-string'
         renderEntry 'make-html'
+      div style: styleGroup,
+        div style: styleName, 'respo.render.expander'
+        renderEntry 'render-app'
+      div style: styleGroup,
+        div style: styleName, 'respo.util.format'
+        renderEntry 'purify-element'
+        renderEntry 'mute-element'
+      div style: styleGroup,
+        div style: styleName, 'respo.render.differ'
+        renderEntry 'find-element-diffs'
+      div style: styleGroup,
+        div style: styleName, 'respo.render.patcher'
+        renderEntry 'apply-dom-changes'
       div style: styleGroup,
         div style: styleName, 'respo.controller.client'
         renderEntry 'initialize-instance'
@@ -86,12 +95,3 @@ module.exports = React.createClass
       div style: styleGroup,
         div style: styleName, 'respo.controller.resolver'
         renderEntry 'get-element-at'
-      div style: styleGroup,
-        div style: styleName, 'respo.render.expander'
-        renderEntry 'render-app'
-      div style: styleGroup,
-        div style: styleName, 'respo.render.differ'
-        renderEntry 'find-element-diffs'
-      div style: styleGroup,
-        div style: styleName, 'respo.render.patcher'
-        renderEntry 'apply-dom-changes'

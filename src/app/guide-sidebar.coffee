@@ -39,6 +39,7 @@ module.exports = React.createClass
       renderEntry 'dom-properties', 'DOM properties'
       renderEntry 'dom-events', 'DOM events'
       renderEntry 'styles', 'Styles'
+      renderEntry 'render-list', 'Render List'
       renderEntry 'hot-swapping', 'Hot swapping'
       renderEntry 'trouble-shooting', 'Trouble shooting'
       renderEntry 'pros-and-cons', 'Pros and Cons'

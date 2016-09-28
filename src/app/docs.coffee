@@ -10,7 +10,8 @@ DocsSidebar = React.createFactory require('./docs-sidebar')
 
 {div} = React.DOM
 
-styleContent = {}
+styleContent =
+  paddingBottom: 240
 
 module.exports = React.createClass
   displayName: 'docs'

@@ -6,6 +6,7 @@ body {
 
 .markdown-docs {
   flex: 1;
+  padding: 8px;
 }
 
 .markdown-docs h2 {
@@ -15,6 +16,12 @@ body {
 
 .markdown-docs h3 {
   font-size: 16px;
+}
+
+.markdown-docs p > code {
+  padding: 0 4px;
+  margin: 0 4px;
+  background-color: hsl(0,0%,94%);
 }
 
 .markdown-docs pre {
