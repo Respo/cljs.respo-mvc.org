@@ -51,7 +51,7 @@ module.exports = React.createClass
         div style: styleText, 'Respo'
       div style: {height: 16}
       div style: styleDescription,
-        'Respo is an MVC library in ClojureScript'
+        'Respo is a front-end MVC library in ClojureScript'
       Features()
       div style: styleVerticalSpace
       Footer()

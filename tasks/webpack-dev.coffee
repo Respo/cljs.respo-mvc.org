@@ -30,5 +30,3 @@ module.exports = (info) ->
     new (webpack.optimize.CommonsChunkPlugin)('vendor', 'vendor.js')
     new (webpack.HotModuleReplacementPlugin)
   ]
-  coffeelint:
-    emitErrors: true

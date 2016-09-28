@@ -37,6 +37,6 @@ module.exports = React.createClass
   renderBody: (router) ->
     switch router.get('name')
       when 'home' then Facade()
-      when 'docs' then Docs router.get('router')
-      when 'guide' then Guide router.get('router')
+      when 'docs' then Docs router: router
+      when 'guide' then Guide router: router
       else '404'
