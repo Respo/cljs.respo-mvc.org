@@ -25,10 +25,13 @@ module.exports = React.createClass
       when 'hot-swapping' then guide.hotSwapping
       when 'styles' then guide.styles
       when 'trouble-shooting' then guide.troubleShooting
+      when 'pros-and-cons' then guide.prosAndCons
+      when 'why-respo' then guide.whyRespo
       else '404'
 
     div
       style: styleContent,
+      className: 'markdown-docs'
       dangerouslySetInnerHTML: {__html: marked(content)}
 
   render: ->

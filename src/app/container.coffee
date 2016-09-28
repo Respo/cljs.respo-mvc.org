@@ -11,6 +11,7 @@ Navbar = React.createFactory require('./navbar')
 Facade = React.createFactory require('./facade')
 Guide = React.createFactory require('./guide')
 Docs = React.createFactory require('./docs')
+Discuss = React.createFactory require('./discuss')
 
 {div} = React.DOM
 
@@ -37,6 +38,7 @@ module.exports = React.createClass
   renderBody: (router) ->
     switch router.get('name')
       when 'home' then Facade()
+      when 'discuss' then Discuss()
       when 'docs' then Docs router: router
       when 'guide' then Guide router: router
       else '404'

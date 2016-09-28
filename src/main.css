@@ -12,6 +12,11 @@ body {
   font-size: 20px;
 }
 
+
+.markdown-docs h3 {
+  font-size: 16px;
+}
+
 .markdown-docs pre {
   margin: 0;
   padding: 8px;

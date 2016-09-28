@@ -37,7 +37,7 @@ onRouteGuide = ->
     name: 'guide'
     router: null
     data:
-      entry: 'tutorial'
+      entry: 'why-respo'
     query: {}
   recorder.dispatch 'router/go', info
 
@@ -46,6 +46,14 @@ onRouteDocs = ->
     name: 'docs'
     data:
       post: 'overview'
+    query: {}
+    router: null
+  recorder.dispatch 'router/go', info
+
+onRouteDiscuss = ->
+  info = Immutable.fromJS
+    name: 'discuss'
+    data: {}
     query: {}
     router: null
   recorder.dispatch 'router/go', info
@@ -64,6 +72,9 @@ module.exports = React.createClass
         div style: styleSpace
         div style: styleLink, onClick: onRouteDocs,
           'API docs'
+        div style: styleSpace
+        div style: styleLink, onClick: onRouteDiscuss,
+          'Discuss'
       div style: ui.row,
         a style: widget.brightLink, target: '_blanck', href: 'http://github.com/Respo',
           'GitHub'

@@ -32,11 +32,13 @@ module.exports = React.createClass
 
   render: ->
     div style: styleContainer,
-      renderEntry 'tutorial', 'Tutorial'
+      renderEntry 'why-respo', 'Why Respo?'
       renderEntry 'environment', 'Envionment'
+      renderEntry 'tutorial', 'Tutorial'
       renderEntry 'dom-elements', 'DOM elements'
       renderEntry 'dom-properties', 'DOM properties'
       renderEntry 'dom-events', 'DOM events'
       renderEntry 'styles', 'Styles'
       renderEntry 'hot-swapping', 'Hot swapping'
       renderEntry 'trouble-shooting', 'Trouble shooting'
+      renderEntry 'pros-and-cons', 'Pros and Cons'
