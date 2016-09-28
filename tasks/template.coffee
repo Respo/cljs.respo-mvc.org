@@ -25,6 +25,6 @@ module.exports = (env) ->
         script src: assets.vendor, defer: true
         script src: assets.main, defer: true
         style {}, 'body * {box-sizing: border-box;}'
-        if env.useGa then gaHtml
+        if config.useGa then gaHtml
     body style: 'margin: 0;',
       div id: 'app'
