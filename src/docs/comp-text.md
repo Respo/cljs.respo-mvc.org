@@ -5,7 +5,7 @@
 In Respo, `textNode`s are not avaible, so I use `<span>` to add text contents, like:
 
 ```clojure
-(span {:attrs {:innerHTML "content"}
+(span {:attrs {:inner-text "content"}
        :style {:color "blue"}})
 ```
 
