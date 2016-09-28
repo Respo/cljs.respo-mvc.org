@@ -15,7 +15,7 @@ gulp.task 'rsync', (cb) ->
     src: [ 'build/*' ]
     recursive: true
     args: [ '--verbose' ]
-    dest: 'respo.frp.im:~/repo/Respo/respo.frp.im/'
+    dest: 'respo.site:~/repo/Respo/respo.site/'
     deleteAll: true
   , (error, stdout, stderr, cmd) ->
     if error != null
