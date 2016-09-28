@@ -6,8 +6,9 @@ Immutable = require 'immutable'
 
 ui = require '../style/ui'
 theme = require '../style/theme'
+widget = require '../style/widget'
 
-{div} = React.DOM
+{div, a} = React.DOM
 
 styleSpace =
   width: 16
@@ -21,6 +22,7 @@ styleContainer =
   position: 'fixed'
   width: '100%'
   padding: 8
+  justifyContent: 'space-between'
 
 onRouteHome = ->
   info = Immutable.fromJS
@@ -53,11 +55,15 @@ module.exports = React.createClass
 
   render: ->
     div style: (ui.merge ui.row, styleContainer),
-      div style: styleLink, onClick: onRouteHome,
-        'Respo'
-      div style: styleSpace
-      div style: styleLink, onClick: onRouteGuide,
-        'Guide'
-      div style: styleSpace
-      div style: styleLink, onClick: onRouteDocs,
-        'API docs'
+      div style: ui.row,
+        div style: styleLink, onClick: onRouteHome,
+          'Respo'
+        div style: styleSpace
+        div style: styleLink, onClick: onRouteGuide,
+          'Guide'
+        div style: styleSpace
+        div style: styleLink, onClick: onRouteDocs,
+          'API docs'
+      div style: ui.row,
+        a style: widget.brightLink, target: '_blanck', href: 'http://github.com/Respo',
+          'GitHub'

@@ -3,3 +3,19 @@
 
 body {
 }
+
+.markdown-docs {
+  flex: 1;
+}
+
+.markdown-docs h2 {
+  font-size: 20px;
+}
+
+.markdown-docs pre {
+  margin: 0;
+  padding: 8px;
+  line-height: 1.6;
+  background-color: hsl(0,0%,96%);
+  display: block;
+}

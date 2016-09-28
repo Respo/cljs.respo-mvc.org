@@ -17,5 +17,5 @@ module.exports = React.createClass
 
   render: ->
     div style: styleContainer,
-      a style: widget.brightLink, target: '_blanck', href: 'http://github.com/Respo',
-        'GitHub'
+      a style: widget.brightLink, target: '_blanck', href: 'http://tiye.me/',
+        'By 题叶'

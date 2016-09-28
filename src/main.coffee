@@ -1,5 +1,7 @@
 
+hljs = require 'highlight.js'
 React = require 'react'
+marked = require 'marked'
 recorder = require 'actions-in-recorder'
 ReactDOM = require 'react-dom'
 Immutable = require 'immutable'
@@ -24,6 +26,10 @@ render = (core) ->
 
 main = ->
   installDevtools Immutable
+  marked.setOptions
+    highlight: (code, lang, callback) ->
+      result = hljs.highlightAuto(code.trim(), [lang])
+      result.value
 
   recorder.setup
     initial: initialStore

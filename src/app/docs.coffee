@@ -51,4 +51,5 @@ module.exports = React.createClass
 
     div
       style: styleContent
+      className: 'markdown-docs'
       dangerouslySetInnerHTML: {__html: marked(content)}
