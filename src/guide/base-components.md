@@ -12,8 +12,11 @@ respo.comp.debug/comp-debug
 
 Also I got some simple component to help:
 
+* [`respo-ui`](http://github.com/Respo/respo-ui) for base styles
 * [`respo-value`](https://github.com/Respo/respo-value) for displaying values
 * [`respo-border`](https://github.com/Respo/respo-border) for renderng borders
-* [`respo-router`](https://github.com/Respo/respo-router) for routering
+* [`respo-inflow-pop`](https://github.com/Respo/respo-inflow-pop) for popups
+* [`respo-router`](https://github.com/Respo/respo-router) for routering(experimental)
+* [`notifyer`](https://github.com/Respo/notifier) for showing notifications(none Respo)
 
 Respo components are pure, without side effects.
