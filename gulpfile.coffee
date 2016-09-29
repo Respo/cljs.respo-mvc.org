@@ -32,9 +32,22 @@ gulp.task 'script', ->
   .pipe gulp.dest('lib/')
 
 gulp.task 'html', (cb) ->
-  html = require('./tasks/template')
-  fs = require('fs')
-  fs.writeFile 'build/index.html', html(env), cb
+  fs = require 'fs'
+  html = require './tasks/template'
+  fs.writeFile 'build/index.html', html(env, '/'), cb
+
+gulp.task 'entries', (cb) ->
+  fs = require 'fs'
+  path = require 'path'
+  mkdirp = require 'mkdirp'
+  html = require './tasks/template'
+  pages = require './tasks/pages'
+  pages.forEach (pathname) ->
+    pathname = pathname[1..]
+    filename = if pathname is '' then 'index' else pathname
+    mkdirp.sync (path.join 'build', path.dirname(filename))
+    fs.writeFileSync "build/#{filename}.html", html(env, pathname)
+  cb()
 
 gulp.task 'del', (cb) ->
   del = require('del')
@@ -86,3 +99,7 @@ gulp.task 'dev', (cb) ->
 gulp.task 'build', (cb) ->
   env = 'build'
   sequence 'del', 'webpack-build', 'html', cb
+
+gulp.task 'build-all', (cb) ->
+  env = 'build'
+  sequence 'del', 'webpack-build', 'entries', cb

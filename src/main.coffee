@@ -5,8 +5,10 @@ marked = require 'marked'
 recorder = require 'actions-in-recorder'
 ReactDOM = require 'react-dom'
 Immutable = require 'immutable'
-installDevtools = require 'immutable-devtools'
 {parseAddress} = require 'router-as-view/lib/path'
+
+if __DEV__
+  installDevtools = require 'immutable-devtools'
 
 schema = require './schema'
 routes = require './routes'
@@ -16,8 +18,7 @@ Container = React.createFactory require('./app/container')
 
 require './main.css'
 
-initialAddress = location.hash.substr 1
-router = parseAddress initialAddress, routes
+router = parseAddress window._initialState.path, routes
 initialStore = schema.store.set 'router', router
 
 render = (core) ->
@@ -25,7 +26,8 @@ render = (core) ->
   ReactDOM.render (Container store: core.get('store')), mountPoint
 
 main = ->
-  installDevtools Immutable
+  if __DEV__
+    installDevtools Immutable
   marked.setOptions
     highlight: (code, lang, callback) ->
       result = hljs.highlightAuto(code.trim(), [lang])

@@ -8,6 +8,6 @@ exports.get = (config) ->
     when 'build'
       assets = require('../build/assets')
       # returns
-      main: assets.main[0]
-      vendor: assets.vendor
-      style: assets.main[1]
+      main: "/#{assets.main[0]}"
+      vendor: "/#{assets.vendor}"
+      style: "/#{assets.main[1]}"

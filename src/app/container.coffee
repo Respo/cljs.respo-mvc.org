@@ -31,7 +31,7 @@ module.exports = React.createClass
       Addressbar
         router: router
         routes: routes
-        inHash: true
+        inHash: false
         onPopstate: @onPopstate
         skipRendering: false
 

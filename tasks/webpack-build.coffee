@@ -26,4 +26,8 @@ module.exports = (info) ->
     new (webpack.optimize.CommonsChunkPlugin)('vendor', 'vendor.[chunkhash:8].js')
     new ExtractTextPlugin('style.[chunkhash:8].css')
     new (webpack.optimize.UglifyJsPlugin)(sourceMap: false)
+    new webpack.DefinePlugin 'process.env': {'NODE_ENV': JSON.stringify('production')}
+    new webpack.DefinePlugin
+      __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+      __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
   ]

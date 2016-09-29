@@ -5,8 +5,6 @@ React = require 'react'
 ui = require '../style/ui'
 theme = require '../style/theme'
 
-logo = require '../images/respo.png'
-
 Footer = React.createFactory require('./footer')
 Features = React.createFactory require('./features')
 
@@ -19,7 +17,7 @@ styleBanner =
   justifyContent: 'center'
 
 styleLogo =
-  backgroundImage: "url(#{logo})"
+  backgroundImage: "url(https://avatars3.githubusercontent.com/u/20469468?v=3&s=200)"
   width: 64
   height: 64
   backgroundSize: 'cover'
