@@ -13,6 +13,8 @@ Property name | Respo name
 
 I'm afraid you have to figure out more by yourself.
 
+Properties(except for `style` and `event`) are specified in `attrs` field. `style` is a HashMap. `event` is followed with a HashMap of events too.
+
 The impelementation details is:
 
 ```clojure

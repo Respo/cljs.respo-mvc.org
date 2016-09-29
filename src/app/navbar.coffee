@@ -47,6 +47,11 @@ onRouteDiscuss = (event) ->
   recorder.dispatch 'router/nav', '/discuss.html'
   tracking.event 'router', '/discuss.html'
 
+onOpenGitHub = (event) ->
+  event.preventDefault()
+  window.open 'http://github.com/Respo'
+  tracking.event 'open-link', target.href
+
 module.exports = React.createClass
   displayName: 'navbar'
 
@@ -65,5 +70,7 @@ module.exports = React.createClass
         a style: styleLink, onClick: onRouteDiscuss, href: '/discuss.html',
           'Discuss'
       div style: ui.row,
-        a style: widget.brightLink, target: '_blanck', href: 'http://github.com/Respo',
+        a
+          style: widget.brightLink, target: '_blanck'
+          href: 'http://github.com/Respo', onClick: onOpenGitHub,
           'GitHub'

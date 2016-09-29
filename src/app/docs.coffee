@@ -3,6 +3,7 @@ React = require 'react'
 marked = require 'marked'
 
 ui = require '../style/ui'
+link = require '../util/link'
 theme = require '../style/theme'
 docs = require '../docs/index'
 
@@ -54,5 +55,6 @@ module.exports = React.createClass
 
     div
       style: styleContent
+      onClick: link.onClick
       className: 'markdown-docs'
       dangerouslySetInnerHTML: {__html: marked(content)}

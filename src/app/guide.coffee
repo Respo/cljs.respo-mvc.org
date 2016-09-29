@@ -1,8 +1,10 @@
 
 React = require 'react'
 marked = require 'marked'
+recorder = require 'actions-in-recorder'
 
 ui = require '../style/ui'
+link = require '../util/link'
 theme = require '../style/theme'
 guide = require '../guide/index'
 
@@ -36,6 +38,7 @@ module.exports = React.createClass
       style: styleContent,
       className: 'markdown-docs'
       dangerouslySetInnerHTML: {__html: marked(content)}
+      onClick: link.onClick
 
   render: ->
     div style: (ui.row),

@@ -39,6 +39,7 @@ styleName =
   fontSize: 12
 
 onRoute = (path) -> (event) ->
+  event.preventDefault()
   recorder.dispatch 'router/nav', "/docs/#{path}.html"
   tracking.event 'router', "/docs/#{path}.html"
 

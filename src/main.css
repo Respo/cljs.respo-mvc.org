@@ -24,6 +24,10 @@ body {
   background-color: hsl(0,0%,94%);
 }
 
+.markdown-docs a code {
+  pointer-events: none;
+}
+
 .markdown-docs pre {
   margin: 0;
   padding: 8px;

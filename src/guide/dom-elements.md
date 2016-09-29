@@ -2,7 +2,7 @@
 DOM elements
 ----
 
-An element is defined like this with [`create-element`](#/docs/create-element.html):
+An element is defined like this with [`create-element`](/docs/create-element.html):
 
 ```clojure
 (defn a [props & children] (create-element :a props children))
@@ -27,7 +27,7 @@ might be rendered to an element that looks like(`data-coord` may vary):
        style="line-height:2;width:100%;">
 ```
 
-Some of the frequently used elements are already defined in `respo.alias`:
+Some of the frequently used elements are defined in `respo.alias`:
 
 ```clojure
 a
@@ -57,6 +57,6 @@ textarea
 title
 ```
 
-Some are not, but you can create them very quickly.
+Some are not, but you can create them very quickly with [`create-element`](/docs/create-element.html).
 
 Since `meta` is a Clojure function, `meta'` is used here.
