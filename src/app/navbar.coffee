@@ -7,6 +7,7 @@ Immutable = require 'immutable'
 ui = require '../style/ui'
 theme = require '../style/theme'
 widget = require '../style/widget'
+tracking = require '../util/tracking'
 
 {div, a} = React.DOM
 
@@ -26,15 +27,19 @@ styleContainer =
 
 onRouteHome = ->
   recorder.dispatch 'router/nav', '/'
+  tracking.event 'router', '/'
 
 onRouteGuide = ->
   recorder.dispatch 'router/nav', "/guide/why-respo.html"
+  tracking.event 'router', "/guide/why-respo.html"
 
 onRouteDocs = ->
   recorder.dispatch 'router/nav', "/docs/overview.html"
+  tracking.event 'router', "/docs/overview.html"
 
 onRouteDiscuss = ->
   recorder.dispatch 'router/nav', '/discuss.html'
+  tracking.event 'router', '/discuss.html'
 
 module.exports = React.createClass
   displayName: 'navbar'

@@ -20,7 +20,7 @@ module.exports = React.createClass
 
   render: ->
     div style: ui.row,
-      DocsSidebar()
+      DocsSidebar router: @props.router
       @renderDocsContent()
 
   renderDocsContent: ->

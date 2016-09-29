@@ -6,6 +6,7 @@ Immutable = require 'immutable'
 
 ui = require '../style/ui'
 theme = require '../style/theme'
+tracking = require '../util/tracking'
 
 {div} = React.DOM
 
@@ -22,11 +23,13 @@ styleGroup = {}
 styleEntry =
   fontFamily: 'Menlo, Consolas, Ubuntu mono, monospace'
   fontSize: 12
-  padding: '0 8px'
+  padding: '0 16px'
   cursor: "pointer"
+  color: theme.blue
 
 styleOverview =
   cursor: 'pointer'
+  color: theme.blue
 
 styleName =
   color: hsl 0, 0, 80
@@ -35,59 +38,71 @@ styleName =
 
 onRoute = (path) -> (event) ->
   recorder.dispatch 'router/nav', "/docs/#{path}.html"
+  tracking.event 'router', "/docs/#{path}.html"
 
-renderEntry = (name) ->
-  div style: styleEntry, onClick: (onRoute name),
+renderEntry = (name, post) ->
+  postName = post.replace '.html', ''
+
+  div
+    style: ui.merge styleEntry,
+      if name is postName then color: theme.cyan
+    onClick: (onRoute name)
     name
 
 module.exports = React.createClass
   displayName: 'docs'
 
   render: ->
+    post = @props.router.getIn ['data', 'post']
+
     div style: styleContainer,
-      div style: styleOverview, onClick: (onRoute 'overview'), 'Overview'
+      div
+        style: ui.merge styleOverview,
+          if post is 'overview.html' then color: theme.cyan
+        onClick: (onRoute 'overview')
+        'Overview'
       div style: styleGroup,
         div style: styleName, 'respo.alias'
-        renderEntry 'div'
-        renderEntry 'create-comp'
-        renderEntry 'create-element'
+        renderEntry 'div', post
+        renderEntry 'create-comp', post
+        renderEntry 'create-element', post
       div style: styleGroup,
         div style: styleName, 'respo.comp.text'
-        renderEntry 'comp-text'
+        renderEntry 'comp-text', post
       div style: styleGroup,
         div style: styleName, 'respo.comp.space'
-        renderEntry 'comp-space'
+        renderEntry 'comp-space', post
       div style: styleGroup,
         div style: styleName, 'respo.comp.debug'
-        renderEntry 'comp-debug'
+        renderEntry 'comp-debug', post
       div style: styleGroup,
         div style: styleName, 'respo.core'
-        renderEntry 'clear-cache!'
-        renderEntry 'falsify-stage!'
+        renderEntry 'clear-cache!', post
+        renderEntry 'falsify-stage!', post
       div style: styleGroup,
         div style: styleName, 'respo.render.static-html'
-        renderEntry 'make-string'
-        renderEntry 'make-html'
+        renderEntry 'make-string', post
+        renderEntry 'make-html', post
       div style: styleGroup,
         div style: styleName, 'respo.render.expander'
-        renderEntry 'render-app'
+        renderEntry 'render-app', post
       div style: styleGroup,
         div style: styleName, 'respo.util.format'
-        renderEntry 'purify-element'
-        renderEntry 'mute-element'
+        renderEntry 'purify-element', post
+        renderEntry 'mute-element', post
       div style: styleGroup,
         div style: styleName, 'respo.render.differ'
-        renderEntry 'find-element-diffs'
+        renderEntry 'find-element-diffs', post
       div style: styleGroup,
         div style: styleName, 'respo.render.patcher'
-        renderEntry 'apply-dom-changes'
+        renderEntry 'apply-dom-changes', post
       div style: styleGroup,
         div style: styleName, 'respo.controller.client'
-        renderEntry 'initialize-instance'
-        renderEntry 'activate-instance'
-        renderEntry 'patch-instance'
-        renderEntry 'release-instance'
+        renderEntry 'initialize-instance', post
+        renderEntry 'activate-instance', post
+        renderEntry 'patch-instance', post
+        renderEntry 'release-instance', post
       div style: styleGroup,
         div style: styleName, 'respo.controller.deliver'
-        renderEntry 'build-deliver-event'
-        renderEntry 'mutate-factory'
+        renderEntry 'build-deliver-event', post
+        renderEntry 'mutate-factory', post
