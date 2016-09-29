@@ -2,14 +2,12 @@
 Why Respo?
 ----
 
-There are quite some alternative actually: Reagent, React, Deku, or maybe Rum.
-Om is a bit too complicated to me.
+There are quite some alternatives actually: Reagent, Om, React.js , Deku, or Rum.
+I think Om is too complicated for me.
 
-The different thing of Respo is, its built totally in ClojureScript.
-So persistent data structure from scratch.
-It can be too simple for real world apps that requires lots of side effects.
-but it fine to build middle size apps and to experiments with Respo.
+The different part of Respo is, it's built in ClojureScript with persistent data structure from scratch.
+It can be too simple for real world apps that requires lots of side effects, but it is fine to build medium size apps and do experiments about MVC.
 Respo is designed carefully to maintain global store and global states,
-so hot code swapping is quite predictable.
+as a result hot code swapping is more predictable.
 
 For short, it's simpler, meanwhile purer.
