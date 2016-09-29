@@ -8,7 +8,7 @@ ui = require '../style/ui'
 theme = require '../style/theme'
 tracking = require '../util/tracking'
 
-{div} = React.DOM
+{div, a} = React.DOM
 
 styleContainer =
   padding: 8
@@ -17,14 +17,18 @@ styleContainer =
 styleEntry =
   cursor: 'pointer'
   color: theme.blue
+  display: 'block'
+  textDecoration: 'none'
 
 onRouteGuide = (path) -> (event) ->
+  event.preventDefault()
   recorder.dispatch 'router/nav', "guide/#{path}.html"
   tracking.event 'router', "/guide/#{path}.html"
 
 renderEntry = (path, name, focus) ->
   focusedPath = focus.replace('.html', '')
-  div
+  a
+    href: "/guide/#{path}.html"
     style: ui.merge styleEntry,
       if path is focusedPath then color: theme.cyan
     onClick: (onRouteGuide path), name

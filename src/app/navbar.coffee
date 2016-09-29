@@ -15,7 +15,9 @@ styleSpace =
   width: 32
 
 styleLink =
+  color: 'white'
   cursor: 'pointer'
+  textDecoration: 'none'
 
 styleContainer =
   backgroundColor: theme.dark
@@ -25,19 +27,23 @@ styleContainer =
   padding: 8
   justifyContent: 'space-between'
 
-onRouteHome = ->
+onRouteHome = (event) ->
+  event.preventDefault()
   recorder.dispatch 'router/nav', '/'
   tracking.event 'router', '/'
 
-onRouteGuide = ->
+onRouteGuide = (event) ->
+  event.preventDefault()
   recorder.dispatch 'router/nav', "/guide/why-respo.html"
   tracking.event 'router', "/guide/why-respo.html"
 
-onRouteDocs = ->
+onRouteDocs = (event) ->
+  event.preventDefault()
   recorder.dispatch 'router/nav', "/docs/overview.html"
   tracking.event 'router', "/docs/overview.html"
 
-onRouteDiscuss = ->
+onRouteDiscuss = (event) ->
+  event.preventDefault()
   recorder.dispatch 'router/nav', '/discuss.html'
   tracking.event 'router', '/discuss.html'
 
@@ -47,16 +53,16 @@ module.exports = React.createClass
   render: ->
     div style: (ui.merge ui.row, styleContainer),
       div style: ui.row,
-        div style: styleLink, onClick: onRouteHome,
+        a style: styleLink, onClick: onRouteHome, href: '/',
           'Respo'
         div style: styleSpace
-        div style: styleLink, onClick: onRouteGuide,
+        a style: styleLink, onClick: onRouteGuide, href: '/guide/why-respo.html',
           'Guide'
         div style: styleSpace
-        div style: styleLink, onClick: onRouteDocs,
+        a style: styleLink, onClick: onRouteDocs, href: '/docs/overview.html',
           'API docs'
         div style: styleSpace
-        div style: styleLink, onClick: onRouteDiscuss,
+        a style: styleLink, onClick: onRouteDiscuss, href: '/discuss.html',
           'Discuss'
       div style: ui.row,
         a style: widget.brightLink, target: '_blanck', href: 'http://github.com/Respo',

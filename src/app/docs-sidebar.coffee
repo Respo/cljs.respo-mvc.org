@@ -8,7 +8,7 @@ ui = require '../style/ui'
 theme = require '../style/theme'
 tracking = require '../util/tracking'
 
-{div} = React.DOM
+{div, a} = React.DOM
 
 styleContainer =
   padding: 16
@@ -26,6 +26,8 @@ styleEntry =
   padding: '0 16px'
   cursor: "pointer"
   color: theme.blue
+  display: 'block'
+  textDecoration: 'none'
 
 styleOverview =
   cursor: 'pointer'
@@ -43,7 +45,8 @@ onRoute = (path) -> (event) ->
 renderEntry = (name, post) ->
   postName = post.replace '.html', ''
 
-  div
+  a
+    href: "/docs/#{name}.html"
     style: ui.merge styleEntry,
       if name is postName then color: theme.cyan
     onClick: (onRoute name)
