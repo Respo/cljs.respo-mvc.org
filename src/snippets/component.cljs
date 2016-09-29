@@ -1,10 +1,10 @@
 
-(def comp-child
-  (create-comp :child
-    (fn [prop-b]
-      (fn [state mutate!]
-        (div {}
-          (comp-text (str prop-b) nil))))))
+(def render-child [prop-b]
+  (fn [state mutate!]
+    (div {}
+      (comp-text (str prop-b) nil))))
+
+(def comp-child (create-comp :child render-child))
 
 (defn render [prop-a prop-b]
   (fn [state mutate!]
