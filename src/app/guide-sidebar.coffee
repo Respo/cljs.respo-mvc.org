@@ -16,13 +16,7 @@ styleEntry =
   cursor: 'pointer'
 
 onRouteGuide = (path) -> (event) ->
-  info = Immutable.fromJS
-    name: 'guide'
-    data:
-      entry: path
-    query: {}
-    router: null
-  recorder.dispatch 'router/go', info
+  recorder.dispatch 'router/nav', "guide/#{path}"
 
 renderEntry = (path, name) ->
   div style: styleEntry, onClick: (onRouteGuide path), name
@@ -33,6 +27,7 @@ module.exports = React.createClass
   render: ->
     div style: styleContainer,
       renderEntry 'why-respo', 'Why Respo?'
+      renderEntry 'pros-and-cons', 'Pros and Cons'
       renderEntry 'environment', 'Envionment'
       renderEntry 'tutorial', 'Tutorial'
       renderEntry 'dom-elements', 'DOM elements'
@@ -41,5 +36,5 @@ module.exports = React.createClass
       renderEntry 'styles', 'Styles'
       renderEntry 'render-list', 'Render List'
       renderEntry 'hot-swapping', 'Hot swapping'
+      renderEntry 'base-components', 'Base components'
       renderEntry 'trouble-shooting', 'Trouble shooting'
-      renderEntry 'pros-and-cons', 'Pros and Cons'

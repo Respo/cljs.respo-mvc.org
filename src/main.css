@@ -31,3 +31,8 @@ body {
   background-color: hsl(0,0%,96%);
   display: block;
 }
+
+.markdown-docs table {
+  background-color: hsl(0,0%,96%);
+  padding: 8px;
+}

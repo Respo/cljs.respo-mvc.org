@@ -10,7 +10,12 @@ theme = require '../style/theme'
 {div} = React.DOM
 
 styleContainer =
-  padding: 8
+  padding: 16
+  position: 'fixed'
+  top: 80
+  bottom: 0
+  overflow: 'auto'
+  width: 240
 
 styleGroup = {}
 
@@ -92,6 +97,3 @@ module.exports = React.createClass
         div style: styleName, 'respo.controller.deliver'
         renderEntry 'build-deliver-event'
         renderEntry 'mutate-factory'
-      div style: styleGroup,
-        div style: styleName, 'respo.controller.resolver'
-        renderEntry 'get-element-at'

@@ -29,8 +29,8 @@ module.exports = React.createClass
       div style: {height: 64}
       @renderBody router
       Addressbar
-        route: router
-        rules: routes
+        router: router
+        routes: routes
         inHash: true
         onPopstate: @onPopstate
         skipRendering: false

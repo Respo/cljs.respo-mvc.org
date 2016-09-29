@@ -12,6 +12,8 @@ DocsSidebar = React.createFactory require('./docs-sidebar')
 
 styleContent =
   paddingBottom: 240
+  marginLeft: 240
+  padding: 8
 
 module.exports = React.createClass
   displayName: 'docs'
@@ -33,7 +35,6 @@ module.exports = React.createClass
       when 'element' then docs.element
       when 'falsify-stage!' then docs.falsifyStage_
       when 'find-element-diffs' then docs.findElementDiffs
-      when 'get-element-at' then docs.getElementAt
       when 'initialize-instance' then docs.initializeInstance
       when 'make-html' then docs.makeHtml
       when 'make-string' then docs.makeString

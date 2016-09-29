@@ -20,3 +20,16 @@ don't forget to add the code to trigger `on-jsload`:
 (reload :on-jsload 'stack-workflow.core/on-jsload
         :cljs-asset-path ".")
 ```
+
+In Respo, you are asked to define `global-store` and `global-states` explicitly. They the global states of data. As an Atom, the value inside is immutable, but the reference is mutable. During hot swapping, variables defined with `defonce` will be retained. As a result, component states are persistent even code is swapped:
+
+```clojure
+(defonce global-store
+ (atom
+   (or
+     (let [raw (or (.getItem js/localStorage "respo") "[]")]
+       (read-string raw))
+     schema/store)))
+
+(defonce global-states (atom {}))
+```

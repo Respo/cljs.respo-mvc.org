@@ -11,7 +11,7 @@ widget = require '../style/widget'
 {div, a} = React.DOM
 
 styleSpace =
-  width: 16
+  width: 32
 
 styleLink =
   cursor: 'pointer'

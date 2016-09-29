@@ -1,0 +1,35 @@
+
+DOM properties
+----
+
+Respo is updating DOM properties with a simple solution. It's okay but not that friendly. Here are some example on the name mapping:
+
+Property name | Respo name
+--- | ---
+`className` | `:class-name`
+`innerText` | `:inner-text`
+`innerHTML` | `:innerHTML`
+`value` | `:value`
+
+I'm afraid you have to figure out more by yourself.
+
+The impelementation details is:
+
+```clojure
+(defn replace-prop [target op]
+  (let [prop-name (dashed->camel (name (key op))) prop-value (val op)]
+    (if (= prop-name "value")
+      (if (not= prop-value (.-value target))
+        (aset target prop-name prop-value))
+      (aset target prop-name prop-value))))
+
+(defn add-prop [target op]
+  (let [prop-name (dashed->camel (name (key op))) prop-value (val op)]
+    (case
+      prop-name
+      "style"
+      (aset target prop-name (style->string prop-value))
+      (aset target prop-name prop-value))))
+
+(defn rm-prop [target op] (aset target (dashed->camel (name op)) nil))
+```

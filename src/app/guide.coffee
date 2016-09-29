@@ -28,6 +28,7 @@ module.exports = React.createClass
       when 'pros-and-cons' then guide.prosAndCons
       when 'why-respo' then guide.whyRespo
       when 'render-list' then guide.renderList
+      when 'base-components' then guide.baseComponents
       else '404'
 
     div
