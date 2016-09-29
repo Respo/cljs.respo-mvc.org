@@ -44,9 +44,10 @@ gulp.task 'entries', (cb) ->
   pages = require './tasks/pages'
   pages.forEach (pathname) ->
     pathname = pathname[1..]
+    routerPath = if pathname is '' then '/' else "#{pathname}.html"
     filename = if pathname is '' then 'index' else pathname
     mkdirp.sync (path.join 'build', path.dirname(filename))
-    fs.writeFileSync "build/#{filename}.html", html(env, pathname)
+    fs.writeFileSync "build/#{filename}.html", html(env, routerPath)
   cb()
 
 gulp.task 'del', (cb) ->

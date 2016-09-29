@@ -16,7 +16,7 @@ styleEntry =
   cursor: 'pointer'
 
 onRouteGuide = (path) -> (event) ->
-  recorder.dispatch 'router/nav', "guide/#{path}"
+  recorder.dispatch 'router/nav', "guide/#{path}.html"
 
 renderEntry = (path, name) ->
   div style: styleEntry, onClick: (onRouteGuide path), name

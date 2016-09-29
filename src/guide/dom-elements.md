@@ -2,7 +2,7 @@
 DOM elements
 ----
 
-An element is defined like this with [`create-element`](#/docs/create-element):
+An element is defined like this with [`create-element`](#/docs/create-element.html):
 
 ```clojure
 (defn a [props & children] (create-element :a props children))

@@ -3,6 +3,6 @@ Immutable = require 'immutable'
 
 module.exports = Immutable.fromJS
   home: []
-  discuss: []
+  'discuss.html': []
   guide: ['entry']
   docs: ['post']

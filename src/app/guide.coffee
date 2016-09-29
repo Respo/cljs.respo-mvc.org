@@ -16,7 +16,8 @@ module.exports = React.createClass
   displayName: 'guide'
 
   renderGuide: ->
-    content = switch @props.router.getIn(['data', 'entry'])
+    guideName = @props.router.getIn(['data', 'entry']).replace('.html', '')
+    content = switch guideName
       when 'tutorial' then guide.tutorial
       when 'dom-elements' then guide.domElements
       when 'dom-events' then guide.domEvents

@@ -34,13 +34,7 @@ styleName =
   fontSize: 12
 
 onRoute = (path) -> (event) ->
-  info = Immutable.fromJS
-    name: 'docs'
-    data:
-      post: path
-    query: {}
-    router: null
-  recorder.dispatch 'router/go', info
+  recorder.dispatch 'router/nav', "/docs/#{path}.html"
 
 renderEntry = (name) ->
   div style: styleEntry, onClick: (onRoute name),

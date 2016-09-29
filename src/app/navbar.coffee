@@ -25,38 +25,16 @@ styleContainer =
   justifyContent: 'space-between'
 
 onRouteHome = ->
-  info = Immutable.fromJS
-    name: 'home'
-    router: null
-    data: {}
-    query: {}
-  recorder.dispatch 'router/go', info
+  recorder.dispatch 'router/nav', '/'
 
 onRouteGuide = ->
-  info = Immutable.fromJS
-    name: 'guide'
-    router: null
-    data:
-      entry: 'why-respo'
-    query: {}
-  recorder.dispatch 'router/go', info
+  recorder.dispatch 'router/nav', "/guide/why-respo.html"
 
 onRouteDocs = ->
-  info = Immutable.fromJS
-    name: 'docs'
-    data:
-      post: 'overview'
-    query: {}
-    router: null
-  recorder.dispatch 'router/go', info
+  recorder.dispatch 'router/nav', "/docs/overview.html"
 
 onRouteDiscuss = ->
-  info = Immutable.fromJS
-    name: 'discuss'
-    data: {}
-    query: {}
-    router: null
-  recorder.dispatch 'router/go', info
+  recorder.dispatch 'router/nav', '/discuss.html'
 
 module.exports = React.createClass
   displayName: 'navbar'

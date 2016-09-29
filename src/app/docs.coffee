@@ -24,7 +24,8 @@ module.exports = React.createClass
       @renderDocsContent()
 
   renderDocsContent: ->
-    content = switch @props.router.getIn(['data', 'post'])
+    docName = @props.router.getIn(['data', 'post']).replace('.html', '')
+    content = switch docName
       when 'activate-instance' then docs.activateInstance
       when 'build-deliver-event' then docs.buildDeliverEvent
       when 'comp-debug' then docs.compDebug
