@@ -48,6 +48,7 @@ module.exports = React.createClass
       renderEntry 'dom-properties', 'DOM properties', entry
       renderEntry 'dom-events', 'DOM events', entry
       renderEntry 'styles', 'Styles', entry
+      renderEntry 'virtual-dom', 'Virtual DOM', entry
       renderEntry 'render-list', 'Render List', entry
       renderEntry 'hot-swapping', 'Hot swapping', entry
       renderEntry 'base-components', 'Base components', entry

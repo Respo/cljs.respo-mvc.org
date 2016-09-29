@@ -14,6 +14,7 @@ module.exports = [
   '/guide/hot-swapping'
   '/guide/base-components'
   '/guide/trouble-shooting'
+  '/guide/virtual-dom'
   '/docs/overview'
   '/docs/div'
   '/docs/create-comp'

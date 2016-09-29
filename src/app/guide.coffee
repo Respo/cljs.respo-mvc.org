@@ -32,6 +32,7 @@ module.exports = React.createClass
       when 'why-respo' then guide.whyRespo
       when 'render-list' then guide.renderList
       when 'base-components' then guide.baseComponents
+      when 'virtual-dom' then guide.virtualDom
       else '404'
 
     div
