@@ -13,9 +13,9 @@ And for example an element defined like this:
 ```cloure
 (input
   {:attrs {:placeholder "Pick a name, and hit Enter"}
-          {:event {:keydown (on-keydown mutate!)}
-          {:style {:line-height 2
-                   :width "100%"}}}})
+   :event {:keydown (on-keydown mutate!)}
+   :style {:line-height 2
+           :width "100%"}})
 ```
 
 might be rendered to an element that looks like(`data-coord` may vary):

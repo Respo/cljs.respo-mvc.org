@@ -95,7 +95,7 @@ gulp.task 'webpack-build', (cb) ->
     cb()
 
 gulp.task 'dev', (cb) ->
-  sequence 'html', 'webpack-dev', cb
+  sequence 'del', 'html', 'webpack-dev', cb
 
 gulp.task 'build', (cb) ->
   env = 'build'
