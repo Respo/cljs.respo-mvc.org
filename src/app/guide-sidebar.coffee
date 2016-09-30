@@ -52,4 +52,5 @@ module.exports = React.createClass
       renderEntry 'render-list', 'Render List', entry
       renderEntry 'hot-swapping', 'Hot swapping', entry
       renderEntry 'base-components', 'Base components', entry
+      renderEntry 'server-rendering', 'Server rendering', entry
       renderEntry 'trouble-shooting', 'Trouble shooting', entry

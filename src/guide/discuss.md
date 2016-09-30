@@ -6,5 +6,6 @@ Perhaps I'm the only one to use Respo so far. But if you got troubles, here are 
 
 * Forum http://clojure-china.org/c/respo
 * Slack http://clojurians.slack.com/messages/respo
+* Gitter https://gitter.im/Respo/respo
 
 Or you may reach me on [Twitter](https://twitter.com/jiyinyiyong) .

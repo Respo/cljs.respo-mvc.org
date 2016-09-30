@@ -15,6 +15,7 @@ module.exports = [
   '/guide/base-components'
   '/guide/trouble-shooting'
   '/guide/virtual-dom'
+  '/guide/server-rendering'
   '/docs/overview'
   '/docs/div'
   '/docs/create-comp'
