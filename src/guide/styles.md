@@ -38,7 +38,7 @@ In Respo, style updates are defined with direct accessing to `el.style`:
 For convenience, I collected my frequent used styles in a package called [respo-ui](https://github.com/Respo/respo-ui).
 You can find more in the [source code][styles].
 
-[styles]: https://github.com/Respo/respo-ui/blob/master/compiled/src/respo_ui/style.cljc
+[styles]: https://github.com/Respo/respo-ui/blob/master/src/respo_ui/style.cljc
 
 Actually there's one more solution to specify CSS content, the `<style>` element:
 
