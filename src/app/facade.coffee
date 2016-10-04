@@ -7,6 +7,7 @@ theme = require '../style/theme'
 
 Footer = React.createFactory require('./footer')
 Features = React.createFactory require('./features')
+FeatureList = React.createFactory require('./feature-list')
 
 {div} = React.DOM
 
@@ -50,6 +51,7 @@ module.exports = React.createClass
       div style: {height: 16}
       div style: styleDescription,
         'Respo is a front-end MVC library in ClojureScript'
+      FeatureList()
       Features()
       div style: styleVerticalSpace
       Footer()
