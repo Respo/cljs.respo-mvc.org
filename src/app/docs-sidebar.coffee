@@ -84,7 +84,7 @@ module.exports = React.createClass
         renderEntry 'clear-cache!', post
         renderEntry 'falsify-stage!', post
       div style: styleGroup,
-        div style: styleName, 'respo.render.static-html'
+        div style: styleName, 'respo.render.html'
         renderEntry 'make-string', post
         renderEntry 'make-html', post
       div style: styleGroup,
