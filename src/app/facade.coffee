@@ -9,7 +9,7 @@ Footer = React.createFactory require('./footer')
 Features = React.createFactory require('./features')
 FeatureList = React.createFactory require('./feature-list')
 
-{div} = React.DOM
+{div, a, img} = React.DOM
 
 styleContainer = {}
 
@@ -50,7 +50,10 @@ module.exports = React.createClass
         div style: styleText, 'Respo'
       div style: {height: 16}
       div style: styleDescription,
-        'Respo is a front-end MVC library in ClojureScript'
+        'A front-end MVC library in ClojureScript'
+        div style: {width: 8, display: 'inline-block'}
+        a href: 'https://clojars.org/respo', style: {verticalAlign: 'middle'},
+          img src: 'https://img.shields.io/clojars/v/respo.svg'
       FeatureList()
       Features()
       div style: styleVerticalSpace
