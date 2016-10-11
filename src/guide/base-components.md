@@ -17,7 +17,7 @@ Also I got some simple component to help:
 * [`respo-border`](https://github.com/Respo/respo-border) for renderng borders
 * [`respo-router`](https://github.com/Respo/respo-router) for routering(Respo not required)
 * [`global-popup`](https://github.com/Respo/global-popup) for global popups
-* [`inflow-popup`](https://github.com/Respo/respo-inflow-popup) for local popups(need updates)
+* [`inflow-popup`](https://github.com/Respo/inflow-popup) for local popups(demo only)
 * [`notifyer`](https://github.com/Respo/notifier) for showing notifications(Respo not required)
 
 Respo components are pure, without side effects.
