@@ -1,4 +1,6 @@
 
+theme = require './theme'
+
 exports.brightLink =
-  color: 'white'
+  color: theme.linkText
   textDecoration: 'none'

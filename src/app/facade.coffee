@@ -31,13 +31,13 @@ styleVerticalSpace =
 
 styleText =
   fontSize: 32
-  color: theme.dark
+  color: theme.text
   fontWeight: 'lighter'
 
 styleDescription =
   fontSize: 16
   textAlign: 'center'
-  color: theme.blue
+  color: theme.description
 
 module.exports = React.createClass
   displayName: 'facade'

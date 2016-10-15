@@ -24,14 +24,17 @@ styleRow =
 
 styleCode =
   padding: 8
-  backgroundColor: hsl(0,0,96)
+  backgroundColor: theme.blockCodeBg
+  color: theme.blockCodeText
   minWidth: 600
   lineHeight: 1.6
   fontFamily: 'Menlo, Consolas, Ubuntu mono, monospace'
+  boxShadow: '0 0 2px hsla(0,0%,0%,0.3)'
 
 styleFeature =
-  width: 240
+  width: 200
   padding: 8
+  fontSize: 16
 
 transformCode = (code) ->
   result = hljs.highlightAuto(code.trim(), ['clojure'])

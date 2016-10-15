@@ -17,8 +17,8 @@ styleFeature =
   height: 48
   display: 'inline-block'
   margin: 'auto'
-  backgroundColor: theme.yellow
-  color: theme.dark
+  backgroundColor: theme.showcaseBg
+  color: theme.showcaseText
   padding: 8
   marginRight: 8
   marginBottom: 8

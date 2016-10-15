@@ -16,7 +16,7 @@ styleContainer =
 
 styleEntry =
   cursor: 'pointer'
-  color: theme.blue
+  color: theme.sideLink
   display: 'block'
   textDecoration: 'none'
 
@@ -30,7 +30,7 @@ renderEntry = (path, name, focus) ->
   a
     href: "/guide/#{path}.html"
     style: ui.merge styleEntry,
-      if path is focusedPath then color: theme.cyan
+      if path is focusedPath then color: theme.sideLinkActive
     onClick: (onRouteGuide path), name
 
 module.exports = React.createClass

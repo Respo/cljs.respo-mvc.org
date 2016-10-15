@@ -6,8 +6,6 @@ ui = require '../style/ui'
 theme = require '../style/theme'
 guide = require '../guide/index'
 
-Footer = React.createFactory require('./footer')
-
 {div} = React.DOM
 
 styleContainer = {}
@@ -26,4 +24,3 @@ module.exports = React.createClass
         className: 'markdown-docs',
         dangerouslySetInnerHTML: {__html: marked(guide.discuss)}
       div style: {height: 120}
-      Footer()

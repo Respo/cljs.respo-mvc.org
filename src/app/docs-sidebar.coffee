@@ -25,13 +25,13 @@ styleEntry =
   fontSize: 12
   padding: '0 16px'
   cursor: "pointer"
-  color: theme.blue
+  color: theme.sideLink
   display: 'block'
   textDecoration: 'none'
 
 styleOverview =
   cursor: 'pointer'
-  color: theme.blue
+  color: theme.sideLink
 
 styleName =
   color: hsl 0, 0, 80
@@ -49,7 +49,7 @@ renderEntry = (name, post) ->
   a
     href: "/docs/#{name}.html"
     style: ui.merge styleEntry,
-      if name is postName then color: theme.cyan
+      if name is postName then color: theme.sideLinkActive
     onClick: (onRoute name)
     name
 
@@ -62,7 +62,7 @@ module.exports = React.createClass
     div style: styleContainer,
       div
         style: ui.merge styleOverview,
-          if post is 'overview.html' then color: theme.cyan
+          if post is 'overview.html' then color: theme.sideLinkActive
         onClick: (onRoute 'overview')
         'Overview'
       div style: styleGroup,

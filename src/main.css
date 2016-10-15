@@ -19,9 +19,13 @@ body {
 }
 
 .markdown-docs p > code {
-  padding: 0 4px;
+  padding: 0 8px;
   margin: 0 4px;
+  font-size: 12px;
   background-color: hsl(0,0%,94%);
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 1.8;
 }
 
 .markdown-docs a code {
@@ -32,7 +36,8 @@ body {
   margin: 0;
   padding: 8px;
   line-height: 1.6;
-  background-color: hsl(0,0%,96%);
+  background-color: hsl(0,0%,100%);
+  box-shadow: 0 0 2px hsla(0,0%,0%,0.3);
   display: block;
 }
 

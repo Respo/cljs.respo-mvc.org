@@ -8,14 +8,14 @@ widget = require '../style/widget'
 {div, a} = React.DOM
 
 styleContainer =
-  backgroundColor: theme.dark
+  backgroundColor: theme.barBg
   padding: 16
-  color: 'white'
+  color: theme.text
 
 module.exports = React.createClass
   displayName: 'footer'
 
   render: ->
     div style: styleContainer,
-      a style: widget.brightLink, target: '_blanck', href: 'http://tiye.me/',
+      a style: widget.brightText, target: '_blanck', href: 'http://tiye.me/',
         'By 题叶'

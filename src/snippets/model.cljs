@@ -1,8 +1,7 @@
 
 (def initial-store {
   :router nil
-  :tasks []
-})
+  :tasks []})
 
 (defonce store-ref (atom initial-store))
 

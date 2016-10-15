@@ -15,17 +15,18 @@ styleSpace =
   width: 32
 
 styleLink =
-  color: 'white'
+  color: theme.barText
   cursor: 'pointer'
   textDecoration: 'none'
 
 styleContainer =
-  backgroundColor: theme.dark
-  color: 'white'
+  backgroundColor: theme.barBg
+  color: theme.barText
   position: 'fixed'
   width: '100%'
-  padding: 8
+  padding: "4px 16px"
   justifyContent: 'space-between'
+  boxShadow: "0 0px 6px #{hsl 0, 0, 0, 0.2}"
 
 onRouteHome = (event) ->
   event.preventDefault()
