@@ -25,7 +25,7 @@ planck -c $boot_deps:src/ -i render.cljs
 In `render.cljs` you need to import the component and render it to HTML.
 [`make-string`](/docs/make-string.html) is the function to render HTML.
 
-[`falsify-stage!`](/docs/falsify-stage!.html) is also required to make first screen look smoother.
+[`falsify-stage!`](/docs/falsify-stage!.html) is also useful to make first screen look smoother, make sure it's called before `render!`.
 Notice that when rendering on server, events are not bound,
 use [`mute-element`](/docs/mute-element.html) to remove events before rendering.
 
