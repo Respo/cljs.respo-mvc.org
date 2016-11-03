@@ -1,7 +1,5 @@
 
-(defn render [store]
-  (fn [state mutate!]
-    (div {})))
+(defn render [store] (fn [state mutate!] (div {})))
 
 (def comp-container (create-comp :container render))
 

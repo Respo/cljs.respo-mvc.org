@@ -1,8 +1,7 @@
 
 (def render-child [prop-b]
   (fn [state mutate!]
-    (div {}
-      (comp-text (str prop-b) nil))))
+    (div {} (comp-text (str prop-b) nil))))
 
 (def comp-child (create-comp :child render-child))
 

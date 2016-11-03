@@ -1,9 +1,8 @@
 
-(def initial-store {
-  :router nil
-  :tasks []})
-
-(defonce store-ref (atom initial-store))
+(defonce store-ref
+  (atom
+    {:router nil
+     :tasks []}))
 
 (defn updater [store op op-data]
   (case op
@@ -15,5 +14,4 @@
     (reset! store-ref new-store)))
 
 (add-watch store-ref
-  (fn []
-    (println "store is changed!")))
+  (fn [] (println "store is changed!")))

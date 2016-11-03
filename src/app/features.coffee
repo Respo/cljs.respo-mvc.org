@@ -54,10 +54,10 @@ module.exports = React.createClass
   render: ->
 
     div style: (ui.merge ui.column, styleContainer),
-      @renderFeature 'Components', componentSnippet
-      @renderFeature 'Model', modelSnippet
-      @renderFeature 'View', viewSnippet
-      @renderFeature 'Controller', controllerSnippet
+      @renderFeature 'Component nesting', componentSnippet
+      @renderFeature 'Store initialization', modelSnippet
+      @renderFeature 'Component mounting', viewSnippet
+      @renderFeature 'Event handling', controllerSnippet
       @renderFeature 'Inline Styles', inlineStylesSnippet
       @renderFeature 'Hot Swapping', hotSwappingSnippet
       @renderFeature 'Component States', statesSnippet
