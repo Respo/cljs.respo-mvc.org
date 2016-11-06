@@ -15,7 +15,8 @@ Styles are represented in HashMap so it's very trival to extend with `merge` and
       {:font-weight "bold"})))
 ```
 
-Also I prepared a function called [`hsl`](https://github.com/mvc-works/hsl.clj) as a helper function.
+The keys have to be keywords, the values can be either of keywords, numbers or strings.
+Also I prepared a function called [`hsl`](https://github.com/mvc-works/hsl.clj) as a helper.
 
 In Respo, style updates are defined with direct accessing to `el.style`:
 
