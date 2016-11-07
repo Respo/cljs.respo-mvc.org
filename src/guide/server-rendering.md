@@ -15,6 +15,9 @@ It would be easier running with Node.js or JavaScriptCode.
 
 And here is a demo rendering with Planck: https://github.com/Respo/ssr-stages
 
+Also there is some docs in the Wiki on how it's working:
+https://github.com/Respo/respo/wiki/SSR .
+
 To load the dependencies into Planck, try these commands and use `-i` to run script:
 
 ```clojure
@@ -27,6 +30,6 @@ In `render.cljs` you need to import the component and render it to HTML.
 
 [`falsify-stage!`](/docs/falsify-stage!.html) is also useful to make first screen look smoother, make sure it's called before `render!`.
 Notice that when rendering on server, events are not bound,
-use [`mute-element`](/docs/mute-element.html) to remove events before rendering.
+internally use [`mute-element`](/docs/mute-element.html) to remove events before rendering.
 
 Without [`falsify-stage!`](/docs/falsify-stage!.html), [`render!`](/docs/render!.html) function will remove existing DOM and mount the whole tree at first running.
