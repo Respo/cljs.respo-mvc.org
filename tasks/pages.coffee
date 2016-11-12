@@ -24,6 +24,8 @@ module.exports = [
   '/docs/comp-code'
   '/docs/comp-space'
   '/docs/comp-debug'
+  '/docs/render!'
+  '/docs/gc-states!'
   '/docs/clear-cache!'
   '/docs/falsify-stage!'
   '/docs/make-string'

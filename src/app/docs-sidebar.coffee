@@ -84,8 +84,10 @@ module.exports = React.createClass
         renderEntry 'comp-debug', post
       div style: styleGroup,
         div style: styleName, 'respo.core'
+        renderEntry 'render!', post
         renderEntry 'clear-cache!', post
         renderEntry 'falsify-stage!', post
+        renderEntry 'gc-states!', post
       div style: styleGroup,
         div style: styleName, 'respo.render.html'
         renderEntry 'make-string', post

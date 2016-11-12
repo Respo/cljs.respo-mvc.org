@@ -49,6 +49,7 @@ module.exports = React.createClass
       when 'release-instance' then docs.releaseInstance
       when 'render-app' then docs.renderApp
       when 'render!' then docs.render_
+      when 'gc-states!' then docs.gcStates_
       when 'div' then docs.div
       when 'clear-cache!' then docs.clearCache_
       when 'apply-dom-changes' then docs.applyDomChanges
