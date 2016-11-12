@@ -21,6 +21,7 @@ module.exports = [
   '/docs/create-comp'
   '/docs/create-element'
   '/docs/comp-text'
+  '/docs/comp-code'
   '/docs/comp-space'
   '/docs/comp-debug'
   '/docs/clear-cache!'

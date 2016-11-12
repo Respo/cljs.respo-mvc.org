@@ -23,3 +23,6 @@ You may use `nil` instead of a HashMap when no styles is required:
 
 It's actually a component that contains a single element.
 You may also define a function to do that if you like.
+
+> Also notice this may come with performance issues since the additional `<span>` elements.
+  You may need to use `:inner-text` if you really need performance.

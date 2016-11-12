@@ -32,6 +32,7 @@ module.exports = React.createClass
       when 'comp-debug' then docs.compDebug
       when 'comp-space' then docs.compDpace
       when 'comp-text' then docs.compText
+      when 'comp-code' then docs.compCode
       when 'create-comp' then docs.createComp
       when 'create-element' then docs.createElement
       when 'element' then docs.element

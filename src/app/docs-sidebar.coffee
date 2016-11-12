@@ -74,6 +74,9 @@ module.exports = React.createClass
         div style: styleName, 'respo.comp.text'
         renderEntry 'comp-text', post
       div style: styleGroup,
+        div style: styleName, 'respo.comp.code'
+        renderEntry 'comp-code', post
+      div style: styleGroup,
         div style: styleName, 'respo.comp.space'
         renderEntry 'comp-space', post
       div style: styleGroup,

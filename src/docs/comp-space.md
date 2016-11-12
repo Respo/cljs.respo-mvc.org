@@ -20,3 +20,6 @@ It's also okay to use strings:
 
 The bad aspect is every `<div>` actually costs.
 And margin is still an alternative solution.
+
+> Notice, marge is more performant than an extra element.
+  Make you choice when you feel your app is slower.
