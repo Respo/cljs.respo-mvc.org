@@ -6,7 +6,12 @@ http://respo.site
 
 ### Develop
 
-Based on CoffeeScript, React, Gulp.
+Based on CoffeeScript, React, Gulp. Keywords:
+
+* HTML5 router
+* Gulp-rendered HTML during assets building
+* documents in Markdown
+* How swapping in development
 
 Install dependency:
 
@@ -20,6 +25,8 @@ Run in development mode:
 # setup static site for `build/` with a domain
 gulp dev
 ```
+
+Build static site for development:
 
 ```bash
 gulp build-all
