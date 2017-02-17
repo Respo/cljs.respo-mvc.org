@@ -12,6 +12,8 @@
                   [fipp                      "0.6.9"       :scope "test"]
                   [mvc-works/hsl             "0.1.2"]
                   [respo/ui                  "0.1.6"]
+                  [respo/router              "0.2.2"]
+                  [respo/markdown            "0.1.2"]
                   [respo                     "0.3.37"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
@@ -31,7 +33,7 @@
   (comp
     (watch)
     (reload :on-jsload 'client.main/on-jsload!
-            :cljs-asset-path ".")
+            :cljs-asset-path "")
     (cljs :compiler-options {:language-in :ecmascript5})
     (target :no-clean true)))
 

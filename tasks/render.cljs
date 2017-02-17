@@ -11,6 +11,7 @@
       (head {}
         (title {:attrs {:innerHTML "Stack Workflow"}})
         (link {:attrs {:rel "icon" :type "image/png" :href "http://logo.mvc-works.org/mvc.png"}})
+        (link {:attrs {:rel "stylesheet" :type "text/css" :href "main.css"}})
         (link {:attrs {:rel "stylesheet" :type "text/css" :href "style.css"}})
         (link (:attrs {:rel "manifest" :href "manifest.json"}))
         (meta' {:attrs {:charset "utf-8"}})

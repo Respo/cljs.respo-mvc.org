@@ -1,6 +1,5 @@
 
-Discuss
----
+## Discuss
 
 Perhaps I'm the only one to use Respo so far. But if you got troubles, here are some places you can post questions to:
 
