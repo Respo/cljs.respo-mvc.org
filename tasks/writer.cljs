@@ -44,7 +44,7 @@
                   (sort-by first)
                   (map (fn [entry]
                           (let [[k v] entry]
-                            (str "(def " k " " (pr-str v) ")")))))
+                            (str "(def " (first (string/split k ".")) " " (pr-str v) ")")))))
         content (string/join "\n\n" (cons header-part defs))]
     (println "Writing file:" file-id)
     (spit file-name (str "\n" content "\n"))))
