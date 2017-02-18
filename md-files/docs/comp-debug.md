@@ -1,6 +1,5 @@
 
-`comp-debug`
-----
+## `comp-debug`
 
 This component is similiar to `comp-text`, it shows data in string with styles.
 The differeces is, `variable-x` can be anything type(formatted with `pr-str`):

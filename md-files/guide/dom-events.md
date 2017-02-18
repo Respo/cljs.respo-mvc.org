@@ -1,6 +1,5 @@
 
-DOM events
-----
+## DOM events
 
 Here is a simple demo handling `input` events:
 

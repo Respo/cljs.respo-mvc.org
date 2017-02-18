@@ -1,6 +1,5 @@
 
-Hot swapping
-----
+## Hot swapping
 
 Hot swapping is actually done by [`boot-reload`](https://github.com/adzerk-oss/boot-reload),
 or [Figwheel](https://github.com/bhauman/lein-figwheel).

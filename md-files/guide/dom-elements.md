@@ -1,6 +1,5 @@
 
-DOM elements
-----
+## DOM elements
 
 An element is defined like this with [`create-element`](/docs/create-element.html):
 

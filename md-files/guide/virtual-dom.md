@@ -1,6 +1,5 @@
 
-Virtual DOM
-----
+## Virtual DOM
 
 There are elements and components before it's actually rendered. After rendered, if all of elements. The definitions of them are:
 

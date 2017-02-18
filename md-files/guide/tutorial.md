@@ -1,6 +1,5 @@
 
-Tutorial
-----
+## Tutorial
 
 I wrote a [Quick Start](https://github.com/Respo/respo/wiki/Quick-Start) before. It's quite short.
 

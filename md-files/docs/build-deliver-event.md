@@ -1,6 +1,5 @@
 
-`build-deliver-event`
-----
+## `build-deliver-event`
 
 ```clojure
 (defn mount-app [markup target dispatch! states-ref]

@@ -1,6 +1,5 @@
 
-DOM properties
-----
+## DOM properties
 
 Respo is updating DOM properties with a simple solution. It's okay but not that friendly. Here are some example on the name mapping:
 

@@ -1,6 +1,5 @@
 
-Pros
-----
+## Pros
 
 * Pure CojureScript, immutable by default with optimizations
 * Global states, hot swapping is smoother
@@ -11,8 +10,7 @@ Pros
 * Better support for progressive rendering
 * Component state can be any type than an shallow Object
 
-Cons
-----
+## Cons
 
 * Not as fast as React.js
 * No side effects, people may need that

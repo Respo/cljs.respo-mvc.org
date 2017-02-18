@@ -1,6 +1,5 @@
 
-Render list
-----
+## Render list
 
 To render a list, you need to know another way of calling element functions like `div`:
 

@@ -1,6 +1,5 @@
 
-`comp-space`
-----
+## `comp-space`
 
 This is the component to add spaces.
 It decouples whitespaces from margins of elements, so I consider it a good practice.

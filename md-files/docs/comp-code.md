@@ -1,6 +1,5 @@
 
-`comp-code`
-----
+## `comp-code`
 
 This component is like [`comp-text`](/docs/comp-text.html) but renders a `<code>` element:
 

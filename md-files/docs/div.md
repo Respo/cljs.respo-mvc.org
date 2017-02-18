@@ -1,6 +1,5 @@
 
-`div`
-----
+## `div`
 
 Here's how you use `div` function to create a tree of `<div>`s:
 

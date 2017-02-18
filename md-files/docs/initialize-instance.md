@@ -1,6 +1,5 @@
 
-`initialize-event`
-----
+## `initialize-event`
 
 Function for initializing app:
 

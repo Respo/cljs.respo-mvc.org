@@ -1,6 +1,5 @@
 
-Base components
-----
+## Base components
 
 There are some base components for building apps built inside Respo:
 

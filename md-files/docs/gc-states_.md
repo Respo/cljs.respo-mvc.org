@@ -1,6 +1,5 @@
 
-`gc-states!`
-----
+## `gc-states!`
 
 When components are unmounted, their states in `global-states` should be cleaned.
 This normally happens on every store change, use `add-watch`:

@@ -1,6 +1,5 @@
 
-`activate-instance`
-----
+## `activate-instance`
 
 Function for initializing app:
 

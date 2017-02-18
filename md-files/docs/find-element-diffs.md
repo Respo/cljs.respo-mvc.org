@@ -1,5 +1,4 @@
 
-`find-element-diffs`
-----
+## `find-element-diffs`
 
 Find diffs of virtual DOMs.

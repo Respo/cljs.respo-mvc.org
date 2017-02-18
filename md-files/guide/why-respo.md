@@ -1,6 +1,5 @@
 
-Why Respo?
-----
+## Why Respo?
 
 There are quite some alternatives actually: Reagent, Om, React.js , Deku, or Rum.
 I think Om is too complicated for me.

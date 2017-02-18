@@ -1,6 +1,5 @@
 
-`create-comp`
-----
+## `create-comp`
 
 This is the function to create components(and "comp" is short for "component" here).
 There are two ways to call that function depending on the existence of component state:

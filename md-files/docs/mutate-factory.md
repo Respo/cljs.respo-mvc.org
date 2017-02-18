@@ -1,6 +1,5 @@
 
-`mutate-factory`
-----
+## `mutate-factory`
 
 ```clojure
 (defn render-element [markup states-ref]

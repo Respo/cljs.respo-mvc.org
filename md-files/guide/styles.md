@@ -1,6 +1,5 @@
 
-Styles
-----
+## Styles
 
 Styles are represented in HashMap so it's very trival to extend with `merge` and `if`:
 

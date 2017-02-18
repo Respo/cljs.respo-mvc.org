@@ -1,6 +1,5 @@
 
-`falsify-state!`
-----
+## `falsify-state!`
 
 This one is complicated. I wrote [a long post before trying to explain this new feature][progressive].
 The code looks like this:

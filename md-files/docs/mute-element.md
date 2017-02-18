@@ -1,6 +1,5 @@
 
-`mute-element`
-----
+## `mute-element`
 
 This function removes events from a virtual DOM tree:
 

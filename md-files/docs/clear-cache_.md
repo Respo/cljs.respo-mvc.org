@@ -1,6 +1,5 @@
 
-`clear-cache!`
-----
+## `clear-cache!`
 
 Respo has two copies of caches inside for the purpose of:
 

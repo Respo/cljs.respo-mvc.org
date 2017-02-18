@@ -1,6 +1,5 @@
 
-`comp-text`
-----
+## `comp-text`
 
 In Respo, `textNode`s are not avaible, so I use `<span>` to add text contents, like:
 

@@ -1,6 +1,5 @@
 
-`release-instance`
-----
+## `release-instance`
 
 Remove app:
 

@@ -1,6 +1,5 @@
 
-`create-element`
-----
+## `create-element`
 
 Function to create virtual element. Pass to it a name, a HashMap, and some children:
 

@@ -1,5 +1,4 @@
 
-`patch-instance`
-----
+## `patch-instance`
 
 Update based on virtual DOM.

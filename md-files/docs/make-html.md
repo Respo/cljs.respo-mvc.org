@@ -1,6 +1,5 @@
 
-`make-html`
-----
+## `make-html`
 
 Generate HTML from virtual DOM:
 

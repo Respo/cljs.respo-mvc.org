@@ -1,6 +1,5 @@
 
-`render-app`
-----
+## `render-app`
 
 This function renders virtual DOM markups into virtual DOM data:
 

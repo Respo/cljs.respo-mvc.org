@@ -1,6 +1,5 @@
 
-Server rendering
-----
+## Server rendering
 
 Virtual DOM can be rendered on a server.
 Most of the Respo code is in `.cljc` files so it can be rendered with JVM.

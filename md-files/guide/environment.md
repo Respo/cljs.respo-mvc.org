@@ -1,6 +1,5 @@
 
-Environment
-----
+## Environment
 
 Respo is built on top of ClojureScript ecosystem, which is part of Clojure.
 

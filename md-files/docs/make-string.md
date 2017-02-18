@@ -1,6 +1,5 @@
 
-`make-string`
-----
+## `make-string`
 
 Generate HTML from a virtual DOM. Stringified HTML contains a lot of markups, such as `:data-coord`:
 

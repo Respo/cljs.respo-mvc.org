@@ -1,6 +1,5 @@
 
-Trouble shooting
-----
+## Trouble shooting
 
 Go to on [Github issues](https://github.com/Respo/respo/labels/trouble-shooting).
 
