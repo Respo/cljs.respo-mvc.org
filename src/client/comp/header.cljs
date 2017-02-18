@@ -8,15 +8,25 @@
             [respo.comp.text :refer [comp-text]]
             [respo.comp.debug :refer [comp-debug]]))
 
-(def style-header (merge ui/row {:justify-content :space-between, :padding "0 16px"}))
+(def style-header
+  (merge
+   ui/row
+   {:justify-content :space-between,
+    :align-items :center,
+    :padding "0 16px",
+    :border-bottom (str "1px solid " (hsl 0 0 88))}))
 
-(def style-link {:display :inline-block, :width 80, :cursor :pointer})
+(def style-link {:cursor :pointer, :text-decoration :none, :font-size 16})
+
+(def style-section {:display :inline-block, :margin-right 64})
 
 (defn render-link [text path]
   (div
-   {:style style-link,
-    :event {:click (fn [e dispatch!] (dispatch! :router/set path))},
-    :attrs {:inner-text text}}))
+   {:style style-section,
+    :event {:click (fn [e dispatch!]
+              (let [event (:original-event e)] (.preventDefault event))
+              (dispatch! :router/set path))}}
+   (a {:attrs {:inner-text text, :href (str "/" path)}, :style style-link})))
 
 (def style-github {:text-decoration :none})
 
@@ -36,5 +46,7 @@
         (div
          {}
          (a
-          {:attrs {:href "https://github.com/Respo", :inner-text "GitHub"},
+          {:attrs {:href "https://github.com/Respo",
+                   :inner-text "GitHub",
+                   :target "_blanck"},
            :style style-github})))))))

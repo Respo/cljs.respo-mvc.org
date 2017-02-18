@@ -154,27 +154,47 @@
                                                      [":attrs"
                                                       ["{}"
                                                        [":href" "|https://github.com/Respo"]
-                                                       [":inner-text" "|GitHub"]]]
+                                                       [":inner-text" "|GitHub"]
+                                                       [":target" "|_blanck"]]]
                                                      [":style" "style-github"]]]]]]]]],
                                "style-header" ["def"
                                                "style-header"
                                                ["merge"
                                                 "ui/row"
-                                                ["{}" [":justify-content" ":space-between"] [":padding" "|0 16px"]]]],
+                                                ["{}"
+                                                 [":justify-content" ":space-between"]
+                                                 [":align-items" ":center"]
+                                                 [":padding" "|0 16px"]
+                                                 [":border-bottom" ["str" "|1px solid " ["hsl" "0" "0" "88"]]]]]],
                                "render-link" ["defn"
                                               "render-link"
                                               ["text" "path"]
                                               ["div"
                                                ["{}"
-                                                [":style" "style-link"]
+                                                [":style" "style-section"]
                                                 [":event"
                                                  ["{}"
-                                                  [":click" ["fn" ["e" "dispatch!"] ["dispatch!" ":router/set" "path"]]]]]
-                                                [":attrs" ["{}" [":inner-text" "text"]]]]]],
+                                                  [":click"
+                                                   ["fn"
+                                                    ["e" "dispatch!"]
+                                                    ["let"
+                                                     [["event" [":original-event" "e"]]]
+                                                     [".preventDefault" "event"]]
+                                                    ["dispatch!" ":router/set" "path"]]]]]]
+                                               ["a"
+                                                ["{}"
+                                                 [":attrs" ["{}" [":inner-text" "text"] [":href" ["str" "|/" "path"]]]]
+                                                 [":style" "style-link"]]]]],
                                "style-link" ["def"
                                              "style-link"
-                                             ["{}" [":display" ":inline-block"] [":width" "80"] [":cursor" ":pointer"]]],
-                               "style-github" ["def" "style-github" ["{}" [":text-decoration" ":none"]]]},
+                                             ["{}"
+                                              [":cursor" ":pointer"]
+                                              [":text-decoration" ":none"]
+                                              [":font-size" "16"]]],
+                               "style-github" ["def" "style-github" ["{}" [":text-decoration" ":none"]]],
+                               "style-section" ["def"
+                                                "style-section"
+                                                ["{}" [":display" ":inline-block"] [":margin-right" "64"]]]},
                         :procs []},
          "comp.home" {:ns ["ns"
                            "client.comp.home"
@@ -388,21 +408,31 @@
                                               "render-entry"
                                               ["path" "title" "cursor"]
                                               ["div"
-                                               ["{}"
-                                                [":attrs" ["{}" [":inner-text" "title"]]]
-                                                [":event"
-                                                 ["{}"
-                                                  [":click"
-                                                   ["fn"
-                                                    ["e" "dispatch!"]
-                                                    ["dispatch!" ":router/set" ["str" "|guide/" "path" "|.html"]]]]]]
-                                                [":style"
-                                                 ["merge"
-                                                  "style-link"
-                                                  ["if"
-                                                   ["=" "cursor" ["str" "path" "|.html"]]
-                                                   ["{}" [":color" "colors/texture-light"]]]]]]]],
-                              "style-link" ["def" "style-link" ["{}" [":cursor" ":pointer"]]],
+                                               ["{}"]
+                                               ["a"
+                                                ["{}"
+                                                 [":attrs"
+                                                  ["{}"
+                                                   [":inner-text" "title"]
+                                                   [":href" ["str" "|/guide/" "path" "|.html"]]]]
+                                                 [":style"
+                                                  ["merge"
+                                                   "style-link"
+                                                   ["if"
+                                                    ["=" "cursor" ["str" "path" "|.html"]]
+                                                    ["{}" [":color" "colors/texture-light"]]]]]
+                                                 [":event"
+                                                  ["{}"
+                                                   [":click"
+                                                    ["fn"
+                                                     ["e" "dispatch!"]
+                                                     ["let"
+                                                      [["event" [":original-event" "e"]]]
+                                                      [".preventDefault" "event"]]
+                                                     ["dispatch!" ":router/set" ["str" "|guide/" "path" "|.html"]]]]]]]]]],
+                              "style-link" ["def"
+                                            "style-link"
+                                            ["{}" [":cursor" ":pointer"] [":text-decoration" ":none"]]],
                               "style-sidebar" ["def"
                                                "style-sidebar"
                                                ["{}" [":width" "240"] [":padding" "16"] [":padding-top" "48"]]]},
@@ -537,21 +567,34 @@
                                              "render-entry"
                                              ["path" "cursor"]
                                              ["div"
-                                              ["{}"
-                                               [":attrs" ["{}" [":inner-text" "path"]]]
-                                               [":event"
-                                                ["{}"
-                                                 [":click"
-                                                  ["fn"
-                                                   ["e" "dispatch!"]
-                                                   ["dispatch!" ":router/set" ["str" "|docs/" "path" "|.html"]]]]]]
-                                               [":style"
-                                                ["merge"
-                                                 "style-entry"
-                                                 ["if"
-                                                  ["=" ["str" "path" "|.html"] "cursor"]
-                                                  ["{}" [":color" "colors/texture-light"]]]]]]]],
-                             "style-entry" ["def" "style-entry" ["{}" [":cursor" ":pointer"] [":margin-left" "16"]]],
+                                              ["{}"]
+                                              ["a"
+                                               ["{}"
+                                                [":attrs"
+                                                 ["{}"
+                                                  [":inner-text" "path"]
+                                                  [":href" ["str" "|/docs/" "path" "|.html"]]]]
+                                                [":event"
+                                                 ["{}"
+                                                  [":click"
+                                                   ["fn"
+                                                    ["e" "dispatch!"]
+                                                    ["let"
+                                                     [["event" [":original-event" "e"]]]
+                                                     [".preventDefault" "event"]]
+                                                    ["dispatch!" ":router/set" ["str" "|docs/" "path" "|.html"]]]]]]
+                                                [":style"
+                                                 ["merge"
+                                                  "style-entry"
+                                                  ["if"
+                                                   ["=" ["str" "path" "|.html"] "cursor"]
+                                                   ["{}" [":color" "colors/texture-light"]]]]]]]]],
+                             "style-entry" ["def"
+                                            "style-entry"
+                                            ["{}"
+                                             [":cursor" ":pointer"]
+                                             [":margin-left" "16"]
+                                             [":text-decoration" ":none"]]],
                              "props-group" ["def"
                                             "props-group"
                                             ["{}"

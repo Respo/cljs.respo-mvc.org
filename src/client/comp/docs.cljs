@@ -14,15 +14,19 @@
 
 (defn render-section [text] (div {:style style-section} (comp-text text nil)))
 
-(def style-entry {:cursor :pointer, :margin-left 16})
+(def style-entry {:cursor :pointer, :margin-left 16, :text-decoration :none})
 
 (defn render-entry [path cursor]
   (div
-   {:attrs {:inner-text path},
-    :event {:click (fn [e dispatch!] (dispatch! :router/set (str "docs/" path ".html")))},
-    :style (merge
-            style-entry
-            (if (= (str path ".html") cursor) {:color colors/texture-light}))}))
+   {}
+   (a
+    {:attrs {:inner-text path, :href (str "/docs/" path ".html")},
+     :event {:click (fn [e dispatch!]
+               (let [event (:original-event e)] (.preventDefault event))
+               (dispatch! :router/set (str "docs/" path ".html")))},
+     :style (merge
+             style-entry
+             (if (= (str path ".html") cursor) {:color colors/texture-light}))})))
 
 (def props-group
   {:style {:padding "4px 16px",

@@ -41,7 +41,8 @@ body {
   margin: 16px 0;
   line-height: 1.6;
   background-color: hsl(0,0%,100%);
-  box-shadow: 0 0 2px hsla(0,0%,0%,0.3);
+  border: 1px solid hsl(0,0%,90%);
+  border-radius: 4px;
   display: block;
   font-size: 12px;
 }

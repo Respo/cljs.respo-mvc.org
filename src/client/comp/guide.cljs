@@ -10,15 +10,19 @@
             [respo-markdown.comp.md-article :refer [comp-md-article]]
             [client.guide :as guide]))
 
-(def style-link {:cursor :pointer})
+(def style-link {:cursor :pointer, :text-decoration :none})
 
 (defn render-entry [path title cursor]
   (div
-   {:attrs {:inner-text title},
-    :event {:click (fn [e dispatch!] (dispatch! :router/set (str "guide/" path ".html")))},
-    :style (merge
-            style-link
-            (if (= cursor (str path ".html")) {:color colors/texture-light}))}))
+   {}
+   (a
+    {:attrs {:inner-text title, :href (str "/guide/" path ".html")},
+     :style (merge
+             style-link
+             (if (= cursor (str path ".html")) {:color colors/texture-light})),
+     :event {:click (fn [e dispatch!]
+               (let [event (:original-event e)] (.preventDefault event))
+               (dispatch! :router/set (str "guide/" path ".html")))}})))
 
 (def style-sidebar {:width 240, :padding 16, :padding-top 48})
 

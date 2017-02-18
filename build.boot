@@ -33,6 +33,7 @@
   (comp
     (watch)
     (reload :on-jsload 'client.main/on-jsload!
+            :asset-path ""
             :cljs-asset-path "")
     (cljs :compiler-options {:language-in :ecmascript5})
     (target :no-clean true)))
