@@ -9,6 +9,24 @@
             [respo.comp.debug :refer [comp-debug]]
             [client.snippets :as snippets]))
 
+(defn render-snippet [demo-code]
+  (pre {:attrs {:class-name "code-snippet"}} (code {:attrs {:inner-text demo-code}})))
+
+(def style-feature {:width 320, :text-align :center})
+
+(defn render-feature [text] (div {:attrs {:inner-text text}, :style style-feature}))
+
+(def style-logo-name {:font-size 40, :vertical-align :middle})
+
+(def style-feature-list (merge ui/row {:flex-wrap :wrap, :width 1000, :margin 32}))
+
+(def demo-props {:style ui/row})
+
+(def style-demo
+  {:width 160, :vertical-align :top, :text-align :right, :margin-top 16, :padding-right 16})
+
+(defn render-demo [text] (div {:attrs {:inner-text text}, :style style-demo}))
+
 (def style-logo
   {:width 80,
    :height 80,
@@ -17,16 +35,6 @@
    :background-size :cover,
    :display :inline-block,
    :vertical-align :middle})
-
-(def style-logo-name {:font-size 40, :vertical-align :middle})
-
-(defn render-feature [text] (div {:attrs {:inner-text text}}))
-
-(def demo-props {:style ui/row})
-
-(defn render-demo [text] (div {:attrs {:inner-text text}}))
-
-(defn render-snippet [demo-code] (pre {} (code {:attrs {:inner-text demo-code}})))
 
 (def comp-home
   (create-comp
@@ -48,7 +56,7 @@
          (comp-space 8 nil)
          (img {:attrs {:src "https://img.shields.io/clojars/v/respo.svg"}}))
         (div
-         {}
+         {:style style-feature-list}
          (render-feature "Virtual DOM based solution")
          (render-feature "Persistent data structure")
          (render-feature "DSL powered by ClojureScript")

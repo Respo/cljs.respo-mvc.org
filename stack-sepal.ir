@@ -38,7 +38,7 @@
                                                           ["|docs"
                                                            ["comp-docs" ["get-in" "router" ["[]" ":data" "|docs-path"]]]]
                                                           "nil"]
-                                                         ["comp-debug" "store" ["{}" [":bottom" "0"]]]]]]]]]},
+                                                         ["--" "comp-debug" "store" ["{}" [":bottom" "0"]]]]]]]]]},
                            :procs []},
          "main" {:ns ["ns"
                       "client.main"
@@ -187,7 +187,52 @@
                             ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                             ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
                             ["[]" "client.snippets" ":as" "snippets"]]],
-                      :defs {"comp-home" ["def"
+                      :defs {"render-snippet" ["defn"
+                                               "render-snippet"
+                                               ["demo-code"]
+                                               ["pre"
+                                                ["{}" [":attrs" ["{}" [":class-name" "|code-snippet"]]]]
+                                                ["code" ["{}" [":attrs" ["{}" [":inner-text" "demo-code"]]]]]]],
+                             "render-feature" ["defn"
+                                               "render-feature"
+                                               ["text"]
+                                               ["div"
+                                                ["{}"
+                                                 [":attrs" ["{}" [":inner-text" "text"]]]
+                                                 [":style" "style-feature"]]]],
+                             "style-logo-name" ["def"
+                                                "style-logo-name"
+                                                ["{}" [":font-size" "40"] [":vertical-align" ":middle"]]],
+                             "style-feature-list" ["def"
+                                                   "style-feature-list"
+                                                   ["merge"
+                                                    "ui/row"
+                                                    ["{}" [":flex-wrap" ":wrap"] [":width" "1000"] [":margin" "32"]]]],
+                             "demo-props" ["def" "demo-props" ["{}" [":style" "ui/row"]]],
+                             "render-demo" ["defn"
+                                            "render-demo"
+                                            ["text"]
+                                            ["div"
+                                             ["{}" [":attrs" ["{}" [":inner-text" "text"]]] [":style" "style-demo"]]]],
+                             "style-logo" ["def"
+                                           "style-logo"
+                                           ["{}"
+                                            [":width" "80"]
+                                            [":height" "80"]
+                                            [":background-image"
+                                             ["str" "|url(https://avatars3.githubusercontent.com/u/20469468?v=3&s=200)"]]
+                                            [":background-size" ":cover"]
+                                            [":display" ":inline-block"]
+                                            [":vertical-align" ":middle"]]],
+                             "style-demo" ["def"
+                                           "style-demo"
+                                           ["{}"
+                                            [":width" "160"]
+                                            [":vertical-align" ":top"]
+                                            [":text-align" ":right"]
+                                            [":margin-top" "16"]
+                                            [":padding-right" "16"]]],
+                             "comp-home" ["def"
                                           "comp-home"
                                           ["create-comp"
                                            ":home"
@@ -213,7 +258,7 @@
                                                  [":attrs"
                                                   ["{}" [":src" "|https://img.shields.io/clojars/v/respo.svg"]]]]]]
                                               ["div"
-                                               ["{}"]
+                                               ["{}" [":style" "style-feature-list"]]
                                                ["render-feature" "|Virtual DOM based solution"]
                                                ["render-feature" "|Persistent data structure"]
                                                ["render-feature" "|DSL powered by ClojureScript"]
@@ -250,34 +295,7 @@
                                                 "demo-props"
                                                 ["render-demo" "|Component States"]
                                                 ["render-snippet" "snippets/states"]]]]]]]],
-                             "style-logo" ["def"
-                                           "style-logo"
-                                           ["{}"
-                                            [":width" "80"]
-                                            [":height" "80"]
-                                            [":background-image"
-                                             ["str" "|url(https://avatars3.githubusercontent.com/u/20469468?v=3&s=200)"]]
-                                            [":background-size" ":cover"]
-                                            [":display" ":inline-block"]
-                                            [":vertical-align" ":middle"]]],
-                             "style-logo-name" ["def"
-                                                "style-logo-name"
-                                                ["{}" [":font-size" "40"] [":vertical-align" ":middle"]]],
-                             "render-feature" ["defn"
-                                               "render-feature"
-                                               ["text"]
-                                               ["div" ["{}" [":attrs" ["{}" [":inner-text" "text"]]]]]],
-                             "demo-props" ["def" "demo-props" ["{}" [":style" "ui/row"]]],
-                             "render-demo" ["defn"
-                                            "render-demo"
-                                            ["text"]
-                                            ["div" ["{}" [":attrs" ["{}" [":inner-text" "text"]]]]]],
-                             "render-snippet" ["defn"
-                                               "render-snippet"
-                                               ["demo-code"]
-                                               ["pre"
-                                                ["{}"]
-                                                ["code" ["{}" [":attrs" ["{}" [":inner-text" "demo-code"]]]]]]]},
+                             "style-feature" ["def" "style-feature" ["{}" [":width" "320"] [":text-align" ":center"]]]},
                       :procs []},
          "comp.discuss" {:ns ["ns"
                               "client.comp.discuss"
@@ -336,13 +354,13 @@
                                                   ["|dom-elements.html" "guide/dom-elements"]
                                                   ["|dom-events.html" "guide/dom-events"]
                                                   ["|dom-properties.html" "guide/dom-properties"]
-                                                  ["|environment.html" "guide.environment"]
+                                                  ["|environment.html" "guide/environment"]
                                                   ["|hot-swapping.html" "guide/hot-swapping"]
                                                   ["|styles.html" "guide/styles"]
                                                   ["|trouble-shooting.html" "guide/trouble-shooting"]
                                                   ["|pros-and-cons.html" "guide/pros-and-cons"]
                                                   ["|why-respo.html" "guide/why-respo"]
-                                                  ["|render-list" "guide/render-list"]
+                                                  ["|render-list.html" "guide/render-list"]
                                                   ["|base-components.html" "guide/base-components"]
                                                   ["|virtual-dom.html" "guide/virtual-dom"]
                                                   ["|server-rendering.html" "guide/server-rendering"]
@@ -351,7 +369,7 @@
                                                 "render-sidebar"
                                                 ["entry"]
                                                 ["div"
-                                                 ["{}"]
+                                                 ["{}" [":style" "style-sidebar"]]
                                                  ["render-entry" "|why-respo" "|Why Respo?" "entry"]
                                                  ["render-entry" "|pros-and-cons" "|Pros and Cons" "entry"]
                                                  ["render-entry" "|environment" "|Environment" "entry"]
@@ -381,8 +399,13 @@
                                                 [":style"
                                                  ["merge"
                                                   "style-link"
-                                                  ["if" ["=" "cursor" "path"] ["{}" [":color" "colors/texture-light"]]]]]]]],
-                              "style-link" ["def" "style-link" ["{}" [":cursor" ":pointer"]]]},
+                                                  ["if"
+                                                   ["=" "cursor" ["str" "path" "|.html"]]
+                                                   ["{}" [":color" "colors/texture-light"]]]]]]]],
+                              "style-link" ["def" "style-link" ["{}" [":cursor" ":pointer"]]],
+                              "style-sidebar" ["def"
+                                               "style-sidebar"
+                                               ["{}" [":width" "240"] [":padding" "16"] [":padding-top" "48"]]]},
                        :procs []},
          "comp.docs" {:ns ["ns"
                            "client.comp.docs"
@@ -442,77 +465,77 @@
                                                "render-sidebar"
                                                ["path"]
                                                ["div"
-                                                ["{}"]
+                                                ["{}" [":style" "style-sidebar"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.alias"]
-                                                 ["render-entry" "|div"]
-                                                 ["render-entry" "|create-comp"]
-                                                 ["render-entry" "|create-element"]]
+                                                 ["render-entry" "|div" "path"]
+                                                 ["render-entry" "|create-comp" "path"]
+                                                 ["render-entry" "|create-element" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.comp.text"]
-                                                 ["render-entry" "|comp-text"]]
+                                                 ["render-entry" "|comp-text" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.comp.code"]
-                                                 ["render-entry" "|comp-code"]]
+                                                 ["render-entry" "|comp-code" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.comp.space"]
-                                                 ["render-entry" "|comp-space"]]
+                                                 ["render-entry" "|comp-space" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.comp.debug"]
-                                                 ["render-entry" "|comp-debug"]]
+                                                 ["render-entry" "|comp-debug" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.core"]
-                                                 ["render-entry" "|render!"]
-                                                 ["render-entry" "|clear-cache!"]
-                                                 ["render-entry" "|falsify-stage!"]
-                                                 ["render-entry" "|gc-states!"]]
+                                                 ["render-entry" "|render!" "path"]
+                                                 ["render-entry" "|clear-cache!" "path"]
+                                                 ["render-entry" "|falsify-stage!" "path"]
+                                                 ["render-entry" "|gc-states!" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.render.html"]
-                                                 ["render-entry" "|make-string"]
-                                                 ["render-entry" "|make-html"]]
+                                                 ["render-entry" "|make-string" "path"]
+                                                 ["render-entry" "|make-html" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.render.expander"]
-                                                 ["render-entry" "|render-app"]]
+                                                 ["render-entry" "|render-app" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.util.format"]
-                                                 ["render-entry" "|purify-element"]
-                                                 ["render-entry" "|mute-element"]]
+                                                 ["render-entry" "|purify-element" "path"]
+                                                 ["render-entry" "|mute-element" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.render.differ"]
-                                                 ["render-entry" "|find-element-diffs"]]
+                                                 ["render-entry" "|find-element-diffs" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.render.patcher"]
-                                                 ["render-entry" "|apply-dom-changes"]]
+                                                 ["render-entry" "|apply-dom-changes" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.controller.client"]
-                                                 ["render-entry" "|initialize-instance"]
-                                                 ["render-entry" "|activate-instance"]
-                                                 ["render-entry" "|patch-instance"]
-                                                 ["render-entry" "|release-instance"]]
+                                                 ["render-entry" "|initialize-instance" "path"]
+                                                 ["render-entry" "|activate-instance" "path"]
+                                                 ["render-entry" "|patch-instance" "path"]
+                                                 ["render-entry" "|release-instance" "path"]]
                                                 ["div"
                                                  "props-group"
                                                  ["render-section" "|respo.controller.deliver"]
-                                                 ["render-entry" "|build-deliver-event"]
-                                                 ["render-entry" "|mutate-factory"]]]],
+                                                 ["render-entry" "|build-deliver-event" "path"]
+                                                 ["render-entry" "|mutate-factory" "path"]]]],
                              "render-section" ["defn"
                                                "render-section"
                                                ["text"]
                                                ["div" ["{}" [":style" "style-section"]] ["comp-text" "text" "nil"]]],
                              "render-entry" ["defn"
                                              "render-entry"
-                                             ["path"]
+                                             ["path" "cursor"]
                                              ["div"
                                               ["{}"
                                                [":attrs" ["{}" [":inner-text" "path"]]]
@@ -522,10 +545,23 @@
                                                   ["fn"
                                                    ["e" "dispatch!"]
                                                    ["dispatch!" ":router/set" ["str" "|docs/" "path" "|.html"]]]]]]
-                                               [":style" "style-entry"]]]],
+                                               [":style"
+                                                ["merge"
+                                                 "style-entry"
+                                                 ["if"
+                                                  ["=" ["str" "path" "|.html"] "cursor"]
+                                                  ["{}" [":color" "colors/texture-light"]]]]]]]],
                              "style-entry" ["def" "style-entry" ["{}" [":cursor" ":pointer"] [":margin-left" "16"]]],
                              "props-group" ["def"
                                             "props-group"
-                                            ["{}" [":style" ["{}" [":padding" "8"] [":min-width" "240"]]]]],
-                             "style-section" ["def" "style-section" ["{}" [":color" "colors/texture-light"]]]},
+                                            ["{}"
+                                             [":style"
+                                              ["{}"
+                                               [":padding" "|4px 16px"]
+                                               [":min-width" "240"]
+                                               [":font-family" "|Monaco, Menlo, monospace"]
+                                               [":line-height" "1.6"]
+                                               [":font-size" "12"]]]]],
+                             "style-section" ["def" "style-section" ["{}" [":color" "colors/texture-light"]]],
+                             "style-sidebar" ["def" "style-sidebar" ["{}" [":padding-top" "48"]]]},
                       :procs []}}}

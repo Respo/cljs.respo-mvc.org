@@ -16,65 +16,77 @@
 
 (def style-entry {:cursor :pointer, :margin-left 16})
 
-(defn render-entry [path]
+(defn render-entry [path cursor]
   (div
    {:attrs {:inner-text path},
     :event {:click (fn [e dispatch!] (dispatch! :router/set (str "docs/" path ".html")))},
-    :style style-entry}))
+    :style (merge
+            style-entry
+            (if (= (str path ".html") cursor) {:color colors/texture-light}))}))
 
-(def props-group {:style {:padding 8, :min-width 240}})
+(def props-group
+  {:style {:padding "4px 16px",
+           :min-width 240,
+           :font-family "Monaco, Menlo, monospace",
+           :line-height 1.6,
+           :font-size 12}})
+
+(def style-sidebar {:padding-top 48})
 
 (defn render-sidebar [path]
   (div
-   {}
+   {:style style-sidebar}
    (div
     props-group
     (render-section "respo.alias")
-    (render-entry "div")
-    (render-entry "create-comp")
-    (render-entry "create-element"))
-   (div props-group (render-section "respo.comp.text") (render-entry "comp-text"))
-   (div props-group (render-section "respo.comp.code") (render-entry "comp-code"))
-   (div props-group (render-section "respo.comp.space") (render-entry "comp-space"))
-   (div props-group (render-section "respo.comp.debug") (render-entry "comp-debug"))
+    (render-entry "div" path)
+    (render-entry "create-comp" path)
+    (render-entry "create-element" path))
+   (div props-group (render-section "respo.comp.text") (render-entry "comp-text" path))
+   (div props-group (render-section "respo.comp.code") (render-entry "comp-code" path))
+   (div props-group (render-section "respo.comp.space") (render-entry "comp-space" path))
+   (div props-group (render-section "respo.comp.debug") (render-entry "comp-debug" path))
    (div
     props-group
     (render-section "respo.core")
-    (render-entry "render!")
-    (render-entry "clear-cache!")
-    (render-entry "falsify-stage!")
-    (render-entry "gc-states!"))
+    (render-entry "render!" path)
+    (render-entry "clear-cache!" path)
+    (render-entry "falsify-stage!" path)
+    (render-entry "gc-states!" path))
    (div
     props-group
     (render-section "respo.render.html")
-    (render-entry "make-string")
-    (render-entry "make-html"))
-   (div props-group (render-section "respo.render.expander") (render-entry "render-app"))
+    (render-entry "make-string" path)
+    (render-entry "make-html" path))
+   (div
+    props-group
+    (render-section "respo.render.expander")
+    (render-entry "render-app" path))
    (div
     props-group
     (render-section "respo.util.format")
-    (render-entry "purify-element")
-    (render-entry "mute-element"))
+    (render-entry "purify-element" path)
+    (render-entry "mute-element" path))
    (div
     props-group
     (render-section "respo.render.differ")
-    (render-entry "find-element-diffs"))
+    (render-entry "find-element-diffs" path))
    (div
     props-group
     (render-section "respo.render.patcher")
-    (render-entry "apply-dom-changes"))
+    (render-entry "apply-dom-changes" path))
    (div
     props-group
     (render-section "respo.controller.client")
-    (render-entry "initialize-instance")
-    (render-entry "activate-instance")
-    (render-entry "patch-instance")
-    (render-entry "release-instance"))
+    (render-entry "initialize-instance" path)
+    (render-entry "activate-instance" path)
+    (render-entry "patch-instance" path)
+    (render-entry "release-instance" path))
    (div
     props-group
     (render-section "respo.controller.deliver")
-    (render-entry "build-deliver-event")
-    (render-entry "mutate-factory"))))
+    (render-entry "build-deliver-event" path)
+    (render-entry "mutate-factory" path))))
 
 (def comp-docs
   (create-comp

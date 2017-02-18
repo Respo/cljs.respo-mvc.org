@@ -29,4 +29,4 @@
             "guide" (comp-guide (get-in router [:data "guide-path"]))
             "docs" (comp-docs (get-in router [:data "docs-path"]))
             nil)
-          (comp-debug store {:bottom 0})))))))
+          (comment comp-debug store {:bottom 0})))))))

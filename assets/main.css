@@ -4,34 +4,22 @@
 body {
 }
 
-.md-article {}
-
-.md-paragraph {
-  margin: 16px 0;
-}
-
-.md-code-block {
-  color: white;
-  background-color: hsl(300, 80%, 20%);
-  padding: 8px;
-  display: block;
-}
-
-.markdown-docs {
+.md-article {
   flex: 1;
   padding: 8px;
+  font-size: 14px;
 }
 
-.markdown-docs h2 {
+.md-article h2 {
   font-size: 20px;
 }
 
 
-.markdown-docs h3 {
+.md-article h3 {
   font-size: 16px;
 }
 
-.markdown-docs p > code {
+.md-article p > code {
   padding: 0 8px;
   margin: 0 4px;
   font-size: 12px;
@@ -41,20 +29,19 @@ body {
   line-height: 1.8;
 }
 
-.markdown-docs a code {
+.md-article a code {
   pointer-events: none;
 }
 
-.markdown-docs pre {
+.code-snippet,
+.md-article pre {
+  vertical-align: top;
   margin: 0;
   padding: 8px;
+  margin: 16px 0;
   line-height: 1.6;
   background-color: hsl(0,0%,100%);
   box-shadow: 0 0 2px hsla(0,0%,0%,0.3);
   display: block;
-}
-
-.markdown-docs table {
-  background-color: hsl(0,0%,96%);
-  padding: 8px;
+  font-size: 12px;
 }

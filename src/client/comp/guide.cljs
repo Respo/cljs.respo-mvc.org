@@ -16,11 +16,15 @@
   (div
    {:attrs {:inner-text title},
     :event {:click (fn [e dispatch!] (dispatch! :router/set (str "guide/" path ".html")))},
-    :style (merge style-link (if (= cursor path) {:color colors/texture-light}))}))
+    :style (merge
+            style-link
+            (if (= cursor (str path ".html")) {:color colors/texture-light}))}))
+
+(def style-sidebar {:width 240, :padding 16, :padding-top 48})
 
 (defn render-sidebar [entry]
   (div
-   {}
+   {:style style-sidebar}
    (render-entry "why-respo" "Why Respo?" entry)
    (render-entry "pros-and-cons" "Pros and Cons" entry)
    (render-entry "environment" "Environment" entry)
@@ -50,13 +54,13 @@
            "dom-elements.html" guide/dom-elements
            "dom-events.html" guide/dom-events
            "dom-properties.html" guide/dom-properties
-           "environment.html" guide.environment
+           "environment.html" guide/environment
            "hot-swapping.html" guide/hot-swapping
            "styles.html" guide/styles
            "trouble-shooting.html" guide/trouble-shooting
            "pros-and-cons.html" guide/pros-and-cons
            "why-respo.html" guide/why-respo
-           "render-list" guide/render-list
+           "render-list.html" guide/render-list
            "base-components.html" guide/base-components
            "virtual-dom.html" guide/virtual-dom
            "server-rendering.html" guide/server-rendering
