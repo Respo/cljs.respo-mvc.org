@@ -1,2 +1,2 @@
 
-rsync -r target/ "repo.tiye.me:repo/mvc-works/stack-workflow" --exclude main.out --delete
+rsync -r target/ "respo.site:repo/Respo/respo.site" --exclude main.out --delete
