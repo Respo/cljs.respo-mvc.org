@@ -17,12 +17,10 @@ And for example an element defined like this:
            :width "100%"}})
 ```
 
-might be rendered to an element that looks like(`data-coord` may vary):
+might be rendered to an element with events bound:
 
 ```html
 <input placeholder="Pick a name, and hit Enter"
-       data-coord="[:container 5 :reply 0]"
-       data-event="#{:keydown}"
        style="line-height:2;width:100%;">
 ```
 

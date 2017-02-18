@@ -5,7 +5,7 @@ Generate HTML from a virtual DOM. Stringified HTML contains a lot of markups, su
 
 ```clojure
 (make-string (div {}))
-; '<div data-coord="[]" data-event="#{}"></div>'
+; "<div data-coord=\"[]\" data-event=\"#{}\"></div>"
 ```
 
 It's quite limited, so the only use case is server side rendering.

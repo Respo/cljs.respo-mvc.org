@@ -5,6 +5,7 @@ There are some base components for building apps built inside Respo:
 
 ```clojure
 respo.comp.text/comp-text
+respo.comp.text/comp-code
 respo.comp.space/comp-space
 respo.comp.debug/comp-debug
 ```

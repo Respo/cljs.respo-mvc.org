@@ -40,14 +40,18 @@
 (defn render-sidebar [path]
   (div
    {:style style-sidebar}
+   (render-entry "overview" path)
    (div
     props-group
     (render-section "respo.alias")
     (render-entry "div" path)
     (render-entry "create-comp" path)
     (render-entry "create-element" path))
-   (div props-group (render-section "respo.comp.text") (render-entry "comp-text" path))
-   (div props-group (render-section "respo.comp.code") (render-entry "comp-code" path))
+   (div
+    props-group
+    (render-section "respo.comp.text")
+    (render-entry "comp-text" path)
+    (render-entry "comp-code" path))
    (div props-group (render-section "respo.comp.space") (render-entry "comp-space" path))
    (div props-group (render-section "respo.comp.debug") (render-entry "comp-debug" path))
    (div
@@ -82,7 +86,6 @@
    (div
     props-group
     (render-section "respo.controller.client")
-    (render-entry "initialize-instance" path)
     (render-entry "activate-instance" path)
     (render-entry "patch-instance" path)
     (render-entry "release-instance" path))
@@ -110,10 +113,8 @@
            "comp-code.html" docs/comp-code
            "create-comp.html" docs/create-comp
            "create-element.html" docs/create-element
-           "element.html" docs/element
            "falsify-stage!.html" docs/falsify-stage_
            "find-element-diffs.html" docs/find-element-diffs
-           "initialize-instance.html" docs/initialize-instance
            "make-html.html" docs/make-html
            "make-string.html" docs/make-string
            "mutate-factory.html" docs/mutate-factory

@@ -80,7 +80,6 @@
   "/docs/mute-element.html"
   "/docs/find-element-diffs.html"
   "/docs/apply-dom-changes.html"
-  "/docs/initialize-instance.html"
   "/docs/activate-instance.html"
   "/docs/patch-instance.html"
   "/docs/release-instance.html"

@@ -12,10 +12,9 @@
 
 ## Cons
 
-* Not as fast as React.js
-* No side effects, people may need that
+* Very few components to use
+* Warnings are not friendly, bad factor for debugging
+* Users need to handle side-effects by themselves
 * No support for animations
 * ClojureScript ecosystem not as powerful as Webpack
-* Far fewer components
-* Warnings are not friendly, bad factor for debugging
-* Rendered DOM looks intensive and ugly
+* Not as fast as React.js

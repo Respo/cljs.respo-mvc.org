@@ -3,12 +3,10 @@
 
 Respo is updating DOM properties with a simple solution. It's okay but not that friendly. Here are some example on the name mapping:
 
-Property name | Respo name
---- | ---
-`className` | `:class-name`
-`innerText` | `:inner-text`
-`innerHTML` | `:innerHTML`
-`value` | `:value`
+* `className` ->`:class-name`
+* `innerText` ->`:inner-text`
+* `innerHTML` ->`:innerHTML`
+* `value` ->`:value`
 
 I'm afraid you have to figure out more by yourself.
 
