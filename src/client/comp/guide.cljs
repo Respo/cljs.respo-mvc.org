@@ -47,7 +47,7 @@
 (def comp-guide
   (create-comp
    :guide
-   (fn [path]
+   (fn [path options]
      (fn [state mutate!]
        (div
         {:style ui/row}
@@ -68,4 +68,5 @@
            "base-components.html" guide/base-components
            "virtual-dom.html" guide/virtual-dom
            "server-rendering.html" guide/server-rendering
-           nil)))))))
+           nil)
+         options))))))

@@ -15,18 +15,18 @@
 (def comp-container
   (create-comp
    :container
-   (fn [store]
+   (fn [store ssr-stages options]
      (fn [state mutate!]
        (let [router (:router store)]
          (div
           {:style (merge ui/global)}
           (comp-header)
           (case (:name router)
-            "home" (comp-home)
-            "index.html" (comp-home)
-            "dev.html" (comp-home)
+            "home" (comp-home options)
+            "index.html" (comp-home options)
+            "dev.html" (comp-home options)
             "discuss.html" (comp-discuss)
-            "guide" (comp-guide (get-in router [:data "guide-path"]))
-            "docs" (comp-docs (get-in router [:data "docs-path"]))
+            "guide" (comp-guide (get-in router [:data "guide-path"]) options)
+            "docs" (comp-docs (get-in router [:data "docs-path"]) options)
             nil)
           (comment comp-debug store {:bottom 0})))))))

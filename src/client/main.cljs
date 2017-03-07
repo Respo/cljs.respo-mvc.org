@@ -7,7 +7,11 @@
             [cljs.reader :refer [read-string]]
             [respo-router.core :refer [render-url!]]
             [respo-router.util.listener :refer [listen! parse-address]]
-            [client.schema :as schema]))
+            [client.schema :as schema]
+            [cljsjs.highlight]
+            [cljsjs.highlight.langs.clojure]
+            [cljsjs.highlight.langs.bash]
+            [cljsjs.highlight.langs.xml]))
 
 (defonce store-ref (atom {:router (parse-address js/location.pathname schema/routes)}))
 
@@ -22,14 +26,21 @@
 
 (defonce states-ref (atom {}))
 
-(defn render-app! []
-  (let [target (.querySelector js/document "#app")]
-    (render! (comp-container @store-ref) target dispatch! states-ref)))
+(defn highlight-code [code lang]
+  (let [result (.highlight js/hljs lang code)] (.-value result)))
 
 (def ssr-stages
   (let [ssr-element (.querySelector js/document "#ssr-stages")
         ssr-markup (.getAttribute ssr-element "content")]
     (read-string ssr-markup)))
+
+(defn render-app! []
+  (let [target (.querySelector js/document "#app")]
+    (render!
+     (comp-container @store-ref ssr-stages {:highlight highlight-code})
+     target
+     dispatch!
+     states-ref)))
 
 (defn -main! []
   (enable-console-print!)
@@ -37,7 +48,9 @@
     (let [target (.querySelector js/document "#app")]
       (falsify-stage!
        target
-       (render-element (comp-container @store-ref ssr-stages) states-ref)
+       (render-element
+        (comp-container @store-ref ssr-stages {:highlight highlight-code})
+        states-ref)
        dispatch!)))
   (render-app!)
   (add-watch store-ref :gc (fn [] (gc-states! states-ref)))

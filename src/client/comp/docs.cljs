@@ -98,7 +98,7 @@
 (def comp-docs
   (create-comp
    :docs
-   (fn [path]
+   (fn [path options]
      (fn [state mutate!]
        (div
         {:style ui/row}
@@ -130,4 +130,4 @@
            "clear-cache!.html" docs/clear-cache_
            "apply-dom-changes.html" docs/apply-dom-changes
            nil)
-         {}))))))
+         options))))))

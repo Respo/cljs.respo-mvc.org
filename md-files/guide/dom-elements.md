@@ -9,7 +9,7 @@ An element is defined like this with [`create-element`](/docs/create-element.htm
 
 And for example an element defined like this:
 
-```cloure
+```clojure
 (input
   {:attrs {:placeholder "Pick a name, and hit Enter"}
    :event {:keydown (on-keydown mutate!)}
@@ -19,7 +19,7 @@ And for example an element defined like this:
 
 might be rendered to an element with events bound:
 
-```html
+```xml
 <input placeholder="Pick a name, and hit Enter"
        style="line-height:2;width:100%;">
 ```

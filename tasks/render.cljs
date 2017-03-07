@@ -10,8 +10,12 @@
 (def all? (= js/process.env.page "all"))
 
 (def fs (js/require "fs"))
+(def hljs (js/require "highlight.js"))
 
 (def ga-html (.readFileSync fs "assets/ga.html" "utf8"))
+
+(defn highlight-code [code lang]
+  (.-value (.highlight hljs lang code)))
 
 (defn html-dsl [data html-content ssr-stages]
   (make-html
@@ -34,7 +38,7 @@
         (script {:attrs {:src "/main.js"}})))))
 
 (defn generate-html [store]
-  (let [ tree (comp-container store #{:shell})
+  (let [ tree (comp-container store #{:shell} {:highlight highlight-code})
          html-content (make-string tree)]
     (html-dsl {:build? true} html-content #{:shell})))
 

@@ -9,8 +9,11 @@
             [respo.comp.debug :refer [comp-debug]]
             [client.snippets :as snippets]))
 
-(defn render-snippet [demo-code]
-  (pre {:attrs {:class-name "code-snippet"}} (code {:attrs {:inner-text demo-code}})))
+(defn render-snippet [demo-code options]
+  (let [highlight-code (:highlight options)]
+    (pre
+     {:attrs {:class-name "code-snippet"}}
+     (code {:attrs {:innerHTML (highlight-code demo-code "clojure")}}))))
 
 (def style-feature {:width 320, :text-align :center})
 
@@ -39,7 +42,7 @@
 (def comp-home
   (create-comp
    :home
-   (fn []
+   (fn [options]
      (fn [state mutate!]
        (div
         {:style (merge ui/column ui/center)}
@@ -68,22 +71,28 @@
          (div
           demo-props
           (render-demo "Component nesting")
-          (render-snippet snippets/component))
+          (render-snippet snippets/component options))
          (div
           demo-props
           (render-demo "Store initialization")
-          (render-snippet snippets/model))
-         (div demo-props (render-demo "Component mounting") (render-snippet snippets/view))
+          (render-snippet snippets/model options))
+         (div
+          demo-props
+          (render-demo "Component mounting")
+          (render-snippet snippets/view options))
          (div
           demo-props
           (render-demo "Event handling")
-          (render-snippet snippets/controller))
+          (render-snippet snippets/controller options))
          (div
           demo-props
           (render-demo "Inline Styles")
-          (render-snippet snippets/inline-styles))
+          (render-snippet snippets/inline-styles options))
          (div
           demo-props
           (render-demo "Hot Swapping")
-          (render-snippet snippets/hot-swapping))
-         (div demo-props (render-demo "Component States") (render-snippet snippets/states))))))))
+          (render-snippet snippets/hot-swapping options))
+         (div
+          demo-props
+          (render-demo "Component States")
+          (render-snippet snippets/states options))))))))
