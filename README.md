@@ -11,11 +11,11 @@ Workflow https://github.com/mvc-works/stack-workflow
 To compile:
 
 ```bash
-npm i
-export boot_deps=`boot show -c`
+yarn
+export deps=`boot show -c`
 boot build-advanced
 webpack
-page=all lumo -Kc $boot_deps:src/ -i tasks/render.cljs
+page=all lumo -Kc $deps:src/ -i tasks/render.cljs
 # bash tasks/rsync.sh
 ```
 
