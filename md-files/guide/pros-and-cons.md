@@ -2,9 +2,9 @@
 ## Pros
 
 * Pure CojureScript, immutable by default with optimizations
-* Global states, hot swapping is smoother
+* Global states, hot swapping
 * Flexible HTML DSL with ClojureScript
-* No side effects, less position to make mistakes
+* Fewer side effects, less position to make mistakes
 * Atom and pure functions makes Store very clear
 * Virtual DOM is data that we can manipulate
 * Better support for progressive rendering
@@ -14,7 +14,7 @@
 
 * Very few components to use
 * Warnings are not friendly, bad factor for debugging
-* Users need to handle side-effects by themselves
+* Users need to handle life-cycles manually
 * No support for animations
 * ClojureScript ecosystem not as powerful as Webpack
 * Not as fast as React.js

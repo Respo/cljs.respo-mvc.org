@@ -20,8 +20,8 @@ https://github.com/Respo/respo/wiki/SSR .
 To load the dependencies into Planck, try these commands and use `-i` to run script:
 
 ```clojure
-export boot_deps=`boot show -c`
-planck -c $boot_deps:src/ -i render.cljs
+export deps=`boot show -c`
+planck -c $deps:src/ -i render.cljs
 ```
 
 In `render.cljs` you need to import the component and render it to HTML.

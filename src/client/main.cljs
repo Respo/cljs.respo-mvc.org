@@ -1,8 +1,6 @@
 
 (ns client.main
-  (:require [respo.core
-             :refer
-             [render! clear-cache! falsify-stage! render-element gc-states!]]
+  (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
             [client.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
             [respo-router.core :refer [render-url!]]
@@ -24,8 +22,6 @@
 
 (def mode :history)
 
-(defonce states-ref (atom {}))
-
 (defn highlight-code [code lang]
   (let [result (.highlight js/hljs lang code)] (.-value result)))
 
@@ -39,8 +35,7 @@
     (render!
      (comp-container @store-ref ssr-stages {:highlight highlight-code})
      target
-     dispatch!
-     states-ref)))
+     dispatch!)))
 
 (defn -main! []
   (enable-console-print!)
@@ -48,14 +43,10 @@
     (let [target (.querySelector js/document "#app")]
       (falsify-stage!
        target
-       (render-element
-        (comp-container @store-ref ssr-stages {:highlight highlight-code})
-        states-ref)
+       (render-element (comp-container @store-ref ssr-stages {:highlight highlight-code}))
        dispatch!)))
   (render-app!)
-  (add-watch store-ref :gc (fn [] (gc-states! states-ref)))
   (add-watch store-ref :changes render-app!)
-  (add-watch states-ref :changes render-app!)
   (add-watch
    store-ref
    :router

@@ -2,10 +2,12 @@
 (defonce store-ref
   (atom
     {:router nil
-     :tasks []}))
+     :tasks []
+     :states {}}))
 
 (defn updater [store op op-data]
   (case op
+    :states (update store :states (mutate op-data))
     :add-task (add-task store op-data)
     store))
 

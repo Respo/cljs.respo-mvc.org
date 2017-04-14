@@ -1,12 +1,12 @@
 
 (def render-child [prop-b]
-  (fn [state mutate!]
+  (fn [cursor]
     (div {} (comp-text (str prop-b) nil))))
 
 (def comp-child (create-comp :child render-child))
 
 (defn render [prop-a prop-b]
-  (fn [state mutate!]
+  (fn [cursor]
     (div {:style {}
           :event {}
           :attrs {:class-name "demo"}}

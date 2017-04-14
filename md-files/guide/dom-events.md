@@ -4,11 +4,11 @@
 Here is a simple demo handling `input` events:
 
 ```clojure
-(defn on-input [mutate!]
+(defn on-input []
   (fn [e dispatch!]
     (println (:value e))))
 
-(input {:event {:input (on-input mutate!)}})
+(input {:event {:input (on-input)}})
 ```
 
 `e` is a HashMap with several entries:

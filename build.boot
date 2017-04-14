@@ -8,15 +8,15 @@
                   [adzerk/boot-reload        "0.4.13"      :scope "provided"]
                   [cirru/boot-stack-server   "0.1.30"      :scope "provided"]
                   [andare                    "0.5.0"       :scope "provided"]
-                  [cumulo/shallow-diff       "0.1.2"       :scope "provided"]
+                  [cumulo/shallow-diff       "0.1.3"       :scope "provided"]
                   [fipp                      "0.6.9"       :scope "provided"]
                   [binaryage/devtools        "0.9.2"       :scope "provided"]
                   [cljsjs/highlight          "9.6.0-0"]
                   [mvc-works/hsl             "0.1.2"]
-                  [respo/ui                  "0.1.8"]
+                  [respo/ui                  "0.1.9"]
                   [respo/router              "0.2.2"]
                   [respo/markdown            "0.1.3"]
-                  [respo                     "0.3.40"]])
+                  [respo                     "0.4.2"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
          '[adzerk.boot-reload :refer [reload]])

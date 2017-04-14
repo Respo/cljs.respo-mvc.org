@@ -59,8 +59,12 @@
     (render-section "respo.core")
     (render-entry "render!" path)
     (render-entry "clear-cache!" path)
-    (render-entry "falsify-stage!" path)
-    (render-entry "gc-states!" path))
+    (render-entry "falsify-stage!" path))
+   (div
+    props-group
+    (render-section "respo.cursor")
+    (render-entry "with-cursor" path)
+    (render-entry "mutate" path))
    (div
     props-group
     (render-section "respo.render.html")
@@ -125,9 +129,10 @@
            "release-instance.html" docs/release-instance
            "render-app.html" docs/render-app
            "render!.html" docs/render_
-           "gc-states!.html" docs/gc-states_
            "div.html" docs/div
            "clear-cache!.html" docs/clear-cache_
            "apply-dom-changes.html" docs/apply-dom-changes
+           "mutate.html" docs/mutate
+           "with-cursor.html" docs/with-cursor
            nil)
          options))))))

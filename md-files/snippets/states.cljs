@@ -1,20 +1,21 @@
 
-(defn init-state [& args] "")
-
-(defn update-state [old-state content] content)
-
-(defn on-input [mutate!]
+(defn on-input [state cursor]
   (fn [e dispatch!]
-    (mutate! (:value e))))
+    ; dispatch :states action with cursor and new state
+    (dispatch! :states [cursor (:value e)])))
 
-(defn render []
-  (fn [state mutate!]
-    (div {}
+(defn render [states]
+  (fn [cursor]
+    (let
+      ; states are inside store as a states tree
+      ; use `or` to specify default state
+      [state (or (:data states) "")]
       (div {}
-        (comp-text "name" nil))
-      (input {:event {:input (on-input mutate!)}
-              :attrs {:placeholder "name"
-                      :value state}}))))
+        (div {}
+          (comp-text "name" nil))
+        (input {:event {:input (on-input states cursor)}
+                :attrs {:placeholder "name"
+                        :value state}})))))
 
 (def comp-field
-  (create-comp :field init-state update-state render))
+  (create-comp :field render))
