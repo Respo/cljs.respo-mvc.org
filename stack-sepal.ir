@@ -522,7 +522,7 @@
                                                ["render-feature" "|Persistent data structure"]
                                                ["render-feature" "|DSL powered by ClojureScript"]
                                                ["render-feature" "|Smooth hot code swapping"]
-                                               ["render-feature" "|Inline with HashMaps"]
+                                               ["render-feature" "|Inline styles with HashMaps"]
                                                ["render-feature" "|Store abstraction with Atom"]]
                                               ["div"
                                                ["{}"]
