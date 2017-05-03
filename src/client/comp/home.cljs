@@ -3,11 +3,13 @@
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
-            [respo.alias :refer [create-comp div span a img pre code]]
+            [respo.alias :refer [create-comp div span button a img pre code]]
             [respo.comp.space :refer [comp-space]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.debug :refer [comp-debug]]
             [client.snippets :as snippets]))
+
+(def style-card {:display :inline-block, :vertical-align :top, :margin 16})
 
 (defn render-snippet [demo-code options]
   (let [highlight-code (:highlight options)]
@@ -15,29 +17,38 @@
      {:attrs {:class-name "code-snippet"}}
      (code {:attrs {:innerHTML (highlight-code demo-code "clojure")}}))))
 
-(def style-feature {:width 320, :text-align :center})
+(def style-header {:padding-top 64, :padding-bottom 0, :background-color :white})
 
-(defn render-feature [text] (div {:attrs {:inner-text text}, :style style-feature}))
+(def style-suggest {:padding-top 48, :padding-bottom 48})
 
-(def style-logo-name {:font-size 40, :vertical-align :middle})
+(def style-footer {:min-height 200, :padding 32})
 
-(def style-feature-list (merge ui/row {:flex-wrap :wrap, :width 1000, :margin 32}))
-
-(def demo-props {:style ui/row})
+(def demo-props {:style style-card})
 
 (def style-demo
-  {:width 160, :vertical-align :top, :text-align :right, :margin-top 16, :padding-right 16})
+  {:font-size 16, :font-family "Josefin Sans", :text-align :center, :line-height 1.4})
 
 (defn render-demo [text] (div {:attrs {:inner-text text}, :style style-demo}))
 
 (def style-logo
-  {:width 80,
-   :height 80,
-   :background-image (str
-                      "url(https://avatars3.githubusercontent.com/u/20469468?v=3&s=200)"),
+  {:width 160,
+   :height 160,
+   :background-image (str "url(http://logo.respo.site/respo.png)"),
    :background-size :cover,
    :display :inline-block,
    :vertical-align :middle})
+
+(def style-snippets
+  {:background-color colors/paper,
+   :width "100%",
+   :display :flex,
+   :flex-wrap :wrap,
+   :justify-content :center,
+   :align-items :center,
+   :padding 64})
+
+(def style-description
+  {:font-size 16, :font-weight 400, :color colors/texture, :font-family "Hind"})
 
 (def comp-home
   (create-comp
@@ -45,54 +56,42 @@
    (fn [options]
      (fn [state mutate!]
        (div
-        {:style (merge ui/column ui/center)}
-        (comp-space nil 48)
+        {}
+        (div {:style (merge ui/column ui/center style-header)} (div {:style style-logo}))
         (div
-         {}
-         (div {:style style-logo})
+         {:style (merge ui/center ui/row style-suggest)}
+         (div
+          {:style style-description}
+          (comp-text "Respo: a virtul DOM library in ClojureScript." nil))
          (comp-space 8 nil)
-         (comp-text "Respo" style-logo-name))
-        (comp-space nil 24)
-        (div
-         {}
-         (comp-text " A front-end MVC library in ClojureScript" nil)
+         (a
+          {:attrs {:href "https://github.com/Respo/respo-examples", :target "_blank"}}
+          (button {:style (merge ui/button), :attrs {:inner-text "Read Examples"}}))
          (comp-space 8 nil)
-         (img {:attrs {:src "https://img.shields.io/clojars/v/respo.svg"}}))
+         (a
+          {:attrs {:href "https://github.com/Respo/respo/wiki/Quick-Start",
+                   :target "_blank"}}
+          (button {:style (merge ui/button), :attrs {:inner-text "Quick Start"}})))
         (div
-         {:style style-feature-list}
-         (render-feature "Virtual DOM based solution")
-         (render-feature "Persistent data structure")
-         (render-feature "DSL powered by ClojureScript")
-         (render-feature "Smooth hot code swapping")
-         (render-feature "Inline styles with HashMaps")
-         (render-feature "Store abstraction with Atom"))
-        (div
-         {}
+         {:style style-snippets}
          (div
           demo-props
-          (render-demo "Component nesting")
+          (render-demo "Component Nesting")
           (render-snippet snippets/component options))
-         (div
-          demo-props
-          (render-demo "Store initialization")
-          (render-snippet snippets/model options))
-         (div
-          demo-props
-          (render-demo "Component mounting")
-          (render-snippet snippets/view options))
-         (div
-          demo-props
-          (render-demo "Event handling")
-          (render-snippet snippets/controller options))
          (div
           demo-props
           (render-demo "Inline Styles")
           (render-snippet snippets/inline-styles options))
          (div
           demo-props
-          (render-demo "Hot Swapping")
-          (render-snippet snippets/hot-swapping options))
+          (render-demo "Event Handling")
+          (render-snippet snippets/controller options))
          (div
           demo-props
-          (render-demo "Component States")
-          (render-snippet snippets/states options))))))))
+          (render-demo "Hot Swapping")
+          (render-snippet snippets/hot-swapping options))
+         (div demo-props (render-demo "Model") (render-snippet snippets/model options))
+         (div demo-props (render-demo "States") (render-snippet snippets/states options)))
+        (div
+         {:style style-footer}
+         (img {:attrs {:src "https://img.shields.io/clojars/v/respo.svg"}})))))))

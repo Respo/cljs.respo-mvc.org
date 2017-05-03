@@ -28,5 +28,4 @@
             "discuss.html" (comp-discuss)
             "guide" (comp-guide (get-in router [:data "guide-path"]) options)
             "docs" (comp-docs (get-in router [:data "docs-path"]) options)
-            nil)
-          (comment comp-debug store {:bottom 0})))))))
+            nil)))))))

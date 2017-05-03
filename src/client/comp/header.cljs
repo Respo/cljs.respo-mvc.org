@@ -13,8 +13,10 @@
    ui/row
    {:justify-content :space-between,
     :align-items :center,
-    :padding "0 16px",
-    :border-bottom (str "1px solid " (hsl 0 0 88))}))
+    :padding "0 32px",
+    :border-bottom (str "1px solid " (hsl 0 0 94)),
+    :line-height "40px",
+    :font-family "Josefin Sans"}))
 
 (def style-link {:cursor :pointer, :text-decoration :none, :font-size 16})
 
