@@ -90,8 +90,14 @@
           demo-props
           (render-demo "Hot Swapping")
           (render-snippet snippets/hot-swapping options))
-         (div demo-props (render-demo "Model") (render-snippet snippets/model options))
-         (div demo-props (render-demo "States") (render-snippet snippets/states options)))
+         (div
+          demo-props
+          (render-demo "Store Management")
+          (render-snippet snippets/model options))
+         (div
+          demo-props
+          (render-demo "State Management")
+          (render-snippet snippets/states options)))
         (div
          {:style style-footer}
          (img {:attrs {:src "https://img.shields.io/clojars/v/respo.svg"}})))))))

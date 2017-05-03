@@ -569,11 +569,11 @@
                                                 ["render-snippet" "snippets/hot-swapping" "options"]]
                                                ["div"
                                                 "demo-props"
-                                                ["render-demo" "|Model"]
+                                                ["render-demo" "|Store Management"]
                                                 ["render-snippet" "snippets/model" "options"]]
                                                ["div"
                                                 "demo-props"
-                                                ["render-demo" "|States"]
+                                                ["render-demo" "|State Management"]
                                                 ["render-snippet" "snippets/states" "options"]]]
                                               ["div"
                                                ["{}" [":style" "style-footer"]]
