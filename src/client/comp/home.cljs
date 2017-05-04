@@ -62,7 +62,7 @@
          {:style (merge ui/center ui/row style-suggest)}
          (div
           {:style style-description}
-          (comp-text "Respo: a virtul DOM library in ClojureScript." nil))
+          (comp-text "Respo: a virtual DOM library in ClojureScript." nil))
          (comp-space 8 nil)
          (a
           {:attrs {:href "https://github.com/Respo/respo-examples", :target "_blank"}}
