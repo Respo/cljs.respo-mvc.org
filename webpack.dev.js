@@ -30,7 +30,7 @@ module.exports = {
           name: 'fonts/[name].[ext]'
         }
       },
-      { test: /\.(md)|(cljs)$/, use: 'raw-loader' }
+      { test: /\.(md|cljs)$/, use: 'raw-loader' }
     ]
   },
   plugins: [

@@ -14,38 +14,44 @@
 
 (def ga-html (.readFileSync fs "entry/ga.html" "utf8"))
 
+(defn slurp [x] (.readFileSync fs x "utf8"))
+
 (defn highlight-code [code lang]
   (.-value (.highlight hljs lang code)))
 
-(defn html-dsl [data html-content ssr-stages]
+(defn html-dsl [data resources html-content ssr-stages]
   (make-html
     (html {}
       (head {}
         (title {:attrs {:innerHTML "Respo"}})
         (link {:attrs {:rel "icon" :type "image/png" :href "http://logo.respo.site/respo.png"}})
-        (link {:attrs {:rel "stylesheet" :type "text/css" :href "/main.css"}})
-        (link {:attrs {:rel "stylesheet" :type "text/css" :href "/style.css"}})
         (link (:attrs {:rel "manifest" :href "manifest.json"}))
         (meta' {:attrs {:charset "utf-8"}})
         (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
         (meta' {:attrs {:id "ssr-stages" :content (pr-str ssr-stages)}})
-        (style {:attrs {:innerHTML "body {margin: 0;}"}})
         (if all? (div {:attrs {:innerHTML ga-html}}))
-        (style {:attrs {:innerHTML "body * {box-sizing: border-box;}"}})
+        (if (contains? resources :css)
+          (link {:rel "stylesheet", :type "text/css", :href (:css resources)}))
         (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
       (body {}
         (div {:attrs {:id "app" :innerHTML html-content}})
-        (script {:attrs {:src "/main.js"}})))))
+        (if (:build? data) (script {:src (:vendor resources)}))
+        (script {:attrs {:src (:main resources)}})))))
 
 (defn generate-html [store]
   (let [ tree (comp-container store #{:shell} {:highlight highlight-code})
-         html-content (make-string tree)]
-    (html-dsl {:build? true} html-content #{:shell})))
+         html-content (make-string tree)
+         manifest (js/JSON.parse (slurp "dist/manifest.json"))
+         resources {:css (str "/" (aget manifest "main.css"))
+                    :main (str "/" (aget manifest "main.js"))
+                    :vendor (str "/" (aget manifest "vendor.js"))}]
+    (html-dsl {:build? true} resources html-content #{:shell})))
 
 (defn generate-empty-html []
-  (html-dsl {:build? true} "" {}))
+  (html-dsl {:build? false} {:main "/main.js"} "" {}))
 
 (defn spit [file-name content]
+  (println "Spit to" file-name)
   (.writeFileSync fs file-name content))
 
 (def pages [
@@ -100,14 +106,14 @@
 
 (defn generate-all! []
   (doseq [page-path pages]
-    (spit (str "target/" page-path)
+    (spit (str "dist" page-path)
           (generate-html {:router (parse-address page-path routes)}))))
 
 (defn -main []
   (if dev?
-    (spit "target/dev.html" (generate-empty-html))
+    (spit "dist/dev.html" (generate-empty-html))
     (if all?
       (generate-all!)
-      (spit "target/index.html" (generate-html {:router (parse-address "" routes)})))))
+      (spit "dist/index.html" (generate-html {:router (parse-address "" routes)})))))
 
 (-main)

@@ -34,7 +34,7 @@ module.exports = {
           name: 'fonts/[hash:8].[ext]'
         }
       },
-      { test: /\.(md)|(cljs)$/, use: 'raw-loader' }
+      { test: /\.(md|cljs)$/, use: 'raw-loader' }
     ]
   },
   plugins: [

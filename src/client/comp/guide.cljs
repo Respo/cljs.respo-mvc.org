@@ -7,8 +7,7 @@
             [respo.comp.space :refer [comp-space]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.debug :refer [comp-debug]]
-            [respo-markdown.comp.md-article :refer [comp-md-article]]
-            ["../../../raw/guide/index" :as guide]))
+            [respo-markdown.comp.md-article :refer [comp-md-article]]))
 
 (def style-link {:cursor :pointer, :text-decoration :none})
 
@@ -44,6 +43,8 @@
    (render-entry "server-rendering" "Server Rendering" entry)
    (render-entry "trouble-shooting" "Trouble Shooting" entry)))
 
+(def guide (js/require "../raw/guide/index"))
+
 (def comp-guide
   (create-comp
    :guide
@@ -54,19 +55,19 @@
         (render-sidebar path)
         (comp-md-article
          (case path
-           "tutorial.html" guide/tutorial
-           "dom-elements.html" guide/dom-elements
-           "dom-events.html" guide/dom-events
-           "dom-properties.html" guide/dom-properties
-           "environment.html" guide/environment
-           "hot-swapping.html" guide/hot-swapping
-           "styles.html" guide/styles
-           "trouble-shooting.html" guide/trouble-shooting
-           "pros-and-cons.html" guide/pros-and-cons
-           "why-respo.html" guide/why-respo
-           "render-list.html" guide/render-list
-           "base-components.html" guide/base-components
-           "virtual-dom.html" guide/virtual-dom
-           "server-rendering.html" guide/server-rendering
+           "tutorial.html" guide.tutorial
+           "dom-elements.html" guide.domElements
+           "dom-events.html" guide.domEvents
+           "dom-properties.html" guide.domProperties
+           "environment.html" guide.environment
+           "hot-swapping.html" guide.hotSwapping
+           "styles.html" guide.styles
+           "trouble-shooting.html" guide.troubleShooting
+           "pros-and-cons.html" guide.prosAndCons
+           "why-respo.html" guide.whyRespo
+           "render-list.html" guide.renderList
+           "base-components.html" guide.baseComponents
+           "virtual-dom.html" guide.virtualDom
+           "server-rendering.html" guide.serverRendering
            nil)
          options))))))

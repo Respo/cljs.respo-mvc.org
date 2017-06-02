@@ -6,8 +6,7 @@
             [respo.alias :refer [create-comp div span button a img pre code]]
             [respo.comp.space :refer [comp-space]]
             [respo.comp.text :refer [comp-text]]
-            [respo.comp.debug :refer [comp-debug]]
-            ["../../../raw/snippets/index" :as snippets]))
+            [respo.comp.debug :refer [comp-debug]]))
 
 (def style-card {:display :inline-block, :vertical-align :top, :margin 16})
 
@@ -37,6 +36,8 @@
    :background-size :cover,
    :display :inline-block,
    :vertical-align :middle})
+
+(def snippets (js/require "../raw/snippets/index"))
 
 (def style-snippets
   {:background-color colors/paper,
@@ -77,27 +78,27 @@
          (div
           demo-props
           (render-demo "Component Nesting")
-          (render-snippet snippets/component options))
+          (render-snippet snippets.component options))
          (div
           demo-props
           (render-demo "Inline Styles")
-          (render-snippet snippets/inline-styles options))
+          (render-snippet snippets.inlineStyles options))
          (div
           demo-props
           (render-demo "Event Handling")
-          (render-snippet snippets/controller options))
+          (render-snippet snippets.controller options))
          (div
           demo-props
           (render-demo "Hot Swapping")
-          (render-snippet snippets/hot-swapping options))
+          (render-snippet snippets.hotSwapping options))
          (div
           demo-props
           (render-demo "Store Management")
-          (render-snippet snippets/model options))
+          (render-snippet snippets.model options))
          (div
           demo-props
           (render-demo "State Management")
-          (render-snippet snippets/states options)))
+          (render-snippet snippets.states options)))
         (div
          {:style style-footer}
          (img {:attrs {:src "https://img.shields.io/clojars/v/respo.svg"}})))))))

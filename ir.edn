@@ -36,8 +36,7 @@
                              ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
                              ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                              ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                             ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]
-                             ["[]" "|../../../raw/guide/index" ":as" "guide"]]],
+                             ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]]],
                        :defs {"comp-guide" ["def"
                                             "comp-guide"
                                             ["create-comp"
@@ -52,20 +51,20 @@
                                                 ["comp-md-article"
                                                  ["case"
                                                   "path"
-                                                  ["|tutorial.html" "guide/tutorial"]
-                                                  ["|dom-elements.html" "guide/dom-elements"]
-                                                  ["|dom-events.html" "guide/dom-events"]
-                                                  ["|dom-properties.html" "guide/dom-properties"]
-                                                  ["|environment.html" "guide/environment"]
-                                                  ["|hot-swapping.html" "guide/hot-swapping"]
-                                                  ["|styles.html" "guide/styles"]
-                                                  ["|trouble-shooting.html" "guide/trouble-shooting"]
-                                                  ["|pros-and-cons.html" "guide/pros-and-cons"]
-                                                  ["|why-respo.html" "guide/why-respo"]
-                                                  ["|render-list.html" "guide/render-list"]
-                                                  ["|base-components.html" "guide/base-components"]
-                                                  ["|virtual-dom.html" "guide/virtual-dom"]
-                                                  ["|server-rendering.html" "guide/server-rendering"]
+                                                  ["|tutorial.html" "guide.tutorial"]
+                                                  ["|dom-elements.html" "guide.domElements"]
+                                                  ["|dom-events.html" "guide.domEvents"]
+                                                  ["|dom-properties.html" "guide.domProperties"]
+                                                  ["|environment.html" "guide.environment"]
+                                                  ["|hot-swapping.html" "guide.hotSwapping"]
+                                                  ["|styles.html" "guide.styles"]
+                                                  ["|trouble-shooting.html" "guide.troubleShooting"]
+                                                  ["|pros-and-cons.html" "guide.prosAndCons"]
+                                                  ["|why-respo.html" "guide.whyRespo"]
+                                                  ["|render-list.html" "guide.renderList"]
+                                                  ["|base-components.html" "guide.baseComponents"]
+                                                  ["|virtual-dom.html" "guide.virtualDom"]
+                                                  ["|server-rendering.html" "guide.serverRendering"]
                                                   "nil"]
                                                  "options"]]]]]],
                               "render-sidebar" ["defn"
@@ -118,7 +117,8 @@
                                             ["{}" [":cursor" ":pointer"] [":text-decoration" ":none"]]],
                               "style-sidebar" ["def"
                                                "style-sidebar"
-                                               ["{}" [":width" "240"] [":padding" "16"] [":padding-top" "48"]]]},
+                                               ["{}" [":width" "240"] [":padding" "16"] [":padding-top" "48"]]],
+                              "guide" ["def" "guide" ["js/require" "|../raw/guide/index"]]},
                        :procs []},
          "schema" {:ns ["ns" "client.schema"],
                    :defs {"routes" ["def"
@@ -240,7 +240,7 @@
                                           "highlight-code"
                                           ["code" "lang"]
                                           ["let"
-                                           [["result" [".highlight" "js/hljs" "lang" "code"]]]
+                                           [["result" [["aget" "hljs" "|highlight"] "lang" "code"]]]
                                            [".-value" "result"]]],
                         "on-jsload!" ["defn"
                                       "on-jsload!"
@@ -265,9 +265,34 @@
                             ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
                             ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                             ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                            ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]
-                            ["[]" "|../../../raw/docs/index" ":as" "docs"]]],
-                      :defs {"comp-docs" ["def"
+                            ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]]],
+                      :defs {"render-entry" ["defn"
+                                             "render-entry"
+                                             ["path" "cursor"]
+                                             ["div"
+                                              ["{}"]
+                                              ["a"
+                                               ["{}"
+                                                [":attrs"
+                                                 ["{}"
+                                                  [":inner-text" "path"]
+                                                  [":href" ["str" "|/docs/" "path" "|.html"]]]]
+                                                [":event"
+                                                 ["{}"
+                                                  [":click"
+                                                   ["fn"
+                                                    ["e" "dispatch!"]
+                                                    ["let"
+                                                     [["event" [":original-event" "e"]]]
+                                                     [".preventDefault" "event"]]
+                                                    ["dispatch!" ":router/set" ["str" "|docs/" "path" "|.html"]]]]]]
+                                                [":style"
+                                                 ["merge"
+                                                  "style-entry"
+                                                  ["if"
+                                                   ["=" ["str" "path" "|.html"] "cursor"]
+                                                   ["{}" [":color" "colors/texture-light"]]]]]]]]],
+                             "comp-docs" ["def"
                                           "comp-docs"
                                           ["create-comp"
                                            ":docs"
@@ -281,33 +306,45 @@
                                               ["comp-md-article"
                                                ["case"
                                                 "path"
-                                                ["|activate-instance.html" "docs/activate-instance"]
-                                                ["|build-deliver-event.html" "docs/build-deliver-event"]
-                                                ["|comp-debug.html" "docs/comp-debug"]
-                                                ["|comp-space.html" "docs/comp-space"]
-                                                ["|comp-text.html" "docs/comp-text"]
-                                                ["|comp-code.html" "docs/comp-code"]
-                                                ["|create-comp.html" "docs/create-comp"]
-                                                ["|create-element.html" "docs/create-element"]
-                                                ["|falsify-stage!.html" "docs/falsify-stage_"]
-                                                ["|find-element-diffs.html" "docs/find-element-diffs"]
-                                                ["|make-html.html" "docs/make-html"]
-                                                ["|make-string.html" "docs/make-string"]
-                                                ["|mutate-factory.html" "docs/mutate-factory"]
-                                                ["|mute-element.html" "docs/mute-element"]
-                                                ["|overview.html" "docs/overview"]
-                                                ["|patch-instance.html" "docs/patch-instance"]
-                                                ["|purify-element.html" "docs/purify-element"]
-                                                ["|release-instance.html" "docs/release-instance"]
-                                                ["|render-app.html" "docs/render-app"]
-                                                ["|render!.html" "docs/render_"]
-                                                ["|div.html" "docs/div"]
-                                                ["|clear-cache!.html" "docs/clear-cache_"]
-                                                ["|apply-dom-changes.html" "docs/apply-dom-changes"]
-                                                ["|mutate.html" "docs/mutate"]
-                                                ["|with-cursor.html" "docs/with-cursor"]
+                                                ["|activate-instance.html" "docs.activateInstance"]
+                                                ["|build-deliver-event.html" "docs.buildDeliverEvent"]
+                                                ["|comp-debug.html" "docs.compDebug"]
+                                                ["|comp-space.html" "docs.compSpace"]
+                                                ["|comp-text.html" "docs.compText"]
+                                                ["|comp-code.html" "docs.compCode"]
+                                                ["|create-comp.html" "docs.createComp"]
+                                                ["|create-element.html" "docs.createElement"]
+                                                ["|falsify-stage!.html" "docs.falsifyStage_"]
+                                                ["|find-element-diffs.html" "docs.findElementDiffs"]
+                                                ["|make-html.html" "docs.makeHtml"]
+                                                ["|make-string.html" "docs.makeString"]
+                                                ["|mutate-factory.html" "docs.mutateFactory"]
+                                                ["|mute-element.html" "docs.muteElement"]
+                                                ["|overview.html" "docs.overview"]
+                                                ["|patch-instance.html" "docs.patchInstance"]
+                                                ["|purify-element.html" "docs.purifyElement"]
+                                                ["|release-instance.html" "docs.releaseInstance"]
+                                                ["|render-app.html" "docs.renderApp"]
+                                                ["|render!.html" "docs.render_"]
+                                                ["|div.html" "docs.div"]
+                                                ["|clear-cache!.html" "docs.clearCache_"]
+                                                ["|apply-dom-changes.html" "docs.applyDomChanges"]
+                                                ["|mutate.html" "docs.mutate"]
+                                                ["|with-cursor.html" "docs.withCursor"]
                                                 "nil"]
                                                "options"]]]]]],
+                             "props-group" ["def"
+                                            "props-group"
+                                            ["{}"
+                                             [":style"
+                                              ["{}"
+                                               [":padding" "|4px 16px"]
+                                               [":min-width" "240"]
+                                               [":font-family" "|Monaco, Menlo, monospace"]
+                                               [":line-height" "1.6"]
+                                               [":font-size" "12"]]]]],
+                             "style-section" ["def" "style-section" ["{}" [":color" "colors/texture-light"]]],
+                             "style-sidebar" ["def" "style-sidebar" ["{}" [":padding-top" "48"]]],
                              "render-sidebar" ["defn"
                                                "render-sidebar"
                                                ["path"]
@@ -377,54 +414,17 @@
                                                  ["render-section" "|respo.controller.deliver"]
                                                  ["render-entry" "|build-deliver-event" "path"]
                                                  ["render-entry" "|mutate-factory" "path"]]]],
-                             "render-section" ["defn"
-                                               "render-section"
-                                               ["text"]
-                                               ["div" ["{}" [":style" "style-section"]] ["comp-text" "text" "nil"]]],
-                             "render-entry" ["defn"
-                                             "render-entry"
-                                             ["path" "cursor"]
-                                             ["div"
-                                              ["{}"]
-                                              ["a"
-                                               ["{}"
-                                                [":attrs"
-                                                 ["{}"
-                                                  [":inner-text" "path"]
-                                                  [":href" ["str" "|/docs/" "path" "|.html"]]]]
-                                                [":event"
-                                                 ["{}"
-                                                  [":click"
-                                                   ["fn"
-                                                    ["e" "dispatch!"]
-                                                    ["let"
-                                                     [["event" [":original-event" "e"]]]
-                                                     [".preventDefault" "event"]]
-                                                    ["dispatch!" ":router/set" ["str" "|docs/" "path" "|.html"]]]]]]
-                                                [":style"
-                                                 ["merge"
-                                                  "style-entry"
-                                                  ["if"
-                                                   ["=" ["str" "path" "|.html"] "cursor"]
-                                                   ["{}" [":color" "colors/texture-light"]]]]]]]]],
                              "style-entry" ["def"
                                             "style-entry"
                                             ["{}"
                                              [":cursor" ":pointer"]
                                              [":margin-left" "16"]
                                              [":text-decoration" ":none"]]],
-                             "props-group" ["def"
-                                            "props-group"
-                                            ["{}"
-                                             [":style"
-                                              ["{}"
-                                               [":padding" "|4px 16px"]
-                                               [":min-width" "240"]
-                                               [":font-family" "|Monaco, Menlo, monospace"]
-                                               [":line-height" "1.6"]
-                                               [":font-size" "12"]]]]],
-                             "style-section" ["def" "style-section" ["{}" [":color" "colors/texture-light"]]],
-                             "style-sidebar" ["def" "style-sidebar" ["{}" [":padding-top" "48"]]]},
+                             "render-section" ["defn"
+                                               "render-section"
+                                               ["text"]
+                                               ["div" ["{}" [":style" "style-section"]] ["comp-text" "text" "nil"]]],
+                             "docs" ["def" "docs" ["js/require" "|../raw/docs/index"]]},
                       :procs []},
          "comp.home" {:ns ["ns"
                            "client.comp.home"
@@ -438,8 +438,7 @@
                              ["[]" "create-comp" "div" "span" "button" "a" "img" "pre" "code"]]
                             ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
                             ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                            ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                            ["[]" "|../../../raw/snippets/index" ":as" "snippets"]]],
+                            ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]]],
                       :defs {"style-card" ["def"
                                            "style-card"
                                            ["{}"
@@ -482,6 +481,7 @@
                                             [":background-size" ":cover"]
                                             [":display" ":inline-block"]
                                             [":vertical-align" ":middle"]]],
+                             "snippets" ["def" "snippets" ["js/require" "|../raw/snippets/index"]],
                              "style-demo" ["def"
                                            "style-demo"
                                            ["{}"
@@ -551,27 +551,27 @@
                                                ["div"
                                                 "demo-props"
                                                 ["render-demo" "|Component Nesting"]
-                                                ["render-snippet" "snippets/component" "options"]]
+                                                ["render-snippet" "snippets.component" "options"]]
                                                ["div"
                                                 "demo-props"
                                                 ["render-demo" "|Inline Styles"]
-                                                ["render-snippet" "snippets/inline-styles" "options"]]
+                                                ["render-snippet" "snippets.inlineStyles" "options"]]
                                                ["div"
                                                 "demo-props"
                                                 ["render-demo" "|Event Handling"]
-                                                ["render-snippet" "snippets/controller" "options"]]
+                                                ["render-snippet" "snippets.controller" "options"]]
                                                ["div"
                                                 "demo-props"
                                                 ["render-demo" "|Hot Swapping"]
-                                                ["render-snippet" "snippets/hot-swapping" "options"]]
+                                                ["render-snippet" "snippets.hotSwapping" "options"]]
                                                ["div"
                                                 "demo-props"
                                                 ["render-demo" "|Store Management"]
-                                                ["render-snippet" "snippets/model" "options"]]
+                                                ["render-snippet" "snippets.model" "options"]]
                                                ["div"
                                                 "demo-props"
                                                 ["render-demo" "|State Management"]
-                                                ["render-snippet" "snippets/states" "options"]]]
+                                                ["render-snippet" "snippets.states" "options"]]]
                                               ["div"
                                                ["{}" [":style" "style-footer"]]
                                                ["img"

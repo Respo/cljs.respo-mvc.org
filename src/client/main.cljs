@@ -20,7 +20,7 @@
 (def mode :history)
 
 (defn highlight-code [code lang]
-  (let [result (.highlight js/hljs lang code)] (.-value result)))
+  (let [result ((aget hljs "highlight") lang code)] (.-value result)))
 
 (def ssr-stages
   (let [ssr-element (.querySelector js/document "#ssr-stages")
