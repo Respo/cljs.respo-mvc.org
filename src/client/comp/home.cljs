@@ -7,7 +7,7 @@
             [respo.comp.space :refer [comp-space]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.debug :refer [comp-debug]]
-            [client.snippets :as snippets]))
+            ["../../../raw/snippets/index" :as snippets]))
 
 (def style-card {:display :inline-block, :vertical-align :top, :margin 16})
 

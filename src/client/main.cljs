@@ -6,10 +6,7 @@
             [respo-router.core :refer [render-url!]]
             [respo-router.util.listener :refer [listen! parse-address]]
             [client.schema :as schema]
-            [cljsjs.highlight]
-            [cljsjs.highlight.langs.clojure]
-            [cljsjs.highlight.langs.bash]
-            [cljsjs.highlight.langs.xml]))
+            ["highlight.js" :as hljs]))
 
 (defonce store-ref (atom {:router (parse-address js/location.pathname schema/routes)}))
 

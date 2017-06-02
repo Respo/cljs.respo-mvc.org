@@ -10,7 +10,7 @@
                                ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                                ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
                                ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]
-                               ["[]" "client.guide" ":as" "guide"]]],
+                               ["[]" "|../../../raw/guide/index" ":as" "guide"]]],
                          :defs {"comp-discuss" ["def"
                                                 "comp-discuss"
                                                 ["create-comp"
@@ -37,7 +37,7 @@
                              ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                              ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
                              ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]
-                             ["[]" "client.guide" ":as" "guide"]]],
+                             ["[]" "|../../../raw/guide/index" ":as" "guide"]]],
                        :defs {"comp-guide" ["def"
                                             "comp-guide"
                                             ["create-comp"
@@ -183,10 +183,7 @@
                        ["[]" "respo-router.core" ":refer" ["[]" "render-url!"]]
                        ["[]" "respo-router.util.listener" ":refer" ["[]" "listen!" "parse-address"]]
                        ["[]" "client.schema" ":as" "schema"]
-                       ["[]" "cljsjs.highlight"]
-                       ["[]" "cljsjs.highlight.langs.clojure"]
-                       ["[]" "cljsjs.highlight.langs.bash"]
-                       ["[]" "cljsjs.highlight.langs.xml"]]],
+                       ["[]" "|highlight.js" ":as" "hljs"]]],
                  :defs {"dispatch!" ["defn"
                                      "dispatch!"
                                      ["op" "op-data"]
@@ -269,7 +266,7 @@
                             ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                             ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
                             ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]
-                            ["[]" "client.docs" ":as" "docs"]]],
+                            ["[]" "|../../../raw/docs/index" ":as" "docs"]]],
                       :defs {"comp-docs" ["def"
                                           "comp-docs"
                                           ["create-comp"
@@ -442,7 +439,7 @@
                             ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
                             ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                             ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                            ["[]" "client.snippets" ":as" "snippets"]]],
+                            ["[]" "|../../../raw/snippets/index" ":as" "snippets"]]],
                       :defs {"style-card" ["def"
                                            "style-card"
                                            ["{}"
@@ -582,6 +579,84 @@
                                                  [":attrs"
                                                   ["{}" [":src" "|https://img.shields.io/clojars/v/respo.svg"]]]]]]]]]]]},
                       :procs []},
+         "render" {:ns ["ns"
+                        "client.render"
+                        [":require"
+                         ["[]"
+                          "respo.alias"
+                          ":refer"
+                          ["[]" "html" "head" "title" "script" "style" "meta'" "div" "link" "body"]]
+                         ["[]" "respo.render.html" ":refer" ["[]" "make-html" "make-string"]]
+                         ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
+                         ["[]" "|fs" ":refer" ["[]" "readFileSync" "writeFileSync"]]]],
+                   :defs {"main!" ["defn"
+                                   "main!"
+                                   []
+                                   ["spit"
+                                    "|dist/index.html"
+                                    ["if" ["=" "js/process.env.env" "|dev"] ["generate-empty-html"] ["generate-html"]]]],
+                          "spit" ["defn"
+                                  "spit"
+                                  ["file-name" "content"]
+                                  ["writeFileSync" "file-name" "content"]
+                                  ["println" "|Wrote to:" "file-name"]],
+                          "generate-empty-html" ["defn"
+                                                 "generate-empty-html"
+                                                 []
+                                                 ["html-dsl"
+                                                  ["{}" [":build?" "false"]]
+                                                  ["{}" [":main" "|/main.js"]]
+                                                  "|"]],
+                          "generate-html" ["defn"
+                                           "generate-html"
+                                           []
+                                           ["let"
+                                            [["tree" ["comp-container" ["{}"] ["#{}" ":shell"]]]
+                                             ["html-content" ["make-string" "tree"]]
+                                             ["resources"
+                                              ["let"
+                                               [["manifest" ["js/JSON.parse" ["slurp" "|dist/manifest.json"]]]]
+                                               ["{}"
+                                                [":css" ["aget" "manifest" "|main.css"]]
+                                                [":main" ["aget" "manifest" "|main.js"]]
+                                                [":vendor" ["aget" "manifest" "|vendor.js"]]]]]]
+                                            ["html-dsl" ["{}" [":build?" "false"]] "resources" "html-content"]]],
+                          "slurp" ["defn" "slurp" ["x"] ["readFileSync" "x" "|utf8"]],
+                          "html-dsl" ["defn"
+                                      "html-dsl"
+                                      ["config" "resources" "html-content"]
+                                      ["make-html"
+                                       ["html"
+                                        ["{}"]
+                                        ["head"
+                                         ["{}"]
+                                         ["title" ["{}" [":innerHTML" "|Stack Workflow"]]]
+                                         ["link" ["{}" [":rel" "|icon"] [":type" "|image/png"] [":href" "icon-url"]]]
+                                         ["link" ["{}" [":rel" "|manifest"] [":href" "|manifest.json"]]]
+                                         ["meta'" ["{}" [":charset" "|utf8"]]]
+                                         ["meta'"
+                                          ["{}"
+                                           [":name" "|viewport"]
+                                           [":content" "|width=device-width, initial-scale=1"]]]
+                                         ["meta'"
+                                          ["{}"
+                                           [":id" "|config"]
+                                           [":type" "|text/edn"]
+                                           [":content" ["pr-str" "config"]]]]
+                                         ["if"
+                                          ["contains?" "resources" ":css"]
+                                          ["link"
+                                           ["{}"
+                                            [":rel" "|stylesheet"]
+                                            [":type" "|text/css"]
+                                            [":href" [":css" "resources"]]]]]]
+                                        ["body"
+                                         ["{}"]
+                                         ["div" ["{}" [":id" "|app"] [":innerHTML" "html-content"]]]
+                                         ["if" [":build?" "config"] ["script" ["{}" [":src" [":vendor" "resources"]]]]]
+                                         ["script" ["{}" [":src" [":main" "resources"]]]]]]]],
+                          "icon-url" ["def" "icon-url" "|http://logo.mvc-works.org/mvc.png"]},
+                   :procs [["main!"]]},
          "comp.header" {:ns ["ns"
                              "client.comp.header"
                              [":require"

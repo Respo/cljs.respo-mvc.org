@@ -8,7 +8,7 @@
             [respo.comp.text :refer [comp-text]]
             [respo.comp.debug :refer [comp-debug]]
             [respo-markdown.comp.md-article :refer [comp-md-article]]
-            [client.docs :as docs]))
+            ["../../../raw/docs/index" :as docs]))
 
 (def style-section {:color colors/texture-light})
 

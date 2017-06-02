@@ -1,5 +1,5 @@
 
-(ns ssr-stages.boot
+(ns client.server-render
   (:require
     [respo.alias :refer [html head title script style meta' div link body]]
     [respo.render.html :refer [make-html make-string]]
@@ -12,7 +12,7 @@
 (def fs (js/require "fs"))
 (def hljs (js/require "highlight.js"))
 
-(def ga-html (.readFileSync fs "assets/ga.html" "utf8"))
+(def ga-html (.readFileSync fs "entry/ga.html" "utf8"))
 
 (defn highlight-code [code lang]
   (.-value (.highlight hljs lang code)))

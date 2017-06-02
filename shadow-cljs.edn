@@ -1,0 +1,3 @@
+[{:id :app
+  :target :npm-module
+  :release {:entries [client.main]}}]
