@@ -12,12 +12,10 @@ To compile:
 
 ```bash
 yarn
-export deps=`boot show -c`
-boot build-advanced
-webpack
-page=all lumo -Kc $deps:src/ -i tasks/render.cljs
-# bash tasks/rsync.sh
+yarn build
 ```
+
+> Notice: `:advanced` not working due to lack of externs. So assets are large.
 
 ### License
 
