@@ -15,8 +15,6 @@ yarn
 yarn build
 ```
 
-> Notice: `:advanced` not working due to lack of externs. So assets are large.
-
 ### License
 
 MIT

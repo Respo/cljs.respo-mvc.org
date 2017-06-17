@@ -1,136 +1,5 @@
 {:package "client",
- :files {"comp.discuss" {:ns ["ns"
-                              "client.comp.discuss"
-                              [":require"
-                               ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
-                               ["[]" "respo-ui.style" ":as" "ui"]
-                               ["[]" "respo-ui.style.colors" ":as" "colors"]
-                               ["[]" "respo.alias" ":refer" ["[]" "create-comp" "div" "span" "a"]]
-                               ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
-                               ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                               ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                               ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]
-                               ["[]" "|../../../raw/guide/index" ":as" "guide"]]],
-                         :defs {"comp-discuss" ["def"
-                                                "comp-discuss"
-                                                ["create-comp"
-                                                 ":discuss"
-                                                 ["fn"
-                                                  []
-                                                  ["fn"
-                                                   ["state" "mutate!"]
-                                                   ["div"
-                                                    ["{}" [":style" "style-page"]]
-                                                    ["comp-md-article" "guide/discuss" ["{}"]]]]]]],
-                                "style-page" ["def"
-                                              "style-page"
-                                              ["{}" [":width" "1200"] [":margin" ":auto"] [":margin-top" "80"]]]},
-                         :procs []},
-         "comp.guide" {:ns ["ns"
-                            "client.comp.guide"
-                            [":require"
-                             ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
-                             ["[]" "respo-ui.style" ":as" "ui"]
-                             ["[]" "respo-ui.style.colors" ":as" "colors"]
-                             ["[]" "respo.alias" ":refer" ["[]" "create-comp" "div" "span" "a"]]
-                             ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
-                             ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                             ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                             ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]]],
-                       :defs {"comp-guide" ["def"
-                                            "comp-guide"
-                                            ["create-comp"
-                                             ":guide"
-                                             ["fn"
-                                              ["path" "options"]
-                                              ["fn"
-                                               ["state" "mutate!"]
-                                               ["div"
-                                                ["{}" [":style" "ui/row"]]
-                                                ["render-sidebar" "path"]
-                                                ["comp-md-article"
-                                                 ["case"
-                                                  "path"
-                                                  ["|tutorial.html" "guide.tutorial"]
-                                                  ["|dom-elements.html" "guide.domElements"]
-                                                  ["|dom-events.html" "guide.domEvents"]
-                                                  ["|dom-properties.html" "guide.domProperties"]
-                                                  ["|environment.html" "guide.environment"]
-                                                  ["|hot-swapping.html" "guide.hotSwapping"]
-                                                  ["|styles.html" "guide.styles"]
-                                                  ["|trouble-shooting.html" "guide.troubleShooting"]
-                                                  ["|pros-and-cons.html" "guide.prosAndCons"]
-                                                  ["|why-respo.html" "guide.whyRespo"]
-                                                  ["|render-list.html" "guide.renderList"]
-                                                  ["|base-components.html" "guide.baseComponents"]
-                                                  ["|virtual-dom.html" "guide.virtualDom"]
-                                                  ["|server-rendering.html" "guide.serverRendering"]
-                                                  "nil"]
-                                                 "options"]]]]]],
-                              "render-sidebar" ["defn"
-                                                "render-sidebar"
-                                                ["entry"]
-                                                ["div"
-                                                 ["{}" [":style" "style-sidebar"]]
-                                                 ["render-entry" "|why-respo" "|Why Respo?" "entry"]
-                                                 ["render-entry" "|pros-and-cons" "|Pros and Cons" "entry"]
-                                                 ["render-entry" "|environment" "|Environment" "entry"]
-                                                 ["render-entry" "|tutorial" "|Tutorial" "entry"]
-                                                 ["render-entry" "|dom-elements" "|DOM Elements" "entry"]
-                                                 ["render-entry" "|dom-properties" "|DOM Properties" "entry"]
-                                                 ["render-entry" "|dom-events" "|DOM Events" "entry"]
-                                                 ["render-entry" "|styles" "|Styles" "entry"]
-                                                 ["render-entry" "|virtual-dom" "|Virtual DOM" "entry"]
-                                                 ["render-entry" "|render-list" "|List Rendering" "entry"]
-                                                 ["render-entry" "|hot-swapping" "|Hot Swapping" "entry"]
-                                                 ["render-entry" "|base-components" "|Base Components" "entry"]
-                                                 ["render-entry" "|server-rendering" "|Server Rendering" "entry"]
-                                                 ["render-entry" "|trouble-shooting" "|Trouble Shooting" "entry"]]],
-                              "render-entry" ["defn"
-                                              "render-entry"
-                                              ["path" "title" "cursor"]
-                                              ["div"
-                                               ["{}"]
-                                               ["a"
-                                                ["{}"
-                                                 [":attrs"
-                                                  ["{}"
-                                                   [":inner-text" "title"]
-                                                   [":href" ["str" "|/guide/" "path" "|.html"]]]]
-                                                 [":style"
-                                                  ["merge"
-                                                   "style-link"
-                                                   ["if"
-                                                    ["=" "cursor" ["str" "path" "|.html"]]
-                                                    ["{}" [":color" "colors/texture-light"]]]]]
-                                                 [":event"
-                                                  ["{}"
-                                                   [":click"
-                                                    ["fn"
-                                                     ["e" "dispatch!"]
-                                                     ["let"
-                                                      [["event" [":original-event" "e"]]]
-                                                      [".preventDefault" "event"]]
-                                                     ["dispatch!" ":router/set" ["str" "|guide/" "path" "|.html"]]]]]]]]]],
-                              "style-link" ["def"
-                                            "style-link"
-                                            ["{}" [":cursor" ":pointer"] [":text-decoration" ":none"]]],
-                              "style-sidebar" ["def"
-                                               "style-sidebar"
-                                               ["{}" [":width" "240"] [":padding" "16"] [":padding-top" "48"]]],
-                              "guide" ["def" "guide" ["js/require" "|../raw/guide/index"]]},
-                       :procs []},
-         "schema" {:ns ["ns" "client.schema"],
-                   :defs {"routes" ["def"
-                                    "routes"
-                                    ["{}"
-                                     ["|home" ["[]"]]
-                                     ["|index.html" ["[]"]]
-                                     ["|dev.html" ["[]"]]
-                                     ["|guide" ["[]" "|guide-path"]]
-                                     ["|docs" ["[]" "|docs-path"]]
-                                     ["|discuss.html" ["[]"]]]]},
-                   :procs []},
+ :files {"schema" {:ns ["ns" "client.schema"], :defs {}, :procs []},
          "comp.container" {:ns ["ns"
                                 "client.comp.container"
                                 [":require"
@@ -141,10 +10,7 @@
                                  ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                                  ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
                                  ["[]" "client.comp.header" ":refer" ["[]" "comp-header"]]
-                                 ["[]" "client.comp.home" ":refer" ["[]" "comp-home"]]
-                                 ["[]" "client.comp.discuss" ":refer" ["[]" "comp-discuss"]]
-                                 ["[]" "client.comp.guide" ":refer" ["[]" "comp-guide"]]
-                                 ["[]" "client.comp.docs" ":refer" ["[]" "comp-docs"]]]],
+                                 ["[]" "client.comp.home" ":refer" ["[]" "comp-home"]]]],
                            :defs {"comp-container" ["def"
                                                     "comp-container"
                                                     ["create-comp"
@@ -158,21 +24,7 @@
                                                         ["div"
                                                          ["{}" [":style" ["merge" "ui/global"]]]
                                                          ["comp-header"]
-                                                         ["case"
-                                                          [":name" "router"]
-                                                          ["|home" ["comp-home" "options"]]
-                                                          ["|index.html" ["comp-home" "options"]]
-                                                          ["|dev.html" ["comp-home" "options"]]
-                                                          ["|discuss.html" ["comp-discuss"]]
-                                                          ["|guide"
-                                                           ["comp-guide"
-                                                            ["get-in" "router" ["[]" ":data" "|guide-path"]]
-                                                            "options"]]
-                                                          ["|docs"
-                                                           ["comp-docs"
-                                                            ["get-in" "router" ["[]" ":data" "|docs-path"]]
-                                                            "options"]]
-                                                          "nil"]]]]]]]},
+                                                         ["comp-home" "options"]]]]]]]},
                            :procs []},
          "main" {:ns ["ns"
                       "client.main"
@@ -180,46 +32,26 @@
                        ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
                        ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
-                       ["[]" "respo-router.core" ":refer" ["[]" "render-url!"]]
-                       ["[]" "respo-router.util.listener" ":refer" ["[]" "listen!" "parse-address"]]
                        ["[]" "client.schema" ":as" "schema"]
                        ["[]" "|highlight.js" ":as" "hljs"]]],
-                 :defs {"dispatch!" ["defn"
-                                     "dispatch!"
-                                     ["op" "op-data"]
-                                     ["let"
-                                      [["new-store"
-                                        ["case"
-                                         "op"
-                                         [":router/set"
-                                          ["assoc" "@store-ref" ":router" ["parse-address" "op-data" "schema/routes"]]]
-                                         "@store-ref"]]]
-                                      ["reset!" "store-ref" "new-store"]]],
+                 :defs {"dispatch!" ["defn" "dispatch!" ["op" "op-data"] ["println" "|Dispatch!" "op"]],
+                        "main!" ["defn"
+                                 "main!"
+                                 []
+                                 ["enable-console-print!"]
+                                 ["if"
+                                  ["not" ["empty?" "ssr-stages"]]
+                                  ["let"
+                                   [["target" [".querySelector" "js/document" "|#app"]]]
+                                   ["falsify-stage!"
+                                    "target"
+                                    ["render-element"
+                                     ["comp-container" "@store-ref" "ssr-stages" ["{}" [":highlight" "highlight-code"]]]]
+                                    "dispatch!"]]]
+                                 ["render-app!"]
+                                 ["add-watch" "store-ref" ":changes" "render-app!"]
+                                 ["println" "|App started!"]],
                         "mode" ["def" "mode" ":history"],
-                        "-main!" ["defn"
-                                  "-main!"
-                                  []
-                                  ["enable-console-print!"]
-                                  ["if"
-                                   ["not" ["empty?" "ssr-stages"]]
-                                   ["let"
-                                    [["target" [".querySelector" "js/document" "|#app"]]]
-                                    ["falsify-stage!"
-                                     "target"
-                                     ["render-element"
-                                      ["comp-container"
-                                       "@store-ref"
-                                       "ssr-stages"
-                                       ["{}" [":highlight" "highlight-code"]]]]
-                                     "dispatch!"]]]
-                                  ["render-app!"]
-                                  ["add-watch" "store-ref" ":changes" "render-app!"]
-                                  ["add-watch"
-                                   "store-ref"
-                                   ":router"
-                                   ["fn" [] ["render-url!" [":router" "@store-ref"] "schema/routes" ":history"]]]
-                                  ["listen!" "schema/routes" "dispatch!" ":history"]
-                                  ["println" "|App started!"]],
                         "render-app!" ["defn"
                                        "render-app!"
                                        []
@@ -232,10 +64,7 @@
                                           ["{}" [":highlight" "highlight-code"]]]
                                          "target"
                                          "dispatch!"]]],
-                        "store-ref" ["defonce"
-                                     "store-ref"
-                                     ["atom"
-                                      ["{}" [":router" ["parse-address" "js/location.pathname" "schema/routes"]]]]],
+                        "store-ref" ["defonce" "store-ref" ["atom" ["{}"]]],
                         "highlight-code" ["defn"
                                           "highlight-code"
                                           ["code" "lang"]
@@ -254,178 +83,7 @@
                                        [["ssr-element" [".querySelector" "js/document" "|#ssr-stages"]]
                                         ["ssr-markup" [".getAttribute" "ssr-element" "|content"]]]
                                        ["read-string" "ssr-markup"]]]},
-                 :procs [["set!" [".-onload" "js/window"] "-main!"]]},
-         "comp.docs" {:ns ["ns"
-                           "client.comp.docs"
-                           [":require"
-                            ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
-                            ["[]" "respo-ui.style" ":as" "ui"]
-                            ["[]" "respo-ui.style.colors" ":as" "colors"]
-                            ["[]" "respo.alias" ":refer" ["[]" "create-comp" "div" "span" "a"]]
-                            ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
-                            ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                            ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                            ["[]" "respo-markdown.comp.md-article" ":refer" ["[]" "comp-md-article"]]]],
-                      :defs {"render-entry" ["defn"
-                                             "render-entry"
-                                             ["path" "cursor"]
-                                             ["div"
-                                              ["{}"]
-                                              ["a"
-                                               ["{}"
-                                                [":attrs"
-                                                 ["{}"
-                                                  [":inner-text" "path"]
-                                                  [":href" ["str" "|/docs/" "path" "|.html"]]]]
-                                                [":event"
-                                                 ["{}"
-                                                  [":click"
-                                                   ["fn"
-                                                    ["e" "dispatch!"]
-                                                    ["let"
-                                                     [["event" [":original-event" "e"]]]
-                                                     [".preventDefault" "event"]]
-                                                    ["dispatch!" ":router/set" ["str" "|docs/" "path" "|.html"]]]]]]
-                                                [":style"
-                                                 ["merge"
-                                                  "style-entry"
-                                                  ["if"
-                                                   ["=" ["str" "path" "|.html"] "cursor"]
-                                                   ["{}" [":color" "colors/texture-light"]]]]]]]]],
-                             "comp-docs" ["def"
-                                          "comp-docs"
-                                          ["create-comp"
-                                           ":docs"
-                                           ["fn"
-                                            ["path" "options"]
-                                            ["fn"
-                                             ["state" "mutate!"]
-                                             ["div"
-                                              ["{}" [":style" "ui/row"]]
-                                              ["render-sidebar" "path"]
-                                              ["comp-md-article"
-                                               ["case"
-                                                "path"
-                                                ["|activate-instance.html" "docs.activateInstance"]
-                                                ["|build-deliver-event.html" "docs.buildDeliverEvent"]
-                                                ["|comp-debug.html" "docs.compDebug"]
-                                                ["|comp-space.html" "docs.compSpace"]
-                                                ["|comp-text.html" "docs.compText"]
-                                                ["|comp-code.html" "docs.compCode"]
-                                                ["|create-comp.html" "docs.createComp"]
-                                                ["|create-element.html" "docs.createElement"]
-                                                ["|falsify-stage!.html" "docs.falsifyStage_"]
-                                                ["|find-element-diffs.html" "docs.findElementDiffs"]
-                                                ["|make-html.html" "docs.makeHtml"]
-                                                ["|make-string.html" "docs.makeString"]
-                                                ["|mutate-factory.html" "docs.mutateFactory"]
-                                                ["|mute-element.html" "docs.muteElement"]
-                                                ["|overview.html" "docs.overview"]
-                                                ["|patch-instance.html" "docs.patchInstance"]
-                                                ["|purify-element.html" "docs.purifyElement"]
-                                                ["|release-instance.html" "docs.releaseInstance"]
-                                                ["|render-app.html" "docs.renderApp"]
-                                                ["|render!.html" "docs.render_"]
-                                                ["|div.html" "docs.div"]
-                                                ["|clear-cache!.html" "docs.clearCache_"]
-                                                ["|apply-dom-changes.html" "docs.applyDomChanges"]
-                                                ["|mutate.html" "docs.mutate"]
-                                                ["|with-cursor.html" "docs.withCursor"]
-                                                "nil"]
-                                               "options"]]]]]],
-                             "props-group" ["def"
-                                            "props-group"
-                                            ["{}"
-                                             [":style"
-                                              ["{}"
-                                               [":padding" "|4px 16px"]
-                                               [":min-width" "240"]
-                                               [":font-family" "|Monaco, Menlo, monospace"]
-                                               [":line-height" "1.6"]
-                                               [":font-size" "12"]]]]],
-                             "style-section" ["def" "style-section" ["{}" [":color" "colors/texture-light"]]],
-                             "style-sidebar" ["def" "style-sidebar" ["{}" [":padding-top" "48"]]],
-                             "render-sidebar" ["defn"
-                                               "render-sidebar"
-                                               ["path"]
-                                               ["div"
-                                                ["{}" [":style" "style-sidebar"]]
-                                                ["render-entry" "|overview" "path"]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.alias"]
-                                                 ["render-entry" "|div" "path"]
-                                                 ["render-entry" "|create-comp" "path"]
-                                                 ["render-entry" "|create-element" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.comp.text"]
-                                                 ["render-entry" "|comp-text" "path"]
-                                                 ["render-entry" "|comp-code" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.comp.space"]
-                                                 ["render-entry" "|comp-space" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.comp.debug"]
-                                                 ["render-entry" "|comp-debug" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.core"]
-                                                 ["render-entry" "|render!" "path"]
-                                                 ["render-entry" "|clear-cache!" "path"]
-                                                 ["render-entry" "|falsify-stage!" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.cursor"]
-                                                 ["render-entry" "|with-cursor" "path"]
-                                                 ["render-entry" "|mutate" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.render.html"]
-                                                 ["render-entry" "|make-string" "path"]
-                                                 ["render-entry" "|make-html" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.render.expander"]
-                                                 ["render-entry" "|render-app" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.util.format"]
-                                                 ["render-entry" "|purify-element" "path"]
-                                                 ["render-entry" "|mute-element" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.render.differ"]
-                                                 ["render-entry" "|find-element-diffs" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.render.patcher"]
-                                                 ["render-entry" "|apply-dom-changes" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.controller.client"]
-                                                 ["render-entry" "|activate-instance" "path"]
-                                                 ["render-entry" "|patch-instance" "path"]
-                                                 ["render-entry" "|release-instance" "path"]]
-                                                ["div"
-                                                 "props-group"
-                                                 ["render-section" "|respo.controller.deliver"]
-                                                 ["render-entry" "|build-deliver-event" "path"]
-                                                 ["render-entry" "|mutate-factory" "path"]]]],
-                             "style-entry" ["def"
-                                            "style-entry"
-                                            ["{}"
-                                             [":cursor" ":pointer"]
-                                             [":margin-left" "16"]
-                                             [":text-decoration" ":none"]]],
-                             "render-section" ["defn"
-                                               "render-section"
-                                               ["text"]
-                                               ["div" ["{}" [":style" "style-section"]] ["comp-text" "text" "nil"]]],
-                             "docs" ["def" "docs" ["js/require" "|../raw/docs/index"]]},
-                      :procs []},
+                 :procs [["set!" [".-onload" "js/window"] "main!"]]},
          "comp.home" {:ns ["ns"
                            "client.comp.home"
                            [":require"
@@ -481,7 +139,7 @@
                                             [":background-size" ":cover"]
                                             [":display" ":inline-block"]
                                             [":vertical-align" ":middle"]]],
-                             "snippets" ["def" "snippets" ["js/require" "|../raw/snippets/index"]],
+                             "snippets" ["def" "snippets" ["js/require" "|../snippets/index"]],
                              "style-demo" ["def"
                                            "style-demo"
                                            ["{}"
@@ -679,10 +337,14 @@
                                                   ["{}" [":style" "style-header"]]
                                                   ["div"
                                                    ["{}"]
-                                                   ["render-link" "|Respo" "|"]
-                                                   ["render-link" "|Guide" "|guide/why-respo.html"]
-                                                   ["render-link" "|API Docs" "|docs/overview.html"]
-                                                   ["render-link" "|Discuss" "|discuss.html"]]
+                                                   ["render-link" "|Respo" "|/"]
+                                                   ["render-link" "|Guide" "|https://github.com/Respo/respo/wiki"]
+                                                   ["render-link"
+                                                    "|API Docs"
+                                                    "|https://github.com/Respo/respo/wiki/API"]
+                                                   ["render-link"
+                                                    "|Community"
+                                                    "|https://github.com/Respo/respo/wiki/Community"]]
                                                   ["div"
                                                    ["{}"]
                                                    ["a"
@@ -721,7 +383,7 @@
                                                     ["dispatch!" ":router/set" "path"]]]]]]
                                                ["a"
                                                 ["{}"
-                                                 [":attrs" ["{}" [":inner-text" "text"] [":href" ["str" "|/" "path"]]]]
+                                                 [":attrs" ["{}" [":inner-text" "text"] [":href" ["str" "path"]]]]
                                                  [":style" "style-link"]]]]],
                                "style-link" ["def"
                                              "style-link"

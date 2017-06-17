@@ -37,7 +37,7 @@
    :display :inline-block,
    :vertical-align :middle})
 
-(def snippets (js/require "../raw/snippets/index"))
+(def snippets (js/require "../snippets/index"))
 
 (def style-snippets
   {:background-color colors/paper,

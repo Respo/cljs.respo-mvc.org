@@ -9,7 +9,7 @@ module.exports = {
   devServer: {
     clientLogLevel: 'info',
     stats: 'errors-only',
-    contentBase: resolve(__dirname, 'target'),
+    contentBase: resolve(__dirname, 'dist/'),
     publicPath: '/',
     host: '0.0.0.0'
   },

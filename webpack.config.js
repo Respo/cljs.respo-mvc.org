@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var ManifestPlugin = require('webpack-manifest-plugin');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -43,7 +42,6 @@ module.exports = {
       name: 'vendor',
       filename: 'vendor.[chunkhash:8].js'
     }),
-    new UglifyJSPlugin(),
     new ManifestPlugin()
   ]
 };

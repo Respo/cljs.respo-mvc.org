@@ -28,7 +28,7 @@
     :event {:click (fn [e dispatch!]
               (let [event (:original-event e)] (.preventDefault event))
               (dispatch! :router/set path))}}
-   (a {:attrs {:inner-text text, :href (str "/" path)}, :style style-link})))
+   (a {:attrs {:inner-text text, :href (str path)}, :style style-link})))
 
 (def style-github {:text-decoration :none})
 
@@ -41,10 +41,10 @@
         {:style style-header}
         (div
          {}
-         (render-link "Respo" "")
-         (render-link "Guide" "guide/why-respo.html")
-         (render-link "API Docs" "docs/overview.html")
-         (render-link "Discuss" "discuss.html"))
+         (render-link "Respo" "/")
+         (render-link "Guide" "https://github.com/Respo/respo/wiki")
+         (render-link "API Docs" "https://github.com/Respo/respo/wiki/API")
+         (render-link "Community" "https://github.com/Respo/respo/wiki/Community"))
         (div
          {}
          (a
