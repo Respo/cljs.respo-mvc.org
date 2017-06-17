@@ -1,5 +1,5 @@
 
-(defonce ref-store
+(defonce *store
   (atom
     {:router nil
      :tasks []
@@ -12,8 +12,8 @@
     store))
 
 (defn dispatch! [op op-data]
-  (let [new-store (updater @ref-store op op-data)]
-    (reset! ref-store new-store)))
+  (let [new-store (updater @*store op op-data)]
+    (reset! *store new-store)))
 
-(add-watch ref-store
+(add-watch *store
   (fn [] (println "store is changed!")))

@@ -9,7 +9,7 @@
     "cljs-release": "shadow-cljs -b app --release",
     "cljs": "shadow-cljs -b app --dev",
     "html-dev": "env=dev node entry/render.js",
-    "html": "page=all node entry/render.js",
+    "html": "node entry/render.js",
     "hmr": "webpack-dev-server --config webpack.dev.js --hot-only",
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",

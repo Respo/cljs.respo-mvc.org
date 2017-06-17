@@ -1,13 +1,14 @@
 
-(def comp-container
-  (create-comp :container
-    (fn [store] (fn [cursor] (div {})))))
+(defcomp comp-container [store]
+  (div {}))
 
 (defonce ref-store (atom {:states {}}))
 
+(def mount-target (.querySelector js/document "#app"))
+
 (defn render-app! []
-  (let [target (.querySelector js/document "#app")]
-    (render! (comp-container @ref-store) target dispatch!)))
+  (let [app (comp-container @ref-store)]
+    (render! app mount-target dispatch!)))
 
 ; respo.core/render!
 ; respo.alias/div
