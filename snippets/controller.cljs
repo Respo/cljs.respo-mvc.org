@@ -1,5 +1,5 @@
 
-(defn on-click [e dispatch!]
+(defn on-click [e dispatch! mutate!]
   (dispatch! :confirm "from button")
   (println "clicked"))
 

@@ -1,19 +1,23 @@
 
-(defn on-input [state cursor]
-  (fn [e dispatch!]
-    ; dispatch :states action with cursor and new state
-    (dispatch! :states [cursor (:value e)])))
+(defn on-input [e dispatch! mutate!]
+  ; send next state to store, internally using dispatch!
+  (mutate! (:value e)))
 
 (defcomp comp-field [states]
   (let
     ; states are inside store as a states tree
-    ; use `or` to specify default state
+    ; use `or` to specify initial state
     [state (or (:data states) "")]
     (div {}
       (div {}
-        (comp-text "name" nil))
+        (<> span "name" nil))
       (input {:placeholder "name"
               :value state
-              :event {:input (on-input states cursor)}}))))
+              :event {:input on-input}}))))
 
-; cursor is defined inside the macro `defcomp`
+(defcomp comp-parent [states]
+  (div {}
+    ; create a sub-cursor in states tree, pass down to it
+    (cursor-> :field comp-field states)))
+
+; respo.macros/cursor->

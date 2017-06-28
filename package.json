@@ -5,16 +5,17 @@
   "main": "index.js",
   "scripts": {
     "tiye": "rsync -r dist/ respo.site:repo/Respo/respo.site/",
-    "cljs-once": "shadow-cljs -b app --once",
-    "cljs-release": "shadow-cljs -b app --release",
-    "cljs": "shadow-cljs -b app --dev",
+    "compile": "shadow-cljs compile app",
+    "release": "shadow-cljs release app",
+    "watch": "shadow-cljs watch app",
     "html-dev": "env=dev node entry/render.js",
     "html": "node entry/render.js",
     "hmr": "webpack-dev-server --config webpack.dev.js --hot-only",
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
     "del": "rm -rf dist/*",
-    "build": "yarn del && yarn webpack && yarn html"
+    "serve": "http-server dist/",
+    "build": "yarn compile && yarn del && yarn webpack && yarn html && yarn serve"
   },
   "repository": {
     "type": "git",
@@ -27,13 +28,14 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "gaze": "^1.1.2",
+    "http-server": "^0.10.0",
     "raw-loader": "^0.5.1",
     "respo-ui": "^0.1.2",
-    "shadow-cljs": "^0.9.8",
+    "shadow-cljs": "^0.17.0",
     "style-loader": "^0.18.2",
-    "uglifyjs-webpack-plugin": "^0.4.3",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
-    "webpack": "^2.6.1",
+    "webpack": "^3.0.0",
     "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {

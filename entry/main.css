@@ -2,6 +2,11 @@
 @import url(github-gist.css);
 
 body {
+  margin: 0;
+}
+
+body * {
+  box-sizing: border-box;
 }
 
 .md-article {

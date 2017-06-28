@@ -8,8 +8,8 @@
 
 (defn render-app! []
   (let [app (comp-container @ref-store)]
-    (render! app mount-target dispatch!)))
+    (render! mount-target app dispatch!)))
 
+; respo.macros/div
+; respo.core/create-comp
 ; respo.core/render!
-; respo.alias/div
-; respo.alias/create-comp
