@@ -1,13 +1,13 @@
 
-(ns client.comp.container
+(ns app.comp.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo.alias :refer [create-comp div span]]
             [respo.comp.space :refer [comp-space]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.debug :refer [comp-debug]]
-            [client.comp.header :refer [comp-header]]
-            [client.comp.home :refer [comp-home]]))
+            [app.comp.header :refer [comp-header]]
+            [app.comp.home :refer [comp-home]]))
 
 (def comp-container
   (create-comp

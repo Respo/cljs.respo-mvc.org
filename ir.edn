@@ -1,7 +1,8 @@
-{:package "client",
- :files {"schema" {:ns ["ns" "client.schema"], :defs {}, :procs []},
+{:package "app",
+ :root {:ns "main", :def "main!"}
+ :files {"schema" {:ns ["ns" "app.schema"], :defs {}, :procs []},
          "comp.container" {:ns ["ns"
-                                "client.comp.container"
+                                "app.comp.container"
                                 [":require"
                                  ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                                  ["[]" "respo-ui.style" ":as" "ui"]
@@ -9,8 +10,8 @@
                                  ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
                                  ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
                                  ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
-                                 ["[]" "client.comp.header" ":refer" ["[]" "comp-header"]]
-                                 ["[]" "client.comp.home" ":refer" ["[]" "comp-home"]]]],
+                                 ["[]" "app.comp.header" ":refer" ["[]" "comp-header"]]
+                                 ["[]" "app.comp.home" ":refer" ["[]" "comp-home"]]]],
                            :defs {"comp-container" ["def"
                                                     "comp-container"
                                                     ["create-comp"
@@ -27,12 +28,12 @@
                                                          ["comp-home" "options"]]]]]]]},
                            :procs []},
          "main" {:ns ["ns"
-                      "client.main"
+                      "app.main"
                       [":require"
                        ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
-                       ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
+                       ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
-                       ["[]" "client.schema" ":as" "schema"]
+                       ["[]" "app.schema" ":as" "schema"]
                        ["[]" "|highlight.js" ":as" "hljs"]]],
                  :defs {"dispatch!" ["defn" "dispatch!" ["op" "op-data"] ["println" "|Dispatch!" "op"]],
                         "main!" ["defn"
@@ -71,8 +72,8 @@
                                           ["let"
                                            [["result" [["aget" "hljs" "|highlight"] "lang" "code"]]]
                                            [".-value" "result"]]],
-                        "on-jsload!" ["defn"
-                                      "on-jsload!"
+                        "reload!" ["defn"
+                                      "reload!"
                                       []
                                       ["clear-cache!"]
                                       ["render-app!"]
@@ -85,7 +86,7 @@
                                        ["read-string" "ssr-markup"]]]},
                  :procs [["set!" [".-onload" "js/window"] "main!"]]},
          "comp.home" {:ns ["ns"
-                           "client.comp.home"
+                           "app.comp.home"
                            [":require"
                             ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                             ["[]" "respo-ui.style" ":as" "ui"]
@@ -238,14 +239,14 @@
                                                   ["{}" [":src" "|https://img.shields.io/clojars/v/respo.svg"]]]]]]]]]]]},
                       :procs []},
          "render" {:ns ["ns"
-                        "client.render"
+                        "app.render"
                         [":require"
                          ["[]"
                           "respo.alias"
                           ":refer"
                           ["[]" "html" "head" "title" "script" "style" "meta'" "div" "link" "body"]]
                          ["[]" "respo.render.html" ":refer" ["[]" "make-html" "make-string"]]
-                         ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
+                         ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
                          ["[]" "|fs" ":refer" ["[]" "readFileSync" "writeFileSync"]]]],
                    :defs {"main!" ["defn"
                                    "main!"
@@ -316,7 +317,7 @@
                           "icon-url" ["def" "icon-url" "|http://logo.mvc-works.org/mvc.png"]},
                    :procs [["main!"]]},
          "comp.header" {:ns ["ns"
-                             "client.comp.header"
+                             "app.comp.header"
                              [":require"
                               ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                               ["[]" "respo-ui.style" ":as" "ui"]

@@ -1,5 +1,5 @@
 
-(ns client.comp.header
+(ns app.comp.header
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
@@ -25,9 +25,9 @@
 (defn render-link [text path]
   (div
    {:style style-section,
-    :on {:click (fn [e dispatch!]
-                  (let [event (:original-event e)] (.preventDefault event))
-                  (dispatch! :router/set path))}}
+    :event {:click (fn [e dispatch!]
+              (let [event (:original-event e)] (.preventDefault event))
+              (dispatch! :router/set path))}}
    (a {:attrs {:inner-text text, :href (str path)}, :style style-link})))
 
 (def style-github {:text-decoration :none})

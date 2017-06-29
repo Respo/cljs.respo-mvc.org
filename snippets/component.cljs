@@ -9,4 +9,4 @@
 
 ; respo.macros/div
 ; respo.macros/<>
-; respo.core/defcomp
+; respo.macros/defcomp

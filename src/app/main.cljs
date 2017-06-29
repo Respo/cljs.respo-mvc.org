@@ -1,9 +1,9 @@
 
-(ns client.main
+(ns app.main
   (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
-            [client.comp.container :refer [comp-container]]
+            [app.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
-            [client.schema :as schema]
+            [app.schema :as schema]
             ["highlight.js" :as hljs]))
 
 (defn dispatch! [op op-data] (println "Dispatch!" op))
@@ -39,6 +39,6 @@
 
 (def mode :history)
 
-(defn on-jsload! [] (clear-cache!) (render-app!) (println "Code updated."))
+(defn reload! [] (clear-cache!) (render-app!) (println "Code updated."))
 
 (set! (.-onload js/window) main!)
