@@ -4,6 +4,6 @@
   (println "clicked"))
 
 (div {:style ui/button
-      :event {:click on-click}}})
+      :on {:click on-click}}})
 
 ; respo-ui.style :as ui

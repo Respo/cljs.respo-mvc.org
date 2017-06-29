@@ -25,9 +25,9 @@
 (defn render-link [text path]
   (div
    {:style style-section,
-    :event {:click (fn [e dispatch!]
-              (let [event (:original-event e)] (.preventDefault event))
-              (dispatch! :router/set path))}}
+    :on {:click (fn [e dispatch!]
+                  (let [event (:original-event e)] (.preventDefault event))
+                  (dispatch! :router/set path))}}
    (a {:attrs {:inner-text text, :href (str path)}, :style style-link})))
 
 (def style-github {:text-decoration :none})
