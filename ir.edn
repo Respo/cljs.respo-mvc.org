@@ -1,103 +1,79 @@
 {:package "app",
- :root {:ns "main", :def "main!"}
- :files {"schema" {:ns ["ns" "app.schema"], :defs {}, :procs []},
+ :root {:ns "main", :def "main!"},
+ :files {"schema" {:ns ["ns" "app.schema"], :defs {"store" ["def" "store" ["{}"]]}, :procs []},
          "comp.container" {:ns ["ns"
                                 "app.comp.container"
+                                [":require-macros" ["[]" "respo.macros" ":refer" ["[]" "defcomp" "div" "span" "<>"]]]
                                 [":require"
                                  ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                                  ["[]" "respo-ui.style" ":as" "ui"]
-                                 ["[]" "respo.alias" ":refer" ["[]" "create-comp" "div" "span"]]
-                                 ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
-                                 ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                                 ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]
+                                 ["[]" "respo.core" ":refer" ["[]" "create-comp"]]
+                                 ["[]" "respo.comp.space" ":refer" ["[]" "=<"]]
+                                 ["[]" "respo.comp.inspect" ":refer" ["[]" "comp-inspect"]]
                                  ["[]" "app.comp.header" ":refer" ["[]" "comp-header"]]
                                  ["[]" "app.comp.home" ":refer" ["[]" "comp-home"]]]],
-                           :defs {"comp-container" ["def"
+                           :defs {"comp-container" ["defcomp"
                                                     "comp-container"
-                                                    ["create-comp"
-                                                     ":container"
-                                                     ["fn"
-                                                      ["store" "ssr-stages" "options"]
-                                                      ["fn"
-                                                       ["state" "mutate!"]
-                                                       ["let"
-                                                        [["router" [":router" "store"]]]
-                                                        ["div"
-                                                         ["{}" [":style" ["merge" "ui/global"]]]
-                                                         ["comp-header"]
-                                                         ["comp-home" "options"]]]]]]]},
+                                                    ["store" "options"]
+                                                    ["let"
+                                                     [["router" [":router" "store"]]]
+                                                     ["div"
+                                                      ["{}" [":style" ["merge" "ui/global"]]]
+                                                      ["comp-header"]
+                                                      ["comp-home" "options"]]]]},
                            :procs []},
          "main" {:ns ["ns"
                       "app.main"
                       [":require"
-                       ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
+                       ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "realize-ssr!"]]
                        ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
                        ["[]" "app.schema" ":as" "schema"]
                        ["[]" "|highlight.js" ":as" "hljs"]]],
-                 :defs {"dispatch!" ["defn" "dispatch!" ["op" "op-data"] ["println" "|Dispatch!" "op"]],
+                 :defs {"ssr?" ["def" "ssr?" ["some?" [".querySelector" "js/document" "|meta.respo-ssr"]]],
+                        "dispatch!" ["defn" "dispatch!" ["op" "op-data"] ["println" "|Dispatch!" "op"]],
                         "main!" ["defn"
                                  "main!"
                                  []
-                                 ["enable-console-print!"]
-                                 ["if"
-                                  ["not" ["empty?" "ssr-stages"]]
-                                  ["let"
-                                   [["target" [".querySelector" "js/document" "|#app"]]]
-                                   ["falsify-stage!"
-                                    "target"
-                                    ["render-element"
-                                     ["comp-container" "@store-ref" "ssr-stages" ["{}" [":highlight" "highlight-code"]]]]
-                                    "dispatch!"]]]
-                                 ["render-app!"]
-                                 ["add-watch" "store-ref" ":changes" "render-app!"]
+                                 ["if" "ssr?" ["render-app!" "realize-ssr!"]]
+                                 ["render-app!" "render!"]
+                                 ["add-watch" "store-ref" ":changes" ["fn" [] ["render-app!" "render!"]]]
                                  ["println" "|App started!"]],
                         "mode" ["def" "mode" ":history"],
                         "render-app!" ["defn"
                                        "render-app!"
-                                       []
+                                       ["renderer"]
                                        ["let"
-                                        [["target" [".querySelector" "js/document" "|#app"]]]
-                                        ["render!"
-                                         ["comp-container"
-                                          "@store-ref"
-                                          "ssr-stages"
-                                          ["{}" [":highlight" "highlight-code"]]]
-                                         "target"
-                                         "dispatch!"]]],
+                                        [["app" ["comp-container" "@store-ref" ["{}" [":highlight" "highlight-code"]]]]]
+                                        ["renderer" "mount-target" "app" "dispatch!"]]],
                         "store-ref" ["defonce" "store-ref" ["atom" ["{}"]]],
+                        "reload!" ["defn"
+                                   "reload!"
+                                   []
+                                   ["clear-cache!"]
+                                   ["render-app!" "render!"]
+                                   ["println" "|Code updated."]],
                         "highlight-code" ["defn"
                                           "highlight-code"
                                           ["code" "lang"]
                                           ["let"
                                            [["result" [["aget" "hljs" "|highlight"] "lang" "code"]]]
                                            [".-value" "result"]]],
-                        "reload!" ["defn"
-                                      "reload!"
-                                      []
-                                      ["clear-cache!"]
-                                      ["render-app!"]
-                                      ["println" "|Code updated."]],
-                        "ssr-stages" ["def"
-                                      "ssr-stages"
-                                      ["let"
-                                       [["ssr-element" [".querySelector" "js/document" "|#ssr-stages"]]
-                                        ["ssr-markup" [".getAttribute" "ssr-element" "|content"]]]
-                                       ["read-string" "ssr-markup"]]]},
+                        "mount-target" ["def" "mount-target" [".querySelector" "js/document" "|.app"]]},
                  :procs [["set!" [".-onload" "js/window"] "main!"]]},
          "comp.home" {:ns ["ns"
                            "app.comp.home"
+                           [":require-macros"
+                            ["[]"
+                             "respo.macros"
+                             ":refer"
+                             ["[]" "defcomp" "<>" "span" "div" "button" "a" "img" "pre" "code"]]]
                            [":require"
                             ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                             ["[]" "respo-ui.style" ":as" "ui"]
                             ["[]" "respo-ui.style.colors" ":as" "colors"]
-                            ["[]"
-                             "respo.alias"
-                             ":refer"
-                             ["[]" "create-comp" "div" "span" "button" "a" "img" "pre" "code"]]
-                            ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
-                            ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                            ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]]],
+                            ["[]" "respo.core" ":refer" ["[]" "create-comp"]]
+                            ["[]" "respo.comp.space" ":refer" ["[]" "=<"]]]],
                       :defs {"style-card" ["def"
                                            "style-card"
                                            ["{}"
@@ -110,11 +86,9 @@
                                                ["let"
                                                 [["highlight-code" [":highlight" "options"]]]
                                                 ["pre"
-                                                 ["{}" [":attrs" ["{}" [":class-name" "|code-snippet"]]]]
+                                                 ["{}" [":class-name" "|code-snippet"]]
                                                  ["code"
-                                                  ["{}"
-                                                   [":attrs"
-                                                    ["{}" [":innerHTML" ["highlight-code" "demo-code" "|clojure"]]]]]]]]],
+                                                  ["{}" [":innerHTML" ["highlight-code" "demo-code" "|clojure"]]]]]]],
                              "style-header" ["def"
                                              "style-header"
                                              ["{}"
@@ -129,8 +103,7 @@
                              "render-demo" ["defn"
                                             "render-demo"
                                             ["text"]
-                                            ["div"
-                                             ["{}" [":attrs" ["{}" [":inner-text" "text"]]] [":style" "style-demo"]]]],
+                                            ["div" ["{}" [":inner-text" "text"] [":style" "style-demo"]]]],
                              "style-logo" ["def"
                                            "style-logo"
                                            ["{}"
@@ -165,197 +138,143 @@
                                                    [":font-weight" "400"]
                                                    [":color" "colors/texture"]
                                                    [":font-family" "|Hind"]]],
-                             "comp-home" ["def"
+                             "comp-home" ["defcomp"
                                           "comp-home"
-                                          ["create-comp"
-                                           ":home"
-                                           ["fn"
-                                            ["options"]
-                                            ["fn"
-                                             ["state" "mutate!"]
-                                             ["div"
-                                              ["{}"]
-                                              ["div"
-                                               ["{}" [":style" ["merge" "ui/column" "ui/center" "style-header"]]]
-                                               ["div" ["{}" [":style" "style-logo"]]]]
-                                              ["div"
-                                               ["{}" [":style" ["merge" "ui/center" "ui/row" "style-suggest"]]]
-                                               ["div"
-                                                ["{}" [":style" "style-description"]]
-                                                ["comp-text" "|Respo: a virtual DOM library in ClojureScript." "nil"]]
-                                               ["comp-space" "8" "nil"]
-                                               ["a"
-                                                ["{}"
-                                                 [":attrs"
-                                                  ["{}"
-                                                   [":href" "|https://github.com/Respo/respo-examples"]
-                                                   [":target" "|_blank"]]]]
-                                                ["button"
-                                                 ["{}"
-                                                  [":style" ["merge" "ui/button"]]
-                                                  [":attrs" ["{}" [":inner-text" "|Read Examples"]]]]]]
-                                               ["comp-space" "8" "nil"]
-                                               ["a"
-                                                ["{}"
-                                                 [":attrs"
-                                                  ["{}"
-                                                   [":href" "|https://github.com/Respo/respo/wiki/Quick-Start"]
-                                                   [":target" "|_blank"]]]]
-                                                ["button"
-                                                 ["{}"
-                                                  [":style" ["merge" "ui/button"]]
-                                                  [":attrs" ["{}" [":inner-text" "|Quick Start"]]]]]]]
-                                              ["div"
-                                               ["{}" [":style" "style-snippets"]]
-                                               ["div"
-                                                "demo-props"
-                                                ["render-demo" "|Component Nesting"]
-                                                ["render-snippet" "snippets.component" "options"]]
-                                               ["div"
-                                                "demo-props"
-                                                ["render-demo" "|Inline Styles"]
-                                                ["render-snippet" "snippets.inlineStyles" "options"]]
-                                               ["div"
-                                                "demo-props"
-                                                ["render-demo" "|Event Handling"]
-                                                ["render-snippet" "snippets.controller" "options"]]
-                                               ["div"
-                                                "demo-props"
-                                                ["render-demo" "|Hot Swapping"]
-                                                ["render-snippet" "snippets.hotSwapping" "options"]]
-                                               ["div"
-                                                "demo-props"
-                                                ["render-demo" "|Store Management"]
-                                                ["render-snippet" "snippets.model" "options"]]
-                                               ["div"
-                                                "demo-props"
-                                                ["render-demo" "|State Management"]
-                                                ["render-snippet" "snippets.states" "options"]]]
-                                              ["div"
-                                               ["{}" [":style" "style-footer"]]
-                                               ["img"
-                                                ["{}"
-                                                 [":attrs"
-                                                  ["{}" [":src" "|https://img.shields.io/clojars/v/respo.svg"]]]]]]]]]]]},
+                                          ["options"]
+                                          ["div"
+                                           ["{}"]
+                                           ["div"
+                                            ["{}" [":style" ["merge" "ui/column" "ui/center" "style-header"]]]
+                                            ["div" ["{}" [":style" "style-logo"]]]]
+                                           ["div"
+                                            ["{}" [":style" ["merge" "ui/center" "ui/row" "style-suggest"]]]
+                                            ["div"
+                                             ["{}" [":style" "style-description"]]
+                                             ["<>" "span" "|Respo: a virtual DOM library in ClojureScript." "nil"]]
+                                            ["=<" "8" "nil"]
+                                            ["a"
+                                             ["{}"
+                                              [":href" "|https://github.com/Respo/respo-examples"]
+                                              [":target" "|_blank"]]
+                                             ["button"
+                                              ["{}" [":inner-text" "|Read Examples"] [":style" ["merge" "ui/button"]]]]]
+                                            ["=<" "8" "nil"]
+                                            ["a"
+                                             ["{}"
+                                              [":href" "|https://github.com/Respo/respo/wiki/Quick-Start"]
+                                              [":target" "|_blank"]]
+                                             ["button"
+                                              ["{}" [":inner-text" "|Quick Start"] [":style" ["merge" "ui/button"]]]]]]
+                                           ["div"
+                                            ["{}" [":style" "style-snippets"]]
+                                            ["div"
+                                             "demo-props"
+                                             ["render-demo" "|Component Nesting"]
+                                             ["render-snippet" "snippets.component" "options"]]
+                                            ["div"
+                                             "demo-props"
+                                             ["render-demo" "|Inline Styles"]
+                                             ["render-snippet" "snippets.inlineStyles" "options"]]
+                                            ["div"
+                                             "demo-props"
+                                             ["render-demo" "|Event Handling"]
+                                             ["render-snippet" "snippets.controller" "options"]]
+                                            ["div"
+                                             "demo-props"
+                                             ["render-demo" "|Hot Swapping"]
+                                             ["render-snippet" "snippets.hotSwapping" "options"]]
+                                            ["div"
+                                             "demo-props"
+                                             ["render-demo" "|Store Management"]
+                                             ["render-snippet" "snippets.model" "options"]]
+                                            ["div"
+                                             "demo-props"
+                                             ["render-demo" "|State Management"]
+                                             ["render-snippet" "snippets.states" "options"]]]
+                                           ["div"
+                                            ["{}" [":style" "style-footer"]]
+                                            ["img" ["{}" [":src" "|https://img.shields.io/clojars/v/respo.svg"]]]]]]},
                       :procs []},
          "render" {:ns ["ns"
                         "app.render"
                         [":require"
-                         ["[]"
-                          "respo.alias"
-                          ":refer"
-                          ["[]" "html" "head" "title" "script" "style" "meta'" "div" "link" "body"]]
                          ["[]" "respo.render.html" ":refer" ["[]" "make-html" "make-string"]]
                          ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
-                         ["[]" "|fs" ":refer" ["[]" "readFileSync" "writeFileSync"]]]],
+                         ["[]" "app.schema" ":as" "schema"]
+                         ["[]" "shell-page.core" ":refer" ["[]" "make-page" "spit" "slurp"]]]],
                    :defs {"main!" ["defn"
                                    "main!"
                                    []
-                                   ["spit"
-                                    "|dist/index.html"
-                                    ["if" ["=" "js/process.env.env" "|dev"] ["generate-empty-html"] ["generate-html"]]]],
-                          "spit" ["defn"
-                                  "spit"
-                                  ["file-name" "content"]
-                                  ["writeFileSync" "file-name" "content"]
-                                  ["println" "|Wrote to:" "file-name"]],
-                          "generate-empty-html" ["defn"
-                                                 "generate-empty-html"
-                                                 []
-                                                 ["html-dsl"
-                                                  ["{}" [":build?" "false"]]
-                                                  ["{}" [":main" "|/main.js"]]
-                                                  "|"]],
-                          "generate-html" ["defn"
-                                           "generate-html"
-                                           []
-                                           ["let"
-                                            [["tree" ["comp-container" ["{}"] ["#{}" ":shell"]]]
-                                             ["html-content" ["make-string" "tree"]]
-                                             ["resources"
-                                              ["let"
-                                               [["manifest" ["js/JSON.parse" ["slurp" "|dist/manifest.json"]]]]
-                                               ["{}"
-                                                [":css" ["aget" "manifest" "|main.css"]]
-                                                [":main" ["aget" "manifest" "|main.js"]]
-                                                [":vendor" ["aget" "manifest" "|vendor.js"]]]]]]
-                                            ["html-dsl" ["{}" [":build?" "false"]] "resources" "html-content"]]],
-                          "slurp" ["defn" "slurp" ["x"] ["readFileSync" "x" "|utf8"]],
-                          "html-dsl" ["defn"
-                                      "html-dsl"
-                                      ["config" "resources" "html-content"]
-                                      ["make-html"
-                                       ["html"
-                                        ["{}"]
-                                        ["head"
-                                         ["{}"]
-                                         ["title" ["{}" [":innerHTML" "|Stack Workflow"]]]
-                                         ["link" ["{}" [":rel" "|icon"] [":type" "|image/png"] [":href" "icon-url"]]]
-                                         ["link" ["{}" [":rel" "|manifest"] [":href" "|manifest.json"]]]
-                                         ["meta'" ["{}" [":charset" "|utf8"]]]
-                                         ["meta'"
+                                   ["if"
+                                    ["=" "js/process.env.env" "|dev"]
+                                    ["spit" "|dist/index.html" ["dev-page"]]
+                                    ["spit" "|dist/index.html" ["prod-page"]]]],
+                          "base-info" ["def"
+                                       "base-info"
+                                       ["{}"
+                                        [":title" "|Respo: a virtual DOM library in ClojureScript"]
+                                        [":icon" "| http://logo.mvc-works.org/mvc.png"]
+                                        [":ssr" "nil"]
+                                        [":inner-html" "nil"]]],
+                          "prod-page" ["defn"
+                                       "prod-page"
+                                       []
+                                       ["let"
+                                        [["html-content"
+                                          ["make-string"
+                                           ["comp-container" "schema/store" ["{}" [":highlight" "highlight-code"]]]]]
+                                         ["manifest" [".parse" "js/JSON" ["slurp" "|dist/manifest.json"]]]]
+                                        ["make-page"
+                                         ["str" "html-content" "ga-html"]
+                                         ["merge"
+                                          "base-info"
                                           ["{}"
-                                           [":name" "|viewport"]
-                                           [":content" "|width=device-width, initial-scale=1"]]]
-                                         ["meta'"
-                                          ["{}"
-                                           [":id" "|config"]
-                                           [":type" "|text/edn"]
-                                           [":content" ["pr-str" "config"]]]]
-                                         ["if"
-                                          ["contains?" "resources" ":css"]
-                                          ["link"
-                                           ["{}"
-                                            [":rel" "|stylesheet"]
-                                            [":type" "|text/css"]
-                                            [":href" [":css" "resources"]]]]]]
-                                        ["body"
-                                         ["{}"]
-                                         ["div" ["{}" [":id" "|app"] [":innerHTML" "html-content"]]]
-                                         ["if" [":build?" "config"] ["script" ["{}" [":src" [":vendor" "resources"]]]]]
-                                         ["script" ["{}" [":src" [":main" "resources"]]]]]]]],
-                          "icon-url" ["def" "icon-url" "|http://logo.mvc-works.org/mvc.png"]},
+                                           [":ssr" "|respo-ssr"]
+                                           [":styles" ["[]" ["aget" "manifest" "|main.css"]]]
+                                           [":scripts" ["[]"]]]]]]],
+                          "dev-page" ["defn"
+                                      "dev-page"
+                                      []
+                                      ["make-page"
+                                       "|"
+                                       ["merge" "base-info" ["{}" [":styles" ["[]"]] [":scripts" ["[]" "|/main.js"]]]]]],
+                          "ga-html" ["def" "ga-html" ["slurp" "|entry/ga.html"]],
+                          "hljs" ["def" "hljs" ["js/require" "|highlight.js"]],
+                          "highlight-code" ["defn"
+                                            "highlight-code"
+                                            ["code" "lang"]
+                                            [".-value" [".highlight" "hljs" "lang" "code"]]]},
                    :procs [["main!"]]},
          "comp.header" {:ns ["ns"
                              "app.comp.header"
+                             [":require-macros" ["[]" "respo.macros" ":refer" ["[]" "defcomp" "div" "span" "a"]]]
                              [":require"
                               ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                               ["[]" "respo-ui.style" ":as" "ui"]
                               ["[]" "respo-ui.style.colors" ":as" "colors"]
-                              ["[]" "respo.alias" ":refer" ["[]" "create-comp" "div" "span" "a"]]
-                              ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
-                              ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]
-                              ["[]" "respo.comp.debug" ":refer" ["[]" "comp-debug"]]]],
-                        :defs {"comp-header" ["def"
+                              ["[]" "respo.core" ":refer" ["[]" "create-comp"]]
+                              ["[]" "respo.comp.space" ":refer" ["[]" "=<"]]]],
+                        :defs {"comp-header" ["defcomp"
                                               "comp-header"
-                                              ["create-comp"
-                                               ":header"
-                                               ["fn"
-                                                []
-                                                ["fn"
-                                                 ["state" "mutate!"]
-                                                 ["div"
-                                                  ["{}" [":style" "style-header"]]
-                                                  ["div"
-                                                   ["{}"]
-                                                   ["render-link" "|Respo" "|/"]
-                                                   ["render-link" "|Guide" "|https://github.com/Respo/respo/wiki"]
-                                                   ["render-link"
-                                                    "|API Docs"
-                                                    "|https://github.com/Respo/respo/wiki/API"]
-                                                   ["render-link"
-                                                    "|Community"
-                                                    "|https://github.com/Respo/respo/wiki/Community"]]
-                                                  ["div"
-                                                   ["{}"]
-                                                   ["a"
-                                                    ["{}"
-                                                     [":attrs"
-                                                      ["{}"
-                                                       [":href" "|https://github.com/Respo"]
-                                                       [":inner-text" "|GitHub"]
-                                                       [":target" "|_blanck"]]]
-                                                     [":style" "style-github"]]]]]]]]],
+                                              []
+                                              ["div"
+                                               ["{}" [":style" "style-header"]]
+                                               ["div"
+                                                ["{}"]
+                                                ["render-link" "|Respo" "|/"]
+                                                ["render-link" "|Guide" "|https://github.com/Respo/respo/wiki"]
+                                                ["render-link" "|API Docs" "|https://github.com/Respo/respo/wiki/API"]
+                                                ["render-link"
+                                                 "|Community"
+                                                 "|https://github.com/Respo/respo/wiki/Community"]]
+                                               ["div"
+                                                ["{}"]
+                                                ["a"
+                                                 ["{}"
+                                                  [":href" "|https://github.com/Respo"]
+                                                  [":inner-text" "|GitHub"]
+                                                  [":target" "|_blanck"]
+                                                  [":style" "style-github"]]]]]],
                                "style-header" ["def"
                                                "style-header"
                                                ["merge"
@@ -373,7 +292,7 @@
                                               ["div"
                                                ["{}"
                                                 [":style" "style-section"]
-                                                [":event"
+                                                [":on"
                                                  ["{}"
                                                   [":click"
                                                    ["fn"
@@ -384,7 +303,8 @@
                                                     ["dispatch!" ":router/set" "path"]]]]]]
                                                ["a"
                                                 ["{}"
-                                                 [":attrs" ["{}" [":inner-text" "text"] [":href" ["str" "path"]]]]
+                                                 [":inner-text" "text"]
+                                                 [":href" ["str" "path"]]
                                                  [":style" "style-link"]]]]],
                                "style-link" ["def"
                                              "style-link"

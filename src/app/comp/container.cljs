@@ -1,18 +1,16 @@
 
 (ns app.comp.container
+  (:require-macros [respo.macros :refer [defcomp div span <>]])
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
-            [respo.alias :refer [create-comp div span]]
-            [respo.comp.space :refer [comp-space]]
-            [respo.comp.text :refer [comp-text]]
-            [respo.comp.debug :refer [comp-debug]]
+            [respo.core :refer [create-comp]]
+            [respo.comp.space :refer [=<]]
+            [respo.comp.inspect :refer [comp-inspect]]
             [app.comp.header :refer [comp-header]]
             [app.comp.home :refer [comp-home]]))
 
-(def comp-container
-  (create-comp
-   :container
-   (fn [store ssr-stages options]
-     (fn [state mutate!]
-       (let [router (:router store)]
-         (div {:style (merge ui/global)} (comp-header) (comp-home options)))))))
+(defcomp
+ comp-container
+ (store options)
+ (let [router (:router store)]
+   (div {:style (merge ui/global)} (comp-header) (comp-home options))))

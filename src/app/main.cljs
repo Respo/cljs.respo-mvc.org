@@ -1,10 +1,12 @@
 
 (ns app.main
-  (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
+  (:require [respo.core :refer [render! clear-cache! realize-ssr!]]
             [app.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
             [app.schema :as schema]
             ["highlight.js" :as hljs]))
+
+(def ssr? (some? (.querySelector js/document "meta.respo-ssr")))
 
 (defn dispatch! [op op-data] (println "Dispatch!" op))
 
@@ -13,32 +15,20 @@
 (defn highlight-code [code lang]
   (let [result ((aget hljs "highlight") lang code)] (.-value result)))
 
-(def ssr-stages
-  (let [ssr-element (.querySelector js/document "#ssr-stages")
-        ssr-markup (.getAttribute ssr-element "content")]
-    (read-string ssr-markup)))
+(def mount-target (.querySelector js/document ".app"))
 
-(defn render-app! []
-  (let [target (.querySelector js/document "#app")]
-    (render!
-     (comp-container @store-ref ssr-stages {:highlight highlight-code})
-     target
-     dispatch!)))
+(defn render-app! [renderer]
+  (let [app (comp-container @store-ref {:highlight highlight-code})]
+    (renderer mount-target app dispatch!)))
 
 (defn main! []
-  (enable-console-print!)
-  (if (not (empty? ssr-stages))
-    (let [target (.querySelector js/document "#app")]
-      (falsify-stage!
-       target
-       (render-element (comp-container @store-ref ssr-stages {:highlight highlight-code}))
-       dispatch!)))
-  (render-app!)
-  (add-watch store-ref :changes render-app!)
+  (if ssr? (render-app! realize-ssr!))
+  (render-app! render!)
+  (add-watch store-ref :changes (fn [] (render-app! render!)))
   (println "App started!"))
 
 (def mode :history)
 
-(defn reload! [] (clear-cache!) (render-app!) (println "Code updated."))
+(defn reload! [] (clear-cache!) (render-app! render!) (println "Code updated."))
 
 (set! (.-onload js/window) main!)

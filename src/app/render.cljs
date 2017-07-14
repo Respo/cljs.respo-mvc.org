@@ -1,52 +1,34 @@
 
 (ns app.render
-  (:require [respo.alias :refer [html head title script style meta' div link body]]
-            [respo.render.html :refer [make-html make-string]]
+  (:require [respo.render.html :refer [make-html make-string]]
             [app.comp.container :refer [comp-container]]
-            ["fs" :refer [readFileSync writeFileSync]]))
+            [app.schema :as schema]
+            [shell-page.core :refer [make-page spit slurp]]))
 
-(defn spit [file-name content]
-  (writeFileSync file-name content)
-  (println "Wrote to:" file-name))
+(def base-info
+  {:title "Respo: a virtual DOM library in ClojureScript",
+   :icon " http://logo.mvc-works.org/mvc.png",
+   :ssr nil,
+   :inner-html nil})
 
-(def icon-url "http://logo.mvc-works.org/mvc.png")
+(def ga-html (slurp "entry/ga.html"))
 
-(defn html-dsl [config resources html-content]
-  (make-html
-   (html
-    {}
-    (head
-     {}
-     (title {:innerHTML "Stack Workflow"})
-     (link {:rel "icon", :type "image/png", :href icon-url})
-     (link {:rel "manifest", :href "manifest.json"})
-     (meta' {:charset "utf8"})
-     (meta' {:name "viewport", :content "width=device-width, initial-scale=1"})
-     (meta' {:id "config", :type "text/edn", :content (pr-str config)})
-     (if (contains? resources :css)
-       (link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
-    (body
-     {}
-     (div {:id "app", :innerHTML html-content})
-     (if (:build? config) (script {:src (:vendor resources)}))
-     (script {:src (:main resources)})))))
+(def hljs (js/require "highlight.js"))
 
-(defn generate-empty-html [] (html-dsl {:build? false} {:main "/main.js"} ""))
+(defn highlight-code [code lang] (.-value (.highlight hljs lang code)))
 
-(defn slurp [x] (readFileSync x "utf8"))
+(defn prod-page []
+  (let [html-content (make-string (comp-container schema/store {:highlight highlight-code}))
+        manifest (.parse js/JSON (slurp "dist/manifest.json"))]
+    (make-page
+     (str html-content ga-html)
+     (merge base-info {:ssr "respo-ssr", :styles [(aget manifest "main.css")], :scripts []}))))
 
-(defn generate-html []
-  (let [tree (comp-container {} #{:shell})
-        html-content (make-string tree)
-        resources (let [manifest (js/JSON.parse (slurp "dist/manifest.json"))]
-                    {:css (aget manifest "main.css"),
-                     :main (aget manifest "main.js"),
-                     :vendor (aget manifest "vendor.js")})]
-    (html-dsl {:build? false} resources html-content)))
+(defn dev-page [] (make-page "" (merge base-info {:styles [], :scripts ["/main.js"]})))
 
 (defn main! []
-  (spit
-   "dist/index.html"
-   (if (= js/process.env.env "dev") (generate-empty-html) (generate-html))))
+  (if (= js/process.env.env "dev")
+    (spit "dist/index.html" (dev-page))
+    (spit "dist/index.html" (prod-page))))
 
 (main!)

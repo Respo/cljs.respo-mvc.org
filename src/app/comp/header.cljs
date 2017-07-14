@@ -1,12 +1,11 @@
 
 (ns app.comp.header
+  (:require-macros [respo.macros :refer [defcomp div span a]])
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
-            [respo.alias :refer [create-comp div span a]]
-            [respo.comp.space :refer [comp-space]]
-            [respo.comp.text :refer [comp-text]]
-            [respo.comp.debug :refer [comp-debug]]))
+            [respo.core :refer [create-comp]]
+            [respo.comp.space :refer [=<]]))
 
 (def style-header
   (merge
@@ -25,30 +24,28 @@
 (defn render-link [text path]
   (div
    {:style style-section,
-    :event {:click (fn [e dispatch!]
-              (let [event (:original-event e)] (.preventDefault event))
-              (dispatch! :router/set path))}}
-   (a {:attrs {:inner-text text, :href (str path)}, :style style-link})))
+    :on {:click (fn [e dispatch!]
+           (let [event (:original-event e)] (.preventDefault event))
+           (dispatch! :router/set path))}}
+   (a {:inner-text text, :href (str path), :style style-link})))
 
 (def style-github {:text-decoration :none})
 
-(def comp-header
-  (create-comp
-   :header
-   (fn []
-     (fn [state mutate!]
-       (div
-        {:style style-header}
-        (div
-         {}
-         (render-link "Respo" "/")
-         (render-link "Guide" "https://github.com/Respo/respo/wiki")
-         (render-link "API Docs" "https://github.com/Respo/respo/wiki/API")
-         (render-link "Community" "https://github.com/Respo/respo/wiki/Community"))
-        (div
-         {}
-         (a
-          {:attrs {:href "https://github.com/Respo",
-                   :inner-text "GitHub",
-                   :target "_blanck"},
-           :style style-github})))))))
+(defcomp
+ comp-header
+ ()
+ (div
+  {:style style-header}
+  (div
+   {}
+   (render-link "Respo" "/")
+   (render-link "Guide" "https://github.com/Respo/respo/wiki")
+   (render-link "API Docs" "https://github.com/Respo/respo/wiki/API")
+   (render-link "Community" "https://github.com/Respo/respo/wiki/Community"))
+  (div
+   {}
+   (a
+    {:href "https://github.com/Respo",
+     :inner-text "GitHub",
+     :target "_blanck",
+     :style style-github}))))
