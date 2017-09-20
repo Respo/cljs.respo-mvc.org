@@ -67,8 +67,8 @@
     (button {:inner-text "Read Examples", :style (merge ui/button)}))
    (=< 8 nil)
    (a
-    {:href "https://github.com/Respo/respo/wiki/Quick-Start", :target "_blank"}
-    (button {:inner-text "Quick Start", :style (merge ui/button)})))
+    {:href "https://github.com/Respo/respo/wiki/Beginner-Guide", :target "_blank"}
+    (button {:inner-text "Beginner Guide", :style (merge ui/button)})))
   (div
    {:style style-snippets}
    (div

@@ -2,8 +2,7 @@
 ; atom to define mutable store
 (defonce *store
   (atom
-    {:router nil
-     :tasks []
+    {:tasks []
      ; this is states
      :states {}}))
 

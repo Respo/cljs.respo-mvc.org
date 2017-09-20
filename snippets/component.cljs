@@ -1,10 +1,10 @@
 
 (defcomp comp-child [prop-b]
-  (div {} (<> span (str prop-b) nil)))
+  (div {} (<> (str prop-b))))
 
 (defcomp comp-demo [prop-a prop-b]
   (div {:class-name "demo" :style {} :on {}}
-    (<> span (str prop-a) nil)
+    (<> (str prop-a))
     (comp-child prop-b)))
 
 ; respo.macros/div
