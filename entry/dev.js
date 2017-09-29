@@ -1,4 +1,4 @@
-require('respo-ui');
+
 require('./main.css');
 
 var main = require('../target/app.main.js');

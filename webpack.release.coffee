@@ -6,12 +6,12 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 
 module.exports =
   entry:
-    main: './entry/page'
-    vendor: [
-      './target/cljs.core'
-      './target/respo.core'
-      './target/respo_ui.style'
-    ]
+    main: './entry/release'
+    # vendor: [
+    #   './target/cljs.core'
+    #   './target/respo.core'
+    #   './target/respo_ui.style'
+    # ]
   output:
     path: path.join(__dirname, './dist/')
     filename: '[name].[chunkhash:8].js'
@@ -32,8 +32,8 @@ module.exports =
     ]
   plugins: [
     new ExtractTextPlugin('[name].[chunkhash:8].css')
-    new webpack.optimize.CommonsChunkPlugin
-      name: 'vendor'
-      filename: 'vendor.[chunkhash:8].js'
+    # new webpack.optimize.CommonsChunkPlugin
+    #   name: 'vendor'
+    #   filename: 'vendor.[chunkhash:8].js'
     new ManifestPlugin
   ]

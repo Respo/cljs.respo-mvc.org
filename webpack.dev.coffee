@@ -5,7 +5,7 @@ resolve = require('path').resolve
 
 module.exports =
   entry:
-    main: './entry/page'
+    main: './entry/dev'
   devServer:
     clientLogLevel: 'info'
     stats: 'errors-only'
