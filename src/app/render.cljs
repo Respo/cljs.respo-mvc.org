@@ -7,11 +7,8 @@
 
 (def base-info
   {:title "Respo: a virtual DOM library in ClojureScript",
-   :icon "http://repo-cdn.b0.upaiyun.com/logo/mvc-works.png",
-   :ssr nil,
-   :inline-html (str
-                 "<link rel=\"stylesheet\" href=\"http://repo-cdn.b0.upaiyun.com/favored-fonts/josefin-sans.css\" />"
-                 "<link rel=\"stylesheet\" href=\"http://repo-cdn.b0.upaiyun.com/favored-fonts/hind.css\" />")})
+   :icon "http://cdn.tiye.me/logo/mvc-works.png",
+   :ssr nil})
 
 (def ga-html (slurp "entry/ga.html"))
 
@@ -23,16 +20,22 @@
 
 (defn prod-page []
   (let [html-content (make-string (comp-container schema/store {:highlight highlight-code}))
-        manifest (.parse js/JSON (slurp "dist/manifest.json"))
-        cdn (if preview? "" "http://repo-cdn.b0.upaiyun.com/respo.site/")
+        webpack-info (.parse js/JSON (slurp "dist/webpack-manifest.json"))
+        cdn (if preview? "" "http://cdn.tiye.me/respo.site/")
         prefix-cdn (fn [x] (str cdn x))]
     (make-page
      (str html-content ga-html)
      (merge
       base-info
-      {:ssr "respo-ssr", :styles [(prefix-cdn (aget manifest "main.css"))], :scripts []}))))
+      {:ssr "respo-ssr",
+       :styles ["http://cdn.tiye.me/favored-fonts/main.css"
+                (prefix-cdn (aget webpack-info "main.css"))],
+       :scripts []}))))
 
-(defn dev-page [] (make-page "" (merge base-info {:styles [], :scripts ["/main.js"]})))
+(defn dev-page []
+  (make-page
+   ""
+   (merge base-info {:styles ["http://localhost:8100/main.css"], :scripts ["/main.js"]})))
 
 (defn main! []
   (if (= js/process.env.env "dev")

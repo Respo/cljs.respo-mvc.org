@@ -36,4 +36,5 @@ module.exports =
     #   name: 'vendor'
     #   filename: 'vendor.[chunkhash:8].js'
     new ManifestPlugin
+      fileName: 'webpack-manifest.json'
   ]
