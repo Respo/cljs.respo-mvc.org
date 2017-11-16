@@ -1,10 +1,10 @@
 
 {:source-paths ["src"]
  :dependencies [[mvc-works/hsl          "0.1.2"]
-                [respo/ui               "0.1.9"]
-                [respo                  "0.6.2"]
-                [mvc-works/shell-page   "0.1.2"]
-                [respo/markdown         "0.1.4"]
-                [respo/router           "0.2.2"]]
+                [respo/ui               "0.2.0"]
+                [respo                  "0.7.1"]
+                [mvc-works/shell-page   "0.1.6"]
+                [respo/markdown         "0.1.7"]
+                [respo/router           "0.3.0-a2"]]
  :builds {:app {:output-dir "target/"
                 :target :npm-module}}}

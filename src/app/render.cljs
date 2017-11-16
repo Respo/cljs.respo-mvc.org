@@ -1,6 +1,6 @@
 
 (ns app.render
-  (:require [respo.render.html :refer [make-html make-string]]
+  (:require [respo.render.html :refer [make-string]]
             [app.comp.container :refer [comp-container]]
             [app.schema :as schema]
             [shell-page.core :refer [make-page spit slurp]]))

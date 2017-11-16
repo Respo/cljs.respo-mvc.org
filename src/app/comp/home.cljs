@@ -1,10 +1,9 @@
 
 (ns app.comp.home
-  (:require-macros [respo.macros :refer [defcomp <> span div button a img pre code]])
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
-            [respo.core :refer [create-comp]]
+            [respo.macros :refer [defcomp <> span div button a img pre code]]
             [respo.comp.space :refer [=<]]))
 
 (def style-card {:display :inline-block, :vertical-align :top, :margin 16})

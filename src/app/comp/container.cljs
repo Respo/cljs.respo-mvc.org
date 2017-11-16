@@ -1,9 +1,8 @@
 
 (ns app.comp.container
-  (:require-macros [respo.macros :refer [defcomp div span <>]])
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
-            [respo.core :refer [create-comp]]
+            [respo.macros :refer [defcomp div span <>]]
             [respo.comp.space :refer [=<]]
             [respo.comp.inspect :refer [comp-inspect]]
             [app.comp.header :refer [comp-header]]
