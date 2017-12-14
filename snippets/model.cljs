@@ -13,9 +13,8 @@
     store))
 
 (defn dispatch! [op op-data]
-  (let [new-store (updater @*store op op-data)]
-    ; mutate store
-    (reset! *store new-store)))
+  ; mutate store
+  (reset! *store (updater @*store op op-data)))
 
 ; watch store changes
 (add-watch *store

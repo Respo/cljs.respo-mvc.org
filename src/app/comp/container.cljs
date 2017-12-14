@@ -11,5 +11,4 @@
 (defcomp
  comp-container
  (store options)
- (let [router (:router store)]
-   (div {:style (merge ui/global)} (comp-header) (comp-home options))))
+ (div {:style (merge ui/global)} (comp-header) (comp-home options)))

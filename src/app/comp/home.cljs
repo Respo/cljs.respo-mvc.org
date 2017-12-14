@@ -86,7 +86,7 @@
     demo-props
     (render-demo "Hot Swapping")
     (render-snippet snippets.hotSwapping options))
-   (div demo-props (render-demo "Store Management") (render-snippet snippets.model options))
+   (div demo-props (render-demo "Store") (render-snippet snippets.model options))
    (div
     demo-props
     (render-demo "State Management")

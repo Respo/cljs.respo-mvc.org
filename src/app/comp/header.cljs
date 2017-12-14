@@ -21,12 +21,7 @@
 (def style-section {:display :inline-block, :margin-right 64})
 
 (defn render-link [text path]
-  (div
-   {:style style-section,
-    :on {:click (fn [e dispatch!]
-           (let [event (:original-event e)] (.preventDefault event))
-           (dispatch! :router/set path))}}
-   (a {:inner-text text, :href (str path), :style style-link})))
+  (div {:style style-section} (a {:inner-text text, :href (str path), :style style-link})))
 
 (def style-github {:text-decoration :none})
 
