@@ -13,7 +13,7 @@
         (<> span "name" nil))
       (input {:placeholder "name"
               :value state
-              :on {:input on-input}}))))
+              :on-input on-input}))))
 
 (defcomp comp-parent [states]
   (div {}
