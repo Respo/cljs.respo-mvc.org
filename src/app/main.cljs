@@ -6,11 +6,9 @@
             [app.schema :as schema]
             ["highlight.js" :as hljs]))
 
-(def ssr? (some? (.querySelector js/document "meta.respo-ssr")))
+(defonce *store (atom {}))
 
 (defn dispatch! [op op-data] (println "Dispatch!" op))
-
-(defonce *store (atom {}))
 
 (defn highlight-code [code lang]
   (let [result ((aget hljs "highlight") lang code)] (.-value result)))
@@ -20,6 +18,8 @@
 (defn render-app! [renderer]
   (let [app (comp-container @*store {:highlight highlight-code})]
     (renderer mount-target app dispatch!)))
+
+(def ssr? (some? (.querySelector js/document "meta.respo-ssr")))
 
 (defn main! []
   (if ssr? (render-app! realize-ssr!))

@@ -10,6 +10,11 @@
    :icon "http://cdn.tiye.me/logo/mvc-works.png",
    :ssr nil})
 
+(defn dev-page []
+  (make-page
+   ""
+   (merge base-info {:styles ["http://localhost:8100/main.css"], :scripts ["/main.js"]})))
+
 (def ga-html (slurp "entry/ga.html"))
 
 (def hljs (js/require "highlight.js"))
@@ -31,11 +36,6 @@
        :styles ["http://cdn.tiye.me/favored-fonts/main.css"
                 (prefix-cdn (aget webpack-info "main.css"))],
        :scripts []}))))
-
-(defn dev-page []
-  (make-page
-   ""
-   (merge base-info {:styles ["http://localhost:8100/main.css"], :scripts ["/main.js"]})))
 
 (defn main! []
   (if (= js/process.env.env "dev")
