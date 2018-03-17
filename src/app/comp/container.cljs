@@ -8,7 +8,4 @@
             [app.comp.header :refer [comp-header]]
             [app.comp.home :refer [comp-home]]))
 
-(defcomp
- comp-container
- (store options)
- (div {:style (merge ui/global)} (comp-header) (comp-home options)))
+(defcomp comp-container (store) (div {:style (merge ui/global)} (comp-header) (comp-home)))

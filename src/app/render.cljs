@@ -19,16 +19,12 @@
 
 (def ga-html (slurp "entry/ga.html"))
 
-(def hljs (js/require "highlight.js"))
-
-(defn highlight-code [code lang] (.-value (.highlight hljs lang code)))
-
 (def preview? (= js/process.env.prod "preview"))
 
 (defn prod-page []
-  (let [html-content (make-string (comp-container schema/store {:highlight highlight-code}))
+  (let [html-content (make-string (comp-container schema/store))
         assets (read-string (slurp "dist/assets.edn"))
-        cdn (if preview? "" "http://cdn.tiye.me/respo.site/")
+        cdn (if preview? "" "http://cdn.tiye.me/respo-site/")
         prefix-cdn (fn [x] (str cdn x))]
     (make-page
      (str html-content ga-html)

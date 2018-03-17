@@ -1,6 +1,4 @@
 
-@import url(github-gist.css);
-
 body {
   margin: 0;
 }
@@ -9,22 +7,22 @@ body * {
   box-sizing: border-box;
 }
 
-.md-article {
+.md-block {
   flex: 1;
   padding: 8px;
   font-size: 14px;
 }
 
-.md-article h2 {
+.md-block h2 {
   font-size: 20px;
 }
 
 
-.md-article h3 {
+.md-block h3 {
   font-size: 16px;
 }
 
-.md-article p > code {
+.md-block p > code {
   padding: 0 8px;
   margin: 0 4px;
   font-size: 12px;
@@ -34,12 +32,11 @@ body * {
   line-height: 1.8;
 }
 
-.md-article a code {
+.md-block a code {
   pointer-events: none;
 }
 
-.code-snippet,
-.md-article pre {
+.md-code-block {
   vertical-align: top;
   margin: 0;
   padding: 8px;

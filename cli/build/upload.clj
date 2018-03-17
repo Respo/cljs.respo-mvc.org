@@ -2,9 +2,9 @@
 (ns build.upload
   (:require [clojure.java.shell :refer [sh]]))
 
-(def configs {:orgization "mvc-works"
-              :name "calcit-workflow"
-              :cdn "calcit-workflow"})
+(def configs {:orgization "Respo"
+              :name "respo.site"
+              :cdn "respo-site"})
 
 (defn sh! [command]
   (println command)

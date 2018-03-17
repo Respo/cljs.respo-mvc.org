@@ -5,22 +5,8 @@
             [respo-ui.colors :as colors]
             [respo.macros :refer [defcomp <> span div button a img pre code]]
             [respo.comp.space :refer [=<]]
-            [app.snippets :as snippets]))
-
-(def style-card {:display :inline-block, :vertical-align :top, :margin 16})
-
-(def demo-props {:style style-card})
-
-(def style-demo
-  {:font-size 16, :font-family "Josefin Sans", :text-align :center, :line-height 1.4})
-
-(defn render-demo [text] (div {:inner-text text, :style style-demo}))
-
-(defn render-snippet [demo-code options]
-  (let [highlight-code (:highlight options)]
-    (pre
-     {:class-name "code-snippet"}
-     (code {:innerHTML (highlight-code demo-code "clojure")}))))
+            [respo-md.comp.md :refer [comp-md-block]]
+            ["highlight.js" :as hljs]))
 
 (def style-description
   {:font-size 16, :font-weight 400, :color colors/texture, :font-family "Hind"})
@@ -37,20 +23,11 @@
    :display :inline-block,
    :vertical-align :middle})
 
-(def style-snippets
-  {:background-color colors/paper,
-   :width "100%",
-   :display :flex,
-   :flex-wrap :wrap,
-   :justify-content :center,
-   :align-items :center,
-   :padding 64})
-
 (def style-suggest {:padding-top 48, :padding-bottom 48})
 
 (defcomp
  comp-home
- (options)
+ ()
  (div
   {}
   (div {:style (merge ui/column ui/center style-header)} (div {:style style-logo}))
@@ -68,26 +45,8 @@
     {:href "https://github.com/Respo/respo/wiki/Beginner-Guide", :target "_blank"}
     (button {:inner-text "Beginner Guide", :style (merge ui/button)})))
   (div
-   {:style style-snippets}
-   (div
-    demo-props
-    (render-demo "Component Nesting")
-    (render-snippet snippets/component options))
-   (div
-    demo-props
-    (render-demo "Inline Styles")
-    (render-snippet snippets/inline-styles options))
-   (div
-    demo-props
-    (render-demo "Event Handling")
-    (render-snippet snippets/controller options))
-   (div
-    demo-props
-    (render-demo "Hot Swapping")
-    (render-snippet snippets/hot-swapping options))
-   (div demo-props (render-demo "Store") (render-snippet snippets/model options))
-   (div
-    demo-props
-    (render-demo "State Management")
-    (render-snippet snippets/states options)))
+   {:style {:width 800, :margin :auto}}
+   (comp-md-block
+    "Respo is built with ClojureScript. You can create elements in Clojure syntax:\n\n```clojure\n(div {:class-name \"demo\"\n      :style {:color :red\n              :font-size 16\n              :font-family \"Josefin Sans\"}\n      :on-click (fn [event dispatch! mutate!])})\n\n; respo.macros/div\n```\n\nAnd to nest child elements:\n\n```clojure\n(div {}\n  (span {})\n  (div {}))\n\n; respo.macros/span\n```\n\nTo add text node:\n\n```clojure\n(div {}\n  (<> \"text\")\n  (<> \"text with style\" {:color :red}))\n\n; respo.macros/<>\n```\n\nTo define a component, use a macro `defcomp`:\n\n```clojure\n(defcomp comp-demo [p1 p2]\n  (div {}\n    (<> p1)\n    (<> p2)))\n\n(comp-demo :a :b)\n\n; respo.macros/defcomp\n```\n\nTo mount component:\n\n```clojure\n(defonce *store (atom {}))\n(defn dispatch! [op op-data] (swap! *store assoc :a 1))\n\n(render! mount-target (comp-container @*store) dispatch!)\n\n; respo.core/render!\n```\n\nTo hot replace app:\n\n```clojure\n(defn reload! []\n  (clear-cache!)\n  (render! mount-target (comp-container @*store) dispatch!))\n\n; respo.core/clear-cache!\n```\n\nRespo has advanced feature for states management, which brings more complexity. You need to explore more about that before digging into the states part.\n\n* [Read guides](https://github.com/Respo/respo/wiki)\n* [Try minimal Respo app by your own](https://github.com/Respo/minimal-respo)\n* [Create tiny apps with a macro](https://github.com/Respo/tiny-app/)\n"
+    {:highlight (fn [code lang] (.-value (.highlight hljs lang code)))}))
   (div {:style style-footer} (img {:src "https://img.shields.io/clojars/v/respo.svg"}))))
