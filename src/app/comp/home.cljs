@@ -4,7 +4,8 @@
             [respo-ui.core :as ui]
             [respo-ui.colors :as colors]
             [respo.macros :refer [defcomp <> span div button a img pre code]]
-            [respo.comp.space :refer [=<]]))
+            [respo.comp.space :refer [=<]]
+            [app.snippets :as snippets]))
 
 (def style-card {:display :inline-block, :vertical-align :top, :margin 16})
 
@@ -20,8 +21,6 @@
     (pre
      {:class-name "code-snippet"}
      (code {:innerHTML (highlight-code demo-code "clojure")}))))
-
-(def snippets (js/require "../snippets/index"))
 
 (def style-description
   {:font-size 16, :font-weight 400, :color colors/texture, :font-family "Hind"})
@@ -73,22 +72,22 @@
    (div
     demo-props
     (render-demo "Component Nesting")
-    (render-snippet snippets.component options))
+    (render-snippet snippets/component options))
    (div
     demo-props
     (render-demo "Inline Styles")
-    (render-snippet snippets.inlineStyles options))
+    (render-snippet snippets/inline-styles options))
    (div
     demo-props
     (render-demo "Event Handling")
-    (render-snippet snippets.controller options))
+    (render-snippet snippets/controller options))
    (div
     demo-props
     (render-demo "Hot Swapping")
-    (render-snippet snippets.hotSwapping options))
-   (div demo-props (render-demo "Store") (render-snippet snippets.model options))
+    (render-snippet snippets/hot-swapping options))
+   (div demo-props (render-demo "Store") (render-snippet snippets/model options))
    (div
     demo-props
     (render-demo "State Management")
-    (render-snippet snippets.states options)))
+    (render-snippet snippets/states options)))
   (div {:style style-footer} (img {:src "https://img.shields.io/clojars/v/respo.svg"}))))
