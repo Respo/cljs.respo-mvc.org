@@ -16,11 +16,7 @@
     :inline-styles [(slurp "entry/github-gist.css") (slurp "entry/main.css")]}))
 
 (defn dev-page []
-  (make-page
-   ""
-   (merge
-    base-info
-    {:styles [(:dev-ui config/site)], :scripts ["/client.js"], :inline-styles []})))
+  (make-page "" (merge base-info {:styles [(:dev-ui config/site)], :scripts ["/client.js"]})))
 
 (def ga-html (slurp "entry/ga.html"))
 

@@ -1248,7 +1248,7 @@
             :type :expr, :id "Sy45gFXdXa9Z", :by nil, :at 1505732641257
             :data {
              "T" {:type :leaf, :id "BJrclKm_X6c-", :text "str", :by "root", :at 1505732641257}
-             "j" {:type :leaf, :id "r1UclYXu7p9-", :text "|url(http://logo.respo.site/respo.png)", :by "root", :at 1505732641257}
+             "j" {:type :leaf, :id "r1UclYXu7p9-", :text "|url(http://cdn.tiye.me/logo/respo.png)", :by "root", :at 1538413301629}
             }
            }
           }
@@ -2134,18 +2134,6 @@
                 :data {
                  "T" {:type :leaf, :id "H1oQfYXumpqb", :text "[]", :by "root", :at 1505732641257}
                  "j" {:type :leaf, :id "SynQzYQd7T9b", :text "\"/client.js", :by "root", :at 1531588467920}
-                }
-               }
-              }
-             }
-             "v" {
-              :type :expr, :by "root", :at 1531588471196, :id "S1b1Yk2D7Q"
-              :data {
-               "T" {:type :leaf, :by "root", :at 1531588473340, :text ":inline-styles", :id "S1b1Yk2D7Qleaf"}
-               "j" {
-                :type :expr, :by "root", :at 1531588473599, :id "B1ftk3Pm7"
-                :data {
-                 "T" {:type :leaf, :by "root", :at 1531588473756, :text "[]", :id "ByBZFJ3vXm"}
                 }
                }
               }

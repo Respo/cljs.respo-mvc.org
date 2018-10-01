@@ -18,7 +18,7 @@
 (def style-logo
   {:width 160,
    :height 160,
-   :background-image (str "url(http://logo.respo.site/respo.png)"),
+   :background-image (str "url(http://cdn.tiye.me/logo/respo.png)"),
    :background-size :cover,
    :display :inline-block,
    :vertical-align :middle})
