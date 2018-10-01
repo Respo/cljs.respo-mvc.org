@@ -2,7 +2,7 @@
 Home page for Respo Project
 ----
 
-Site: http://respo.site
+Site: http://respo-mvc.org
 
 ### Develop
 
