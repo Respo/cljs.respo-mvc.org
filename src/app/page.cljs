@@ -33,8 +33,7 @@
       base-info
       {:styles [(:release-ui config/site)],
        :scripts (map #(-> % :output-name prefix-cdn) assets),
-       :ssr "respo-ssr",
-       :inline-styles [(slurp "./entry/main.css")]}))))
+       :ssr "respo-ssr"}))))
 
 (defn main! []
   (if (contains? config/bundle-builds (get-env! "mode"))

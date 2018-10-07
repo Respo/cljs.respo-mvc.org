@@ -2411,25 +2411,6 @@
                  "j" {:type :leaf, :by "root", :at 1531588561164, :text "|respo-ssr", :id "r18gFCy2wQQ"}
                 }
                }
-               "x" {
-                :type :expr, :by "root", :at 1531588561164, :id "BkPlF0k2vXQ"
-                :data {
-                 "T" {:type :leaf, :by "root", :at 1531588561164, :text ":inline-styles", :id "H1_gFRJnPQm"}
-                 "j" {
-                  :type :expr, :by "root", :at 1531588561164, :id "BkKgtRJ3PXX"
-                  :data {
-                   "T" {:type :leaf, :by "root", :at 1531588561164, :text "[]", :id "Hk5lF01hP7Q"}
-                   "j" {
-                    :type :expr, :by "root", :at 1531588561164, :id "H1slFCyhPQm"
-                    :data {
-                     "T" {:type :leaf, :by "root", :at 1531588561164, :text "slurp", :id "BkhxFCy3Dm7"}
-                     "j" {:type :leaf, :by "root", :at 1531588561164, :text "|./entry/main.css", :id "HyalKAJnvQX"}
-                    }
-                   }
-                  }
-                 }
-                }
-               }
               }
              }
             }
