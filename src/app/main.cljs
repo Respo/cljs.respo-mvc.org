@@ -33,5 +33,3 @@
 (def mode :history)
 
 (defn reload! [] (clear-cache!) (render-app! render!) (println "Code updated."))
-
-(set! (.-onload js/window) main!)
