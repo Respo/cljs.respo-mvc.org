@@ -6,11 +6,12 @@
             [app.schema :as schema]
             ["highlight.js" :as hljs]
             ["highlight.js/lib/languages/bash" :as bash-lang]
-            ["highlight.js/lib/languages/clojure" :as clojure-lang]))
+            ["highlight.js/lib/languages/clojure" :as clojure-lang]
+            [app.config :as config]))
 
 (defonce *store (atom {}))
 
-(defn dispatch! [op op-data] (println "Dispatch!" op))
+(defn dispatch! [op op-data] (when config/dev? (println "Dispatch:" op)))
 
 (defn highlight-code [code lang]
   (let [result ((aget hljs "highlight") lang code)] (.-value result)))
@@ -23,6 +24,7 @@
 (def ssr? (some? (.querySelector js/document "meta.respo-ssr")))
 
 (defn main! []
+  (println "Running mode:" (if config/dev? "dev" "release"))
   (if ssr? (render-app! realize-ssr!))
   (.registerLanguage hljs "clojure" clojure-lang)
   (.registerLanguage hljs "bash" bash-lang)
