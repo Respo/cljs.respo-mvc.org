@@ -6,26 +6,31 @@
             [shell-page.core :refer [make-page spit slurp]]
             [cljs.reader :refer [read-string]]
             [app.config :as config]
-            [app.util :refer [get-env!]]))
+            [cumulo-util.build :refer [get-ip!]])
+  (:require-macros [clojure.core.strint :refer [<<]]))
 
 (def base-info
   (merge
    {:title (:title config/site),
     :icon (:icon config/site),
     :ssr nil,
-    :inline-styles [(slurp "entry/github-gist.css") (slurp "entry/main.css")]}))
+    :inline-styles [(slurp "entry/github-gist.css")]}))
 
 (defn dev-page []
-  (make-page "" (merge base-info {:styles [(:dev-ui config/site)], :scripts ["/client.js"]})))
+  (make-page
+   ""
+   (merge
+    base-info
+    {:styles [(<< "http://~(get-ip!):8100/main.css") "/entry/main.css"],
+     :scripts ["/client.js"],
+     :inline-styles [(slurp "entry/github-gist.css")]})))
 
 (def ga-html (slurp "entry/ga.html"))
-
-(def local-bundle? (= "local-bundle" (get-env! "mode")))
 
 (defn prod-page []
   (let [html-content (make-string (comp-container schema/store))
         assets (read-string (slurp "dist/assets.edn"))
-        cdn (if local-bundle? "" (:cdn-url config/site))
+        cdn (if config/cdn? "" (:cdn-url config/site))
         prefix-cdn (fn [x] (str cdn x))]
     (make-page
      (str html-content ga-html)
@@ -33,11 +38,13 @@
       base-info
       {:styles [(:release-ui config/site)],
        :scripts (map #(-> % :output-name prefix-cdn) assets),
-       :ssr "respo-ssr"}))))
+       :ssr "respo-ssr",
+       :inline-styles [(slurp "entry/github-gist.css") (slurp "./entry/main.css")]}))))
 
 (defn main! []
-  (if (contains? config/bundle-builds (get-env! "mode"))
-    (spit "dist/index.html" (prod-page))
-    (spit "target/index.html" (dev-page))))
+  (println "Running mode:" (if config/dev? "dev" "release"))
+  (if config/dev?
+    (spit "target/index.html" (dev-page))
+    (spit "dist/index.html" (prod-page))))
 
 (main!)

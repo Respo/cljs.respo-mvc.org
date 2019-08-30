@@ -2,8 +2,7 @@
 (ns app.comp.header
   (:require [hsl.core :refer [hsl]]
             [respo-ui.core :as ui]
-            [respo-ui.colors :as colors]
-            [respo.macros :refer [defcomp div span a]]
+            [respo.core :refer [defcomp div span a]]
             [respo.comp.space :refer [=<]]))
 
 (def style-link {:cursor :pointer, :text-decoration :none, :font-size 16})

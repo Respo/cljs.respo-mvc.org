@@ -2,15 +2,14 @@
 (ns app.comp.home
   (:require [hsl.core :refer [hsl]]
             [respo-ui.core :as ui]
-            [respo-ui.colors :as colors]
-            [respo.macros :refer [defcomp <> span div button a img pre code]]
+            [respo.core :refer [defcomp <> span div button a img pre code]]
             [respo.comp.space :refer [=<]]
             [respo-md.comp.md :refer [comp-md-block]]
             ["highlight.js" :as hljs]
-            [build.util :refer [inline-resource]]))
+            [shadow.resource :refer [inline]]))
 
 (def style-description
-  {:font-size 16, :font-weight 400, :color colors/texture, :font-family "Hind"})
+  {:font-size 16, :font-weight 400, :color (hsl 0 0 30), :font-family "Hind"})
 
 (def style-footer {:min-height 200, :padding 32})
 
@@ -48,6 +47,6 @@
   (div
    {:style {:width 800, :margin :auto, :font-size 16}}
    (comp-md-block
-    (inline-resource "content.md")
+    (inline "content.md")
     {:highlight (fn [code lang] (.-value (.highlight hljs lang code)))}))
   (div {:style style-footer} (img {:src "https://img.shields.io/clojars/v/respo.svg"}))))
