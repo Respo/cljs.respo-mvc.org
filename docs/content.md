@@ -66,6 +66,27 @@ To hot replace app code, use `render!` function. `clear-cache!` for restting int
 ; respo.core/clear-cache!
 ```
 
+### Adding Effects
+
+Define effect with `defeffect` macro. You may also compare arguments with old one to decide what to do:
+
+```clojure
+(defeffect effect-focus [a] [a'] [action el]
+  (when (= :mount action)
+    (.focus (.querySelector el "input"))))
+```
+
+Pass component results in a vectors with effects defined:
+
+```clojure
+(defcomp comp-draft []
+  [(effect-focus "nothing")
+   (div {}
+      (input {})))]
+```
+
+The effect will be called during component mounting, updating and unmounting.
+
 ### States Management
 
 Respo uses an Atom to maintain global states. Global states and "Single Source of Truth" are preferred:

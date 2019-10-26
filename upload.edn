@@ -1,5 +1,5 @@
 
-{:host "tiye.me"
+{:host "respo-mvc.org"
  :uploads [{:from "dist/*"
             :to "cdn/respo-site/"}
            {:from "dist/{index.html,manifest.json}"
