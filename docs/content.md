@@ -71,7 +71,7 @@ To hot replace app code, use `render!` function. `clear-cache!` for restting int
 Define effect with `defeffect` macro. You may also compare arguments with old one to decide what to do:
 
 ```clojure
-(defeffect effect-focus [a] [a'] [action el]
+(defeffect effect-focus [a] [action el *local]
   (when (= :mount action)
     (.focus (.querySelector el "input"))))
 ```
