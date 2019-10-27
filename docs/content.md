@@ -79,13 +79,14 @@ Define effect with `defeffect` macro. You may also compare arguments with old on
 Pass component results in a vectors with effects defined:
 
 ```clojure
-(defcomp comp-draft []
-  [(effect-focus "nothing")
+(defcomp comp-draft [data]
+  [(effect-focus data)
    (div {}
       (input {})))]
 ```
 
-The effect will be called during component mounting, updating and unmounting.
+The effect will be called during with action in `:mount` `:before-update` `:update` and `unmount`.
+Respo would compare `[data]` passed to `effect-focus` with old arguments and updates will be called when they change.
 
 ### States Management
 
