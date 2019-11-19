@@ -109,14 +109,14 @@ During developing Respo, a bunch of libraries are added:
 
 * [ui](https://github.com/Respo/respo-ui) -- basic UI styles collected based on Flexbox
 * [markdown](https://github.com/Respo/respo-markdown) -- subset Markdown syntax rendering to virtual DOM
-* [router](https://github.com/Respo/respo-router) -- HTML5 router library decoupled from view part
-* [alerts](https://github.com/Respo/alerts) -- replacing alert/confirm/prompt components
+* [message](https://github.com/Respo/respo-message) -- displaying message on top-right corner
 * [feather](https://github.com/Respo/respo-feather) -- icons library of feather
+* [alerts](https://github.com/Respo/alerts) -- replacing alert/confirm/prompt components
+* [router](https://github.com/Respo/respo-router) -- HTML5 router library decoupled from view part
 * [reel](https://github.com/Respo/reel) -- time travelling developing tool
-* [global-popup](https://github.com/Respo/global-popup) and [inflow-popup](https://github.com/Respo/inflow-popup)
 * [value](https://github.com/Respo/respo-value) -- to display collections
 * [form](https://github.com/Respo/form) -- simple form library
-* [message](https://github.com/Respo/respo-message) -- displaying message on top-right corner
+* [notifier](https://github.com/Respo/notifier) -- notification notifier
 
 You may also try [Reacher](https://github.com/Respo/reacher) which is a React wrapper.
 
