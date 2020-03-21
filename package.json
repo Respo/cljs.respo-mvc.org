@@ -19,12 +19,12 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "http-server": "^0.11.1",
-    "shadow-cljs": "^2.8.72",
+    "http-server": "^0.12.1",
+    "shadow-cljs": "^2.8.93",
     "source-map-support": "^0.5.16"
   },
   "dependencies": {
-    "highlight.js": "^9.16.2",
+    "highlight.js": "^9.18.1",
     "shortid": "^2.2.15"
   }
 }

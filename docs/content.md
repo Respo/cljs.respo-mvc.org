@@ -101,7 +101,7 @@ Respo uses an Atom to maintain global states. Global states and "Single Source o
                (render! mount-target (comp-container @*store) dispatch!)))
 ```
 
-Respo has supports for [component-level states](https://github.com/Respo/respo/wiki/component-states). But states is designed in an awkward syntax in order to make sure it's consistent with "Single Source of Truth". Read about `mutate!` and `cursor->` in the docs.
+Respo has supports for [component-level states](https://github.com/Respo/respo/wiki/component-states). But states is designed in an awkward syntax in order to make sure it's consistent with "Single Source of Truth". Read about `cursor` and `>>` in the docs.
 
 ### Ecosystem
 
