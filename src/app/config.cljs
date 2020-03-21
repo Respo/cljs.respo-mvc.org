@@ -17,7 +17,7 @@
 (def site
   {:dev-ui "http://localhost:8100/main.css",
    :release-ui "http://cdn.tiye.me/favored-fonts/main.css",
-   :cdn-url "http://cdn.tiye.me/respo-site/",
+   :cdn-url "http://cdn.tiye.me/respo-mvc.org/",
    :title "Respo: a virtual DOM library in ClojureScript",
    :icon "http://cdn.tiye.me/logo/respo.png",
    :storage-key "respo-site"})

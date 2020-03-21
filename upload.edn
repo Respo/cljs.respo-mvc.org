@@ -1,6 +1,6 @@
 
 {:host "respo-mvc.org"
  :uploads [{:from "dist/*"
-            :to "cdn/respo-site/"}
+            :to "cdn/respo-mvc.org/"}
            {:from "dist/{index.html,manifest.json}"
-            :to "repo/Respo/respo.site/"}]}
+            :to "repo/Respo/respo-mvc.org/"}]}
