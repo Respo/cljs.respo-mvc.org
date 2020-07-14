@@ -22,7 +22,7 @@
    (merge
     base-info
     {:styles [(<< "http://~(get-ip!):8100/main.css") "/entry/main.css"],
-     :scripts ["/client.js"],
+     :scripts [{:src "/client.js", :defer? true}],
      :inline-styles [(slurp "entry/github-gist.css")]})))
 
 (def ga-html (slurp "entry/ga.html"))
@@ -37,7 +37,7 @@
      (merge
       base-info
       {:styles [(:release-ui config/site)],
-       :scripts (map #(-> % :output-name prefix-cdn) assets),
+       :scripts (map (fn [x] {:src (-> x :output-name prefix-cdn), :defer? true}) assets),
        :ssr "respo-ssr",
        :inline-styles [(slurp "entry/github-gist.css") (slurp "./entry/main.css")]}))))
 
