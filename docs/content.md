@@ -1,4 +1,4 @@
-Create elements in Clojure syntax:
+Create a element:
 
 ```clojure
 (div {:class-name "demo"
@@ -10,7 +10,7 @@ Create elements in Clojure syntax:
 ; respo.core/div
 ```
 
-Nest child elements:
+Nested elements:
 
 ```clojure
 (div {}
@@ -32,7 +32,7 @@ Add text nodes:
 
 ### Create Components
 
-To define components, use `defcomp`, which is a Macro:
+To define components, use `defcomp`, which is a cacro:
 
 ```clojure
 (defcomp comp-demo [p1 p2]
@@ -56,7 +56,7 @@ Use `render!` to mount a component. It also handles re-rendering if mounting alr
 ; respo.core/render!
 ```
 
-To hot replace app code, use `render!` function. `clear-cache!` for restting internal rendering caches:
+To hot replace app code, use `render!` function. `clear-cache!` for resetting internal rendering caches:
 
 ```clojure
 (defn reload! []
@@ -68,7 +68,7 @@ To hot replace app code, use `render!` function. `clear-cache!` for restting int
 
 ### Adding Effects
 
-Define effect with `defeffect` macro. You may also compare arguments with old one to decide what to do:
+Define effects with `defeffect` macro. You may also compare arguments with old one to decide what to do:
 
 ```clojure
 (defeffect effect-focus [a] [action el at-place?]
@@ -76,7 +76,7 @@ Define effect with `defeffect` macro. You may also compare arguments with old on
     (.focus (.querySelector el "input"))))
 ```
 
-Pass component results in a vectors with effects defined:
+Pass component results in a vector with effects defined:
 
 ```clojure
 (defcomp comp-draft [data]
@@ -85,12 +85,26 @@ Pass component results in a vectors with effects defined:
       (input {})))]
 ```
 
-The effect will be called during with action in `:mount` `:before-update` `:update` and `unmount`.
+The effect will be called with action in `:mount` `:before-update` `:update` and `unmount`.
 Respo would compare `[data]` passed to `effect-focus` with old arguments and updates will be called when they change.
 
 ### States Management
 
-Respo uses an Atom to maintain global states. Global states and "Single Source of Truth" are preferred:
+At component level, use it with an explicit `states` parameter passed from root states.
+The idea is based on cursors, but implemented differently:
+
+```clojure
+(defcomp comp-a [states]
+  (let [cursor (:cursor states)
+        state (or (:data states) {:a 1})]
+    (div {}
+      (<> (str "count" (:a state)))
+      (button {:inner-text "Add"
+               :on-click (fn [e d!]
+                          (d! cursor (update state :a inc)))}))))
+```
+
+Respo uses an atom to maintain global states for smooth experiences of hot code swapping, might look tedious though:
 
 ```clojure
 (defonce *store (atom {}))
@@ -101,7 +115,7 @@ Respo uses an Atom to maintain global states. Global states and "Single Source o
                (render! mount-target (comp-container @*store) dispatch!)))
 ```
 
-Respo has supports for [component-level states](https://github.com/Respo/respo/wiki/component-states). But states is designed in an awkward syntax in order to make sure it's consistent with "Single Source of Truth". Read about `cursor` and `>>` in the docs.
+Read more about `cursor` and `>>` in the docs. at [component-level states](https://github.com/Respo/respo/wiki/component-states).
 
 ### Ecosystem
 
