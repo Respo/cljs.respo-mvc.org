@@ -24,7 +24,7 @@
     "source-map-support": "^0.5.19"
   },
   "dependencies": {
-    "highlight.js": "^10.2.0",
+    "highlight.js": "^10.4.1",
     "shortid": "^2.2.15"
   }
 }
