@@ -48,3 +48,9 @@ body * {
   display: block;
   font-size: 12px;
 }
+
+.md-block blockquote {
+  background-color: hsl(0deg 0% 95%);
+  padding: 0 9px;
+  border-radius: 8px;
+}
